@@ -39,7 +39,7 @@ function PatientSignup() {
                 </div>
 
                 <form onSubmit={handleSubmit} className="signup-form">
-                    {/* Personal Information */}
+
                     <div className="form-section">
                         <h3 className="section-title">Personal Information</h3>
                         
@@ -131,6 +131,17 @@ function PatientSignup() {
                                     />
                                     <span className='radio-label'>Female</span>
                                 </label>
+                                <label className='radio-option'>
+                                    <input
+                                        type="radio"
+                                        name="gender"
+                                        value="other"
+                                        checked={formData.gender==="other"}
+                                        onChange={handleChange}
+                                        className='radio-input'
+                                    />
+                                    <span className='radio-label'>Other</span>
+                                </label>
                             </div>
                         </div>
 
@@ -160,7 +171,6 @@ function PatientSignup() {
                         </div>
                     </div>
 
-                    {/* Address Information */}
                     <div className="form-section">
                         <h3 className="section-title">Address Information</h3>
 
@@ -191,7 +201,6 @@ function PatientSignup() {
                         </div>
                     </div>
 
-                    {/* Emergency Contact */}
                     <div className="form-section">
                         <h3 className="section-title">Emergency Contact</h3>
                         

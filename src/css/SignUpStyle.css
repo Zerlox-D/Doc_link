@@ -1,8 +1,6 @@
 .signup-container {
     min-height: 100vh;
-    background-image: url("dark-green_gradient.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-color: rgb(43, 198, 182);
     display: flex;
     align-items: center;
     justify-content: center;

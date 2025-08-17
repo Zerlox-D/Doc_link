@@ -7,20 +7,27 @@ body{
     font-weight: 700;
     color: rgb(43, 198, 182);
     margin-left: 10px;
+    cursor: default;
 }
 
 header{
     display: flex;
-    margin-top: 13px;
+    margin-top: 0px;
+    padding-top: 13px;
     justify-content: space-between;
+}
+
+.login-container {
+    display: flex;
 }
 
 .login
 {
     font-size: 20px;
     color: rgb(5, 192, 173);
-    margin-left: 1150px;
+    margin-right: 25px;
     margin-top: 13px;
+    text-decoration: none;
 }
 
 .login:hover{
@@ -36,6 +43,7 @@ header{
     padding: 12px;
     font-size: 17px;
     margin-right: 10px;
+    cursor: pointer;
 }
 
 .signup_button:hover, .getstarted:hover{
@@ -102,14 +110,14 @@ hr{
 .feature-card {
     background-color: white;
     padding: 2rem;
-    border-radius: 0.75rem; /* rounded-xl */
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
-    transition: box-shadow 0.3s ease; /* transition-shadow */
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease;
     width: 300px;
 }
 
 .feature-card:hover {
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* hover:shadow-xl */
+    box-shadow: 0 15px 20px 5px rgba(0, 0, 0, 0.1), 0 15px 20px 5px rgba(0, 0, 0, 0.04);
 }
 
 .card-icon {
@@ -179,6 +187,7 @@ hr{
     color: rgb(5, 192, 173);
     padding: 17px;
     font-size: 17px;
+    cursor: pointer;
 }
 
 .sign-up-now:hover{
@@ -198,18 +207,4 @@ hr{
 .browse:hover{
     background-color: rgb(7, 158, 143);
     transition: 0.3s;
-}
-
-.pop-up-msg{
-    font-size: 25px;
-}
-
-.pop-up-options{
-    background-color: rgb(5, 192, 173);
-    color: white;
-    border:0;
-    border-radius: 20px;
-    padding: 12px;
-    font-size: 17px;
-    margin-right: 10px;
 }

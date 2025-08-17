@@ -1,0 +1,96 @@
+.navbar {
+  background: linear-gradient(90deg, #00c9a7, #00f0ff);
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin: 0 12px;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+.search-header {
+  text-align: center;
+  padding: 30px 20px;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.search-header h1 {
+  margin: 0;
+  font-size: 2rem;
+  color: #00c9a7;
+  font-weight: 700;
+}
+
+.search-main {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 0 15px;
+}
+
+.search-box {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.search-box button {
+  padding: 12px 20px;
+  background: #00c9a7;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.search-box button:hover {
+  background: #00b08f;
+}
+
+.results-container {
+  display: grid;
+  gap: 15px;
+}
+
+.doctor-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+
+.doctor-card:hover {
+  transform: translateY(-3px);
+}
+
+.doctor-card h3 {
+  margin: 0;
+  color: #00c9a7;
+}
+
+.no-results {
+  text-align: center;
+  color: #777;
+  margin-top: 20px;
+}

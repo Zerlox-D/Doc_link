@@ -1,0 +1,616 @@
+.doctor-profile-container {
+    min-height: 100vh;
+    background-color: rgb(235, 244, 243);
+}
+
+.doctor-profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 13px 20px;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.header-logo {
+    font-size: 40px;
+    font-weight: 700;
+    color: rgb(43, 198, 182);
+}
+
+.header-user-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.welcome-text {
+    font-size: 18px;
+    color: rgb(75, 85, 99);
+}
+
+.logout-btn {
+    background-color: rgb(5, 192, 173);
+    font-size: medium;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    background-color: rgb(18, 179, 163);
+    transition: 0.3s;
+}
+
+.profile-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.statistics-section {
+    margin-bottom: 40px;
+}
+
+.section-heading {
+    font-size: 32px;
+    font-weight: 700;
+    color: rgb(43, 198, 182);
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    background-color: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+.stat-icon {
+    font-size: 40px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.total-patients .stat-icon {
+    background-color: rgb(235, 244, 243);
+    border: 3px solid rgb(43, 198, 182);
+}
+
+.month-patients .stat-icon {
+    background-color: rgba(45, 209, 192, 0.1);
+    border: 3px solid rgb(45, 209, 192);
+}
+
+.upcoming-appointments .stat-icon {
+    background-color: rgba(5, 192, 173, 0.1);
+    border: 3px solid rgb(5, 192, 173);
+}
+
+.stat-content h3 {
+    font-size: 36px;
+    font-weight: 700;
+    color: rgb(43, 198, 182);
+    margin: 0;
+}
+
+.stat-content p {
+    font-size: 16px;
+    color: rgb(75, 85, 99);
+    margin: 5px 0 0 0;
+    font-weight: 500;
+}
+
+.timings-section, .fees-section {
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 2px solid rgb(235, 244, 243);
+}
+
+.section-header {
+    margin-bottom: 20px;
+}
+
+.section-header h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: rgb(43, 198, 182);
+    margin-bottom: 5px;
+}
+
+.edit-hint {
+    font-size: 14px;
+    color: rgb(107, 114, 128);
+    margin: 0;
+    font-style: italic;
+}
+
+.timings-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.timing-row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    align-items: center;
+    padding: 15px;
+    background-color: rgb(249, 250, 251);
+    border-radius: 10px;
+    border: 1px solid rgb(229, 231, 235);
+}
+
+.day-name {
+    font-weight: 600;
+    color: rgb(55, 65, 81);
+    font-size: 16px;
+}
+
+.timing-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.timing-checkbox {
+    margin-right: 5px;
+}
+
+.available-label {
+    color: rgb(75, 85, 99);
+    font-size: 14px;
+    min-width: 70px;
+}
+
+.time-input {
+    padding: 8px 10px;
+    border: 1px solid rgb(209, 213, 219);
+    border-radius: 6px;
+    font-size: 14px;
+    width: 100px;
+}
+
+.timing-display {
+    padding: 8px 15px;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.timing-display.available {
+    background-color: rgb(34, 197, 94);
+    color: white;
+}
+
+.timing-display.unavailable {
+    background-color: rgb(239, 68, 68);
+    color: white;
+}
+
+.fees-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.fee-item {
+    background-color: rgb(249, 250, 251);
+    border-radius: 12px;
+    padding: 20px;
+    border: 2px solid rgb(229, 231, 235);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fee-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    color: rgb(55, 65, 81);
+    font-size: 16px;
+}
+
+.fee-icon {
+    font-size: 24px;
+}
+
+.fee-value {
+    display: flex;
+    align-items: center;
+}
+
+.fee-amount {
+    font-size: 20px;
+    font-weight: 700;
+    color: rgb(43, 198, 182);
+}
+
+.fee-input-group {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.currency {
+    font-size: 18px;
+    font-weight: 600;
+    color: rgb(43, 198, 182);
+}
+
+.fee-input {
+    padding: 8px 12px;
+    border: 1px solid rgb(209, 213, 219);
+    border-radius: 6px;
+    font-size: 16px;
+    width: 100px;
+    text-align: right;
+}
+
+.fee-input:focus {
+    outline: none;
+    border-color: rgb(43, 198, 182);
+    box-shadow: 0 0 0 2px rgba(43, 198, 182, 0.1);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+    justify-content: center;
+}
+
+.action-btn {
+    border: none;
+    border-radius: 25px;
+    padding: 20px 40px;
+    font-size: 24px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 250px;
+}
+
+.schedule-btn {
+    background-color: rgb(45, 209, 192);
+    color: white;
+    box-shadow: 0 8px 25px rgba(45, 209, 192, 0.3);
+}
+
+.schedule-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(45, 209, 192, 0.4);
+}
+
+.home-visit-btn {
+    background-color: rgb(5, 192, 173);
+    color: white;
+    box-shadow: 0 8px 25px rgba(5, 192, 173, 0.3);
+}
+
+.home-visit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(5, 192, 173, 0.4);
+}
+
+/* Profile Card */
+.profile-card {
+    background-color: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+/* Profile Header */
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid rgb(235, 244, 243);
+    padding-bottom: 20px;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.profile-avatar {
+    width: 100px;
+    height: 100px;
+    background-color: rgb(235, 244, 243);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    border: 3px solid rgb(43, 198, 182);
+}
+
+.profile-details h1 {
+    font-size: 36px;
+    font-weight: 700;
+    color: rgb(43, 198, 182);
+    margin: 0 0 5px 0;
+}
+
+.specializations-text {
+    font-size: 18px;
+    color: rgb(75, 85, 99);
+    margin: 0;
+}
+
+.experience-text {
+    font-size: 16px;
+    color: rgb(119, 216, 205);
+    margin: 5px 0 0 0;
+    font-weight: 600;
+}
+
+.edit-btn {
+    background-color: rgb(5, 192, 173);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.edit-btn:hover {
+    background-color: rgb(18, 179, 163);
+}
+
+.edit-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.save-btn {
+    background-color: rgb(34, 197, 94);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.save-btn:hover {
+    background-color: rgb(22, 163, 74);
+    transition: 0.3s;
+}
+
+.cancel-btn {
+    background-color: rgb(239, 68, 68);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.cancel-btn:hover {
+    background-color: rgb(220, 38, 38);
+    transition: 0.3s;
+}
+
+/* Profile Information Grid */
+.profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.info-section h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: rgb(43, 198, 182);
+    margin-bottom: 20px;
+    border-bottom: 2px solid rgb(235, 244, 243);
+    padding-bottom: 10px;
+}
+
+.info-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.field-group label {
+    font-weight: 600;
+    color: rgb(75, 85, 99);
+    font-size: 16px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.field-display {
+    font-size: 16px;
+    color: rgb(55, 65, 81);
+    margin: 0;
+    background-color: rgb(249, 250, 251);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.license-display {
+    font-family: monospace;
+}
+
+.birth-date-display {
+    /* No special styling needed */
+}
+
+.gender-display {
+    text-transform: capitalize;
+}
+
+.field-input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid rgb(229, 231, 235);
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.field-select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid rgb(229, 231, 235);
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+/* Specializations */
+.specialization-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.specialization-tag {
+    background-color: rgb(119, 216, 205);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.specialization-edit {
+    max-height: 150px;
+    overflow-y: auto;
+    border: 2px solid rgb(229, 231, 235);
+    border-radius: 10px;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.specialization-option {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.specialization-option input {
+    margin-right: 8px;
+}
+
+/* Affiliations Section */
+.affiliations-section {
+    margin-top: 40px;
+    border-top: 2px solid rgb(235, 244, 243);
+    padding-top: 30px;
+}
+
+.affiliations-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.affiliation-section h4 {
+    font-size: 20px;
+    font-weight: 600;
+    color: rgb(43, 198, 182);
+    margin-bottom: 15px;
+}
+
+.affiliation-display {
+    font-size: 16px;
+    color: rgb(55, 65, 81);
+    margin: 0;
+    background-color: rgb(249, 250, 251);
+    padding: 15px;
+    border-radius: 8px;
+    line-height: 1.5;
+}
+
+.affiliation-textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid rgb(229, 231, 235);
+    border-radius: 10px;
+    font-size: 16px;
+    resize: vertical;
+}
+
+/* Home Visit Section */
+.home-visit-section {
+    margin-top: 25px;
+}
+
+.home-visit-section h4 {
+    font-size: 20px;
+    font-weight: 600;
+    color: rgb(43, 198, 182);
+    margin-bottom: 15px;
+}
+
+.home-visit-options {
+    display: flex;
+    gap: 20px;
+}
+
+.home-visit-option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.home-visit-option input {
+    margin-right: 8px;
+}
+
+.availability-status {
+    display: inline-flex;
+    align-items: center;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.available-status {
+    background-color: rgb(34, 197, 94);
+}
+
+.unavailable-status {
+    background-color: rgb(239, 68, 68);
+}

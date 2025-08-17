@@ -47,7 +47,6 @@ function DoctorSignup() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Handle form submission here
         console.log('Doctor signup data:', formData);
     };
 
@@ -59,7 +58,7 @@ function DoctorSignup() {
                         <p className="signup-subtitle">Create your professional account to connect with patients</p>
                     </div>
                     <form onSubmit={handleSubmit} className="signup-form">
-                        {/* Personal Information */}
+                        
                         <div className="form-section">
                             <h3 className="section-title">Personal Information</h3>
             
@@ -148,6 +147,17 @@ function DoctorSignup() {
                                         />
                                         <span className="radio-label">Female</span>
                                     </label>
+                                    <label className='radio-option'>
+                                    <input
+                                        type="radio"
+                                        name="gender"
+                                        value="other"
+                                        checked={formData.gender==="other"}
+                                        onChange={handleChange}
+                                        className='radio-input'
+                                    />
+                                    <span className='radio-label'>Other</span>
+                                </label>
                                 </div>
                             </div>
                             <div className="form-row">
@@ -175,7 +185,7 @@ function DoctorSignup() {
                                 </div>
                             </div>
                         </div>
-                        {/* Professional Information */}
+                       
                         <div className="form-section">
                             <h3 className="section-title">Professional Information</h3>
             
