@@ -10,6 +10,7 @@ import PatientProfile from "./pages/PatientProfile";
 import SearchDoctors from "./pages/SearchDoctors";
 import DoctorProfile from "./pages/DoctorProfile";
 import DoctorProfileViewer from "./pages/DoctorProfileViewer";
+import BookAppointment from "./pages/BookAppointment";
 import AdminDashboard from "./pages/AdminDashboard";
 import './index.css'
 
@@ -43,7 +44,8 @@ function App() {
             <Route path="/PatientProfile" element={<PatientProfile/>}/>
             <Route path="/SearchDoctors" element={<SearchDoctors/>}/>
             <Route path="/DoctorProfile" element={<DoctorProfile/>}/>
-            <Route path="/DoctorProfileViewer" element={<DoctorProfileViewer/>}/>
+            <Route path="/doctor/:id" element={<DoctorProfileViewer/>}/>
+            <Route path="/Book" element={<BookAppointment/>}/>
             <Route path="/AdminDashboard" element={<AdminDashboard/>}/>
           </Routes>
         </Router>

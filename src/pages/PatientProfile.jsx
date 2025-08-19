@@ -1,161 +1,293 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../css/PatientProfileStyle.css";
+import { Link } from "react-router-dom";
 
-const PatientProfile = () => {
-  const initialProfile = {
+export default function UserProfile() {
+  const [isEditing, setIsEditing] = useState(false);
+  const [profileData, setProfileData] = useState({
     name: "John Doe",
-    email: "johndoe@example.com",
-    phone: "+91 9876543210",
-    address: "123 Main Street, Kerala",
-    dob: "1990-01-01",
+    dob: "1995-08-15",
     gender: "Male",
-    pic: "https://cdn-icons-png.flaticon.com/512/147/147144.png",
+    bloodGroup: "O+",
+    height: "175 cm",
+    weight: "70 kg",
+    email: "john.doe@gmail.com",
+    phone: "+91 9876543210",
+    address: "123 Main Street, Kochi",
+    emergency: "+91 9876543211",
+    occupation: "Software Engineer",
+    allergies: "None",
+  });
+  const [originalData, setOriginalData] = useState(profileData);
+  const [profilePic, setProfilePic] = useState("👨");
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [showPicSelector, setShowPicSelector] = useState(false);
+  const [appointmentToCancel, setAppointmentToCancel] = useState(null);
+
+  const handleEdit = () => {
+    setOriginalData(profileData);
+    setIsEditing(true);
   };
 
-  const upcomingAppointments = [
-    { doctor: "Dr. Anil Kumar", date: "2025-08-20", time: "10:30 AM" },
-    { doctor: "Dr. Sreeja Menon", date: "2025-08-25", time: "2:00 PM" }
-  ];
-
-  const pastVisits = [
-    { doctor: "Dr. Ramesh", date: "2025-07-15", time: "11:00 AM" },
-    { doctor: "Dr. Meera", date: "2025-07-05", time: "4:00 PM" }
-  ];
-
-  const [profile, setProfile] = useState(initialProfile);
-
-  const handleSaveProfile = () => {
-    alert("Profile saved successfully!");
+  const handleSave = () => {
+    setIsEditing(false);
   };
 
-  const handlePicChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setProfile({ ...profile, pic: reader.result });
-      };
-      reader.readAsDataURL(file);
+  const handleCancel = () => {
+    setProfileData(originalData);
+    setIsEditing(false);
+  };
+
+  const handleInputChange = (field, value) => {
+    setProfileData({ ...profileData, [field]: value });
+  };
+
+  const confirmCancelAppointment = (id) => {
+    setAppointmentToCancel(id);
+    setShowConfirm(true);
+  };
+
+  const cancelConfirmed = () => {
+    if (appointmentToCancel) {
+      setAppointments((prev) =>
+        prev.filter((app) => app.id !== appointmentToCancel)
+      );
     }
+    setShowConfirm(false);
   };
+
+  const [appointments, setAppointments] = useState([
+    {
+      id: 1,
+      doctor: "Dr. Meera Krishnan",
+      specialty: "Dermatology",
+      date: "Aug 20, 2025",
+      time: "10:30 AM",
+    },
+    {
+      id: 2,
+      doctor: "Dr. Arun Kumar",
+      specialty: "Cardiology",
+      date: "Aug 25, 2025",
+      time: "2:15 PM",
+    },
+  ]);
+
+  const pastAppointments = [
+    {
+      id: 3,
+      doctor: "Dr. Priya Menon",
+      specialty: "Orthopedics",
+      date: "Jul 10, 2025",
+      time: "4:00 PM",
+    },
+    {
+      id: 4,
+      doctor: "Dr. Rahul Singh",
+      specialty: "General Physician",
+      date: "Jun 22, 2025",
+      time: "11:15 AM",
+    },
+  ];
 
   return (
-    <>
+    <div className="up-container">
+      <nav className="up-navbar">
+        <div className="up-nav-left">
+          <Link className="up-nav-link" to="/Home">Home</Link>
+          <Link className="up-nav-link" to="/">Profile</Link>
+        </div>
+        <Link className="up-logout-btn" to="/Login">Logout</Link>
+      </nav>
 
-      <header>
-        <h1>User Profile</h1>
+      <header className="up-header">
+        <h1 className="up-title">User Dashboard</h1>
+        <div className="up-subtitle">
+          Manage your personal information and appointments
+        </div>
       </header>
 
-      <main>
-        <div className="profile-card">
-          <div className="profile-header">
-            <div className="profile-picture">
-              <img
-                id="profilePic"
-                src={profile.pic}
-                alt="Profile"
-                onClick={() => document.getElementById("picInput").click()}
-              />
-              <div className="edit-icon">✎</div>
-              <input
-                type="file"
-                id="picInput"
-                accept="image/*"
-                style={{ display: "none" }}
-                onChange={handlePicChange}
-              />
+      <main className="up-main">
+        <div className="up-profile-card">
+          <div className="up-profile-header">
+            <div className="up-pic-container">
+              <div
+                className="up-profile-pic"
+                onClick={() => setShowPicSelector(true)}
+              >
+                {profilePic}
+              </div>
+              {/* <button
+                className="up-change-pic-btn"
+                onClick={() => setShowPicSelector(true)}
+              >
+                📸 Change
+              </button> */}
             </div>
-
-            <div className="profile-info">
-              <div>
-                <label>Name</label>
-                <input
-                  type="text"
-                  value={profile.name}
-                  onChange={(e) => setProfile({ ...profile, name: e.target.value })}
-                />
-              </div>
-              <div>
-                <label>Email</label>
-                <input
-                  type="email"
-                  value={profile.email}
-                  onChange={(e) => setProfile({ ...profile, email: e.target.value })}
-                />
-              </div>
-              <div>
-                <label>Phone</label>
-                <input
-                  type="tel"
-                  value={profile.phone}
-                  onChange={(e) => setProfile({ ...profile, phone: e.target.value })}
-                />
-              </div>
-              <div>
-                <label>Address</label>
-                <input
-                  type="text"
-                  value={profile.address}
-                  onChange={(e) => setProfile({ ...profile, address: e.target.value })}
-                />
-              </div>
-              <div>
-                <label>Date of Birth</label>
-                <input
-                  type="date"
-                  value={profile.dob}
-                  onChange={(e) => setProfile({ ...profile, dob: e.target.value })}
-                />
-              </div>
-              <div>
-                <label>Gender</label>
-                <select
-                  value={profile.gender}
-                  onChange={(e) => setProfile({ ...profile, gender: e.target.value })}
-                >
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
+            <div className="up-basic-info">
+              <h2 className="up-display-name">{profileData.name}</h2>
+              <div className="up-role">Patient</div>
             </div>
           </div>
-          <button className="btn" id="saveProfileBtn" onClick={handleSaveProfile}>
-            Save Profile
-          </button>
-        </div>
 
-        <div className="profile-card">
-          <h3>Upcoming Appointments</h3>
-          <div className="appointments">
-            {upcomingAppointments.map((app, index) => (
-              <div key={index} className="appointment-card">
-                {app.doctor} - {app.date} at {app.time}
-              </div>
-            ))}
+          <div className="up-details-section">
+            {/* Personal Info */}
+            <div className="up-detail-group">
+              <h3 className="up-section-title">Personal Information</h3>
+              {[
+                ["Full Name", "name"],
+                ["Date of Birth", "dob"],
+                ["Gender", "gender"],
+                ["Blood Group", "bloodGroup"],
+                ["Height", "height"],
+                ["Weight", "weight"],
+              ].map(([label, key]) => (
+                <div className="up-detail-row" key={key}>
+                  <span className="up-detail-label">{label}</span>
+                  {isEditing ? (
+                    <input
+                      className="up-detail-input"
+                      value={profileData[key]}
+                      onChange={(e) =>
+                        handleInputChange(key, e.target.value)
+                      }
+                    />
+                  ) : (
+                    <span className="up-detail-value">{profileData[key]}</span>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* Contact Info */}
+            <div className="up-detail-group">
+              <h3 className="up-section-title">Contact Information</h3>
+              {[
+                ["Email", "email"],
+                ["Phone", "phone"],
+                ["Address", "address"],
+                ["Emergency", "emergency"],
+                ["Occupation", "occupation"],
+                ["Allergies", "allergies"],
+              ].map(([label, key]) => (
+                <div className="up-detail-row" key={key}>
+                  <span className="up-detail-label">{label}</span>
+                  {isEditing ? (
+                    <input
+                      className="up-detail-input"
+                      value={profileData[key]}
+                      onChange={(e) =>
+                        handleInputChange(key, e.target.value)
+                      }
+                    />
+                  ) : (
+                    <span className="up-detail-value">{profileData[key]}</span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="up-edit-controls">
+            {!isEditing && (
+              <button className="up-btn up-edit-btn" onClick={handleEdit}>
+                ✏️ Edit
+              </button>
+            )}
+            {isEditing && (
+              <>
+                <button className="up-btn up-save-btn" onClick={handleSave}>
+                  💾 Save
+                </button>
+                <button className="up-btn up-cancel-edit-btn" onClick={handleCancel}>
+                  ❌ Cancel
+                </button>
+              </>
+            )}
           </div>
         </div>
 
-        <div className="profile-card">
-          <h3>Past Visits</h3>
-          <div className="appointments">
-            {pastVisits.map((app, index) => (
-              <div key={index} className="appointment-card">
-                {app.doctor} - {app.date} at {app.time}
+        {/* Appointments */}
+        <div className="up-section-card">
+          <h3 className="up-section-title">📅 Upcoming Appointments</h3>
+          {appointments.map((app) => (
+            <div className="up-appointment-item" key={app.id}>
+              <div>
+                <strong>{app.doctor}</strong>
+                <br />
+                {app.specialty} • {app.date} • {app.time}
               </div>
-            ))}
-          </div>
+              <button
+                className="up-cancel-btn"
+                onClick={() => confirmCancelAppointment(app.id)}
+              >
+                Cancel
+              </button>
+            </div>
+          ))}
         </div>
 
-        <button
-          className="btn logout-btn"
-          onClick={() => window.location.href = "/"}
-        >
-          Logout
-        </button>
+        <div className="up-section-card">
+          <h3 className="up-section-title">🕒 Previous Appointments</h3>
+          {pastAppointments.map((app) => (
+            <div className="up-appointment-item" key={app.id}>
+              <div>
+                <strong>{app.doctor}</strong>
+                <br />
+                {app.specialty} • {app.date} • {app.time}
+              </div>
+            </div>
+          ))}
+        </div>
       </main>
-    </>
-  );
-};
 
-export default PatientProfile;
+      {/* Confirm Box */}
+      {showConfirm && (
+        <div className="up-confirm-box">
+          <div className="up-confirm-dialog">
+            <h3>⚠️ Cancel Appointment</h3>
+            <p>Are you sure you want to cancel?</p>
+            <button className="up-btn up-save-btn" onClick={cancelConfirmed}>
+              Yes
+            </button>
+            <button
+              className="up-btn up-cancel-edit-btn"
+              onClick={() => setShowConfirm(false)}
+            >
+              No
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Pic Selector */}
+      {/* {showPicSelector && (
+        <div className="up-confirm-box">
+          <div className="up-pic-selector-dialog">
+            <h3>Choose Profile Picture</h3>
+            <div className="up-pic-options">
+              {["🧑", "👩"].map((pic) => (
+                <div
+                  key={pic}
+                  className="up-pic-option"
+                  onClick={() => {
+                    setProfilePic(pic);
+                    setShowPicSelector(false);
+                  }}
+                >
+                  {pic}
+                </div>
+              ))}
+            </div>
+            <button
+              className="up-btn up-cancel-edit-btn"
+              onClick={() => setShowPicSelector(false)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )} */}
+    </div>
+  );
+}

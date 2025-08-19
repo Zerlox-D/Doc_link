@@ -67,7 +67,7 @@ function LandingPage() {
             <span className='join'>Join thousands of patients who trust Doc.link for their daily healthcare needs</span>
             <br /><br />
             <Link to="/SignUpChoice"><button className='sign-up-now'>Sign up now</button></Link>&nbsp;&nbsp;
-            <button className='browse'>Browse without signing up</button>
+            <Link to="/Home"><button className='browse'>Browse without signing up</button></Link>
         </div>
       <br /><br /><br />
     <FooterMain/>

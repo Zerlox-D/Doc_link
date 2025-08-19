@@ -1,17 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../css/SearchDoctorsStyle.css";
+import { Link } from "react-router-dom";
 
 const SearchDoctors = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [doctors, setDoctors] = useState([]);
   const [filteredDoctors, setFilteredDoctors] = useState([]);
 
-  const doctors = [
-    { name: "Dr. Anil Kumar", specialty: "Cardiologist", location: "Kochi" },
-    { name: "Dr. Sreeja Menon", specialty: "Dermatologist", location: "Thiruvananthapuram" },
-    { name: "Dr. Ramesh", specialty: "Pediatrician", location: "Kozhikode" },
-    { name: "Dr. Meera", specialty: "Neurologist", location: "Kochi" },
-    { name: "Dr. Prakash Nair", specialty: "Orthopedic", location: "Thrissur" },
-  ];
+  useEffect(() => {
+    fetch(`http://localhost/Doc_Link/php/SearchDoctors.php?q=${searchTerm}`)
+      .then((res) => res.json())
+      .then((data) => setDoctors(data))
+      .catch((err) => console.error(err));
+  }, [searchTerm]);
 
   const handleSearch = () => {
     const results = doctors.filter(
@@ -25,13 +26,6 @@ const SearchDoctors = () => {
 
   return (
     <div className="search-page">
-      <nav className="navbar">
-        <div className="nav-left">
-          <a href="/">Home</a>
-          <a href="/search">Search</a>
-        </div>
-      </nav>
-
       <header className="search-header">
         <h1>Find Your Doctor</h1>
       </header>
@@ -48,17 +42,20 @@ const SearchDoctors = () => {
         </div>
 
         <div className="results-container">
-          {filteredDoctors.length > 0 ? (
-            filteredDoctors.map((doc, index) => (
-              <div key={index} className="doctor-card">
-                <h3>{doc.name}</h3>
-                <p>{doc.specialty}</p>
-                <p>{doc.location}</p>
-              </div>
-            ))
-          ) : (
-            <p className="no-results">No doctors found</p>
-          )}
+            {filteredDoctors.length > 0 ? (
+              filteredDoctors.map((doc, index) => (
+                <Link key={doc.doctor_id} to={`/doctor/${doc.doctor_id}`}>
+                <div className="doctor-card">
+                  <h3>{doc.name}</h3>
+                  <p>{doc.specialty}</p>
+                  <p>{doc.hospital}</p>
+                  <p>{doc.city}</p>
+                </div>
+                </Link>
+              ))
+            ) : (
+              <p className="no-results">No doctors found</p>
+            )}
         </div>
       </main>
     </div>

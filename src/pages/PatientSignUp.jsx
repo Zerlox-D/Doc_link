@@ -213,7 +213,7 @@ function PatientSignup() {
                                     value={formData.emergencyContact}
                                     onChange={handleChange}
                                     className="form-input"
-                                    placeholder="Full Name"
+                                    placeholder="First Name"
                                 />
                             </div>
                             <div className="form-group">
