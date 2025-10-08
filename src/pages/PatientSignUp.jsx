@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../css/SignUpStyle.css';
 
 function PatientSignup() {
@@ -32,6 +33,23 @@ function PatientSignup() {
 
     return (
         <div className="signup-container">
+            <div className='left-side'>
+                <div className='logo-signup'>
+                    <Link to="/"><span className='logo-text'>Doc.link</span></Link>
+                </div>
+                <div className="user-signup-icon">
+                    <span>👨</span>
+                </div>
+                
+                <div className='doctor-signup-button-container'>
+                    <Link to="/DoctorSignUp">
+                    <button
+                      className="doctor-signup-btn">
+                        Sign up as Doctor →
+                    </button>
+                    </Link>
+                </div>
+            </div>
             <div className="signup-card">
                 <div className="signup-header">
                     <h1 className="signup-title">Join <span style={{color:'rgb(43, 198, 182)'}}>Doc.link</span> as a Patient</h1>

@@ -1,15 +1,36 @@
 import React, { useState, useEffect } from "react";
 import "../css/HomeStyle.css";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
+  const [userName, setUserName] = useState("");
 
   useEffect(() => {
     const heroBox = document.querySelector(".hero-box");
     if (heroBox) {
       heroBox.classList.add("active");
     }
+
+    // Get user name from localStorage
+    const storedName = localStorage.getItem("user_name");
+    if (storedName) {
+      setUserName(storedName);
+    }
   }, []);
+
+  const handleLogout = () => {
+    // Clear all user data from localStorage
+    localStorage.removeItem("role");
+    localStorage.removeItem("user_id");
+    localStorage.removeItem("patient_id");
+    localStorage.removeItem("doctor_id");
+    localStorage.removeItem("user_name");
+    localStorage.removeItem("user_email");
+    
+    // Redirect to landing page
+    navigate("/");
+  };
 
   return (
     <>
@@ -17,10 +38,16 @@ const Home = () => {
         <div className="logo">
           <h1>Doc.link</h1>
         </div>
+        <div className="home-user-section">
+          {userName && (
+            <span className="home-user-greeting">Welcome, {userName}!</span>
+          )}
+          <button onClick={handleLogout} className="home-logout-btn">
+            Logout
+          </button>
+        </div>
         <ul className="nav-links">
-          <li><Link to="/Home">Home</Link></li>
-          <li><Link to="/SearchDoctors">Search</Link></li>
-          <li><Link to="/PatientProfile">Patient Profile</Link></li>
+          {/* <li><Link to="/PatientProfile">Patient Profile</Link></li> */}
         </ul>
       </header>
 

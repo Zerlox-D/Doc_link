@@ -594,3 +594,211 @@
         gap: 15px;
     }
 }
+
+/* Fees Section */
+.fees-section {
+    background: white;
+    border-radius: 25px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: rgb(43, 198, 182);
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.fees-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.fee-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 25px;
+    background: linear-gradient(135deg, rgb(235, 244, 243) 0%, rgb(220, 252, 247) 100%);
+    border-radius: 20px;
+    border: 2px solid rgb(119, 216, 205);
+    transition: all 0.3s ease;
+}
+
+.fee-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(5, 192, 173, 0.3);
+}
+
+.fee-icon {
+    font-size: 48px;
+    min-width: 60px;
+    text-align: center;
+}
+
+.fee-details {
+    flex: 1;
+}
+
+.fee-type {
+    font-size: 16px;
+    color: rgb(75, 85, 99);
+    margin-bottom: 8px;
+}
+
+.fee-amount {
+    font-size: 32px;
+    font-weight: 700;
+    color: rgb(5, 192, 173);
+}
+
+/* Availability Section */
+.availability-section {
+    background: white;
+    border-radius: 25px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.availability-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.availability-day-card {
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px solid;
+    transition: all 0.3s ease;
+}
+
+.availability-day-card.available {
+    background: linear-gradient(135deg, rgb(220, 252, 247) 0%, rgb(204, 253, 247) 100%);
+    border-color: rgb(5, 192, 173);
+}
+
+.availability-day-card.unavailable {
+    background: rgb(249, 250, 251);
+    border-color: rgb(209, 213, 219);
+    opacity: 0.7;
+}
+
+.day-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.day-name {
+    font-size: 20px;
+    font-weight: 600;
+    color: rgb(17, 24, 39);
+}
+
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.available-badge {
+    background: rgb(5, 192, 173);
+    color: white;
+}
+
+.unavailable-badge {
+    background: rgb(209, 213, 219);
+    color: rgb(75, 85, 99);
+}
+
+.day-details {
+    margin-top: 10px;
+}
+
+.timing {
+    font-size: 16px;
+    color: rgb(75, 85, 99);
+    margin-bottom: 8px;
+}
+
+.home-visit-indicator {
+    font-size: 14px;
+    color: rgb(5, 192, 173);
+    font-weight: 600;
+}
+
+.no-availability {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    color: rgb(107, 114, 128);
+    font-size: 18px;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.book-appointment-btn,
+.book-home-visit-btn {
+    padding: 18px 40px;
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.book-appointment-btn {
+    background: rgb(5, 192, 173);
+    color: white;
+}
+
+.book-appointment-btn:hover {
+    background: rgb(18, 179, 163);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(5, 192, 173, 0.4);
+}
+
+.book-home-visit-btn {
+    background: rgb(5, 192, 173);
+    color: white;
+}
+
+.book-home-visit-btn:hover:not(:disabled) {
+    background: rgb(18, 179, 163);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(119, 216, 205, 0.4);
+}
+
+.book-home-visit-btn:disabled {
+    background: rgb(209, 213, 219);
+    color: rgb(156, 163, 175);
+    cursor: not-allowed;
+}
+
+/* Loading and Error States */
+.loading-message,
+.error-message {
+    text-align: center;
+    padding: 100px 20px;
+    font-size: 24px;
+    color: rgb(75, 85, 99);
+}
+
+.error-message {
+    color: rgb(239, 68, 68);
+}

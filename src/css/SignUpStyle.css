@@ -1,19 +1,64 @@
+
 .signup-container {
-    min-height: 100vh;
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+}
+
+.left-side {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
     background-color: rgb(43, 198, 182);
+    flex-direction: column;
+    width: 45%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    z-index: 1;
+}
+
+.logo-signup{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 40px;
+    font-weight: 800;
+    color: rgb(255, 255, 255);
+    cursor: default;
+}
+
+.user-signup-icon {
+    width: 120px;
+    height: 160px;
+    background-color: white;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2rem 1rem;
+    margin: 0 auto 30px auto;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border: 3px solid white;
+    font-size: 60px;
+    cursor: default;
+}
+
+.doctor-signup-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .signup-card {
     background: white;
-    border-radius: 16px;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-    width: 100%;
-    max-width: 800px;
+    margin-left: 45%;
+    width: 55%;
+    min-height: 100vh;
     padding: 2rem;
+    overflow-y: auto;
     animation: slideDown 0.5s ease-out;
 }
 

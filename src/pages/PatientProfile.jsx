@@ -259,35 +259,6 @@ export default function UserProfile() {
           </div>
         </div>
       )}
-
-      {/* Pic Selector */}
-      {/* {showPicSelector && (
-        <div className="up-confirm-box">
-          <div className="up-pic-selector-dialog">
-            <h3>Choose Profile Picture</h3>
-            <div className="up-pic-options">
-              {["🧑", "👩"].map((pic) => (
-                <div
-                  key={pic}
-                  className="up-pic-option"
-                  onClick={() => {
-                    setProfilePic(pic);
-                    setShowPicSelector(false);
-                  }}
-                >
-                  {pic}
-                </div>
-              ))}
-            </div>
-            <button
-              className="up-btn up-cancel-edit-btn"
-              onClick={() => setShowPicSelector(false)}
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )} */}
     </div>
   );
 }

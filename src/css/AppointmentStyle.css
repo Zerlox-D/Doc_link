@@ -1,125 +1,374 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+body {
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Main Container */
 .ba-container {
-  background: linear-gradient(135deg, #00c9a7, #92fe9d);
+  background: linear-gradient(135deg, #ebf4f3 0%, #dcfcf7 50%, #ccfdf7 100%);
   min-height: 100vh;
   color: #333;
+  position: relative;
 }
 
 /* Navbar */
 .ba-navbar {
-  background: rgba(255, 255, 255, 0.95);
+  background: white;
   padding: 15px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 3px solid #00c9a7;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-.ba-logo{
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #07d5a8;
+.ba-logo {
+  font-size: 32px;
+  font-weight: 700;
+  color: rgb(43, 198, 182);
 }
 
 .ba-nav-link {
-  color: #333;
+  color: #4b5563;
   text-decoration: none;
   margin: 0 15px;
   font-weight: 600;
   padding: 10px 20px;
-  border-radius: 25px;
-  transition: .3s;
+  border-radius: 20px;
+  transition: all 0.3s ease;
 }
+
 .ba-nav-link:hover {
-  background: linear-gradient(135deg, #00c9a7, #92fe9d);
-  color: #fff;
+  background: rgb(220, 252, 247);
+  color: rgb(5, 192, 173);
+  transform: translateY(-2px);
 }
+
 .ba-logout-btn {
-  background: linear-gradient(135deg, #00c9a7, #20c997);
-  color: #fff !important;
-  padding: 10px 20px;
-  border-radius: 25px;
+  background: linear-gradient(135deg, rgb(5, 192, 173), rgb(18, 179, 163));
+  color: white !important;
+  padding: 10px 25px;
+  border-radius: 20px;
   text-decoration: none;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(5, 192, 173, 0.3);
+}
+
+.ba-logout-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(5, 192, 173, 0.4);
 }
 
 /* Header */
 .ba-header {
   text-align: center;
-  padding: 40px 20px;
-  color: #fff;
+  padding: 50px 20px 40px;
+  color: rgb(43, 198, 182);
 }
+
 .ba-title {
-  font-size: 2.4rem;
+  font-size: 38px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: -0.5px;
 }
-.ba-subtitle { font-size: 1rem; }
+
+.ba-subtitle {
+  font-size: 17px;
+  color: #6b7280;
+  font-weight: 400;
+}
 
 /* Form Card */
 .ba-form-card {
-  background: rgba(255, 255, 255, 0.95);
-  padding: 30px;
-  border-radius: 20px;
-  margin: 20px auto;
+  background: white;
+  padding: 45px;
+  border-radius: 25px;
+  margin: 20px auto 50px;
   max-width: 700px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  animation: slideUp 0.6s ease-out;
 }
-.ba-form { width: 100%; }
-.ba-form-group { margin-bottom: 20px; }
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Form Decorative Element */
+.ba-form-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 5px;
+  background: linear-gradient(90deg, rgb(5, 192, 173), rgb(119, 216, 205));
+  border-radius: 0 0 10px 10px;
+}
+
+.ba-form {
+  width: 100%;
+}
+
+.ba-form-group {
+  margin-bottom: 25px;
+}
+
 .ba-label {
   display: block;
   font-weight: 600;
-  color: #00a884;
-  margin-bottom: 8px;
+  color: #374151;
+  margin-bottom: 10px;
+  font-size: 15px;
 }
+
 .ba-input,
 .ba-select,
 .ba-textarea {
   width: 100%;
-  padding: 12px 15px;
-  border: 1px solid #ccc;
-  border-radius: 12px;
-  font-size: 1rem;
-  transition: .3s;
+  padding: 15px 18px;
+  border: 2px solid #e5e7eb;
+  border-radius: 14px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  background: #f9fafb;
+  color: #111827;
+  font-family: inherit;
 }
+
 .ba-input:focus,
 .ba-select:focus,
 .ba-textarea:focus {
   outline: none;
-  border-color: #00c9a7;
-  box-shadow: 0 0 0 3px rgba(0,201,167,0.2);
+  border-color: rgb(5, 192, 173);
+  background: white;
+  box-shadow: 0 0 0 4px rgba(5, 192, 173, 0.1);
+  transform: translateY(-2px);
 }
+
+.ba-input::placeholder,
+.ba-textarea::placeholder {
+  color: #9ca3af;
+}
+
+.ba-select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M10.293 3.293L6 7.586 1.707 3.293A1 1 0 00.293 4.707l5 5a1 1 0 001.414 0l5-5a1 1 0 10-1.414-1.414z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  padding-right: 40px;
+}
+
 .ba-textarea {
   resize: vertical;
-  min-height: 80px;
+  min-height: 100px;
+  line-height: 1.6;
 }
 
 /* Buttons */
 .ba-btn {
-  padding: 12px 20px;
+  padding: 16px 30px;
   border: none;
-  border-radius: 25px;
+  border-radius: 14px;
   font-weight: 600;
+  font-size: 17px;
   cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  margin-top: 10px;
 }
+
 .ba-btn-primary {
-  background: linear-gradient(135deg, #00c9a7, #92fe9d);
-  color: #fff;
+  background: linear-gradient(135deg, rgb(5, 192, 173) 0%, rgb(18, 179, 163) 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(5, 192, 173, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
-.ba-btn-primary:hover { opacity: .9; }
+
+.ba-btn-primary:hover {
+  background: linear-gradient(135deg, rgb(18, 179, 163) 0%, rgb(5, 192, 173) 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(5, 192, 173, 0.4);
+}
+
+.ba-btn-primary:active {
+  transform: translateY(-1px);
+}
+
+.ba-btn-secondary {
+  background: white;
+  color: rgb(5, 192, 173);
+  border: 2px solid rgb(5, 192, 173);
+  margin-top: 15px;
+}
+
+.ba-btn-secondary:hover {
+  background: rgb(235, 244, 243);
+  transform: translateY(-2px);
+}
 
 /* Success Message */
 .ba-success-msg {
-  margin-top: 20px;
-  padding: 15px;
-  border-radius: 10px;
-  background: #d4edda;
-  color: #155724;
-  border: 1px solid #c3e6cb;
+  margin-top: 30px;
+  padding: 25px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  color: #16a34a;
+  border: 2px solid #86efac;
   text-align: center;
+  animation: fadeIn 0.5s ease;
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.ba-success-msg::before {
+  content: '✓';
+  display: block;
+  font-size: 48px;
+  margin-bottom: 15px;
+  color: #16a34a;
+}
+
 .ba-home-link {
   display: inline-block;
-  margin-top: 8px;
-  color: #00a884;
-  text-decoration: underline;
+  margin-top: 12px;
+  color: rgb(5, 192, 173);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.ba-home-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background: rgb(5, 192, 173);
+  transition: width 0.3s ease;
+}
+
+.ba-home-link:hover::after {
+  width: 100%;
+}
+
+/* Info and Warning Text for Slots */
+.ba-info-text {
+  padding: 12px 15px;
+  background: rgb(235, 244, 243);
+  border: 2px solid rgb(204, 253, 247);
+  border-radius: 12px;
+  color: rgb(5, 192, 173);
+  font-size: 14px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.ba-warning-text {
+  padding: 12px 15px;
+  background: #fef3c7;
+  border: 2px solid #fde047;
+  border-radius: 12px;
+  color: #92400e;
+  font-size: 14px;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .ba-navbar {
+    padding: 12px 20px;
+  }
+
+  .ba-logo {
+    font-size: 26px;
+  }
+
+  .ba-nav-link {
+    margin: 0 8px;
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+
+  .ba-header {
+    padding: 40px 15px 30px;
+  }
+
+  .ba-title {
+    font-size: 32px;
+  }
+
+  .ba-subtitle {
+    font-size: 15px;
+  }
+
+  .ba-form-card {
+    padding: 30px 25px;
+    margin: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ba-navbar {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .ba-title {
+    font-size: 28px;
+  }
+
+  .ba-form-card {
+    padding: 25px 20px;
+  }
+
+  .ba-input,
+  .ba-select,
+  .ba-textarea {
+    padding: 12px 15px;
+    font-size: 14px;
+  }
+
+  .ba-btn {
+    padding: 14px 25px;
+    font-size: 16px;
+  }
+}
+
+/* Focus Visible for Accessibility */
+*:focus-visible {
+  outline: 2px solid rgb(5, 192, 173);
+  outline-offset: 2px;
 }

@@ -83,3 +83,78 @@ a { text-decoration: none; color: inherit; }
   box-shadow: 0 0 0 4px rgba(0, 188, 212, 0.15);
 }
 .btn-submit { width: 100%; margin-top: 8px; }
+
+/* Header Styles */
+.home-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.home-logo {
+  font-size: 32px;
+  font-weight: 700;
+  color: rgb(43, 198, 182);
+  cursor: default;
+}
+
+.home-user-section {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  gap: 20px;
+}
+
+.home-user-greeting {
+  font-size: 16px;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.home-logout-btn {
+  background-color: rgb(5, 192, 173);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 25px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.home-logout-btn:hover {
+  background-color: rgb(18, 179, 163);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(5, 192, 173, 0.3);
+}
+
+.home-logout-btn:active {
+  transform: translateY(0);
+}
+
+/* Responsive Header */
+@media (max-width: 600px) {
+  .home-header {
+    padding: 12px 20px;
+  }
+
+  .home-logo {
+    font-size: 26px;
+  }
+
+  .home-user-greeting {
+    display: none; /* Hide greeting on mobile to save space */
+  }
+
+  .home-logout-btn {
+    padding: 8px 20px;
+    font-size: 14px;
+  }
+}
