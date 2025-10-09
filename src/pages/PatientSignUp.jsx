@@ -38,7 +38,7 @@ function PatientSignup() {
                     <Link to="/"><span className='logo-text'>Doc.link</span></Link>
                 </div>
                 <div className="user-signup-icon">
-                    <span>👨</span>
+                    <span>👤</span>
                 </div>
                 
                 <div className='doctor-signup-button-container'>

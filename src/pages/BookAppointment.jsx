@@ -167,7 +167,7 @@
 // }
 
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "../css/AppointmentStyle.css";
 
 function useQuery() {
@@ -179,6 +179,7 @@ export default function BookAppointment() {
   const modeParam = query.get("mode");
   const doctorNameParam = query.get("doctor");
   const doctorIdParam = query.get("doctor_id");
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     patientName: "",
@@ -242,6 +243,7 @@ export default function BookAppointment() {
     
     if (!patient_id) {
       alert("Please login to book appointment");
+      navigate("/Login");
       return;
     }
 
@@ -297,7 +299,6 @@ export default function BookAppointment() {
           <a href="/home" className="ba-nav-link">Home</a>
           <a href="/appointments" className="ba-nav-link">Appointments</a>
           <a href="/doctors" className="ba-nav-link">Doctors</a>
-          <a href="/logout" className="ba-logout-btn">Logout</a>
         </div> */}
       </nav>
 
@@ -360,7 +361,6 @@ export default function BookAppointment() {
             />
           </div>
 
-          {/* Time Slot Dropdown - CHANGED FROM INPUT TO DROPDOWN */}
           <div className="ba-form-group">
             <label className="ba-label">Preferred Time</label>
             {!formData.date ? (
@@ -393,7 +393,6 @@ export default function BookAppointment() {
             )}
           </div>
 
-          {/* Mode */}
           <div className="ba-form-group">
             <label className="ba-label">Consultation Mode</label>
             <select
@@ -413,13 +412,11 @@ export default function BookAppointment() {
             </select>
           </div>
 
-          {/* Submit Button */}
           <button type="submit" className="ba-btn ba-btn-primary">
             Book Appointment
           </button>
         </form>
 
-        {/* Success Message */}
         {success && (
           <div className="ba-success-msg">
             ✅ Your appointment has been successfully booked!

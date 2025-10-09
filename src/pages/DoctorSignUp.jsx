@@ -52,8 +52,8 @@ function DoctorSignup() {
     };
 
     return (
-            <div className="signup-container">
-                <div className='left-side'>
+        <div className="signup-container">
+            <div className='left-side'>
                 <div className='logo-signup'>
                     <Link to="/"><span className='logo-text'>Doc.link</span></Link>
                 </div>

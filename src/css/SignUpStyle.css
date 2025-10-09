@@ -25,30 +25,34 @@
     top: 10px;
     left: 10px;
     font-size: 40px;
-    font-weight: 800;
+    font-weight: 100;
     color: rgb(255, 255, 255);
     cursor: default;
 }
 
 .user-signup-icon {
     width: 120px;
-    height: 160px;
+    height: 120px;
     background-color: white;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 30px auto;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     border: 3px solid white;
     font-size: 60px;
     cursor: default;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .doctor-signup-button-container {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 100px;
     height: 100vh;
 }
 

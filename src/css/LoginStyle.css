@@ -1,4 +1,3 @@
-/* Reset and Base Styles */
 * {
   margin: 0;
   padding: 0;
@@ -9,7 +8,6 @@ body {
   font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Main Container */
 .auth-page-container {
   min-height: 100vh;
   display: flex;
@@ -21,7 +19,6 @@ body {
   overflow: hidden;
 }
 
-/* Animated Background Elements */
 .auth-page-container::before {
   content: '';
   position: absolute;
@@ -55,7 +52,6 @@ body {
   }
 }
 
-/* Auth Card */
 .auth-card {
   background: white;
   border-radius: 30px;
@@ -79,7 +75,6 @@ body {
   }
 }
 
-/* Decorative Element at Top */
 .auth-card::before {
   content: '';
   position: absolute;
@@ -92,7 +87,6 @@ body {
   border-radius: 0 0 10px 10px;
 }
 
-/* Title Section */
 .auth-page-title {
   font-size: 32px;
   font-weight: 700;
@@ -110,7 +104,6 @@ body {
   font-weight: 400;
 }
 
-/* Form Styles */
 .auth-form {
   display: flex;
   flex-direction: column;
@@ -132,7 +125,6 @@ body {
   gap: 6px;
 }
 
-/* User Type Selection */
 .auth-user-type-selector {
   display: flex;
   gap: 15px;
@@ -163,7 +155,6 @@ body {
 .auth-radio-option:hover {
   border-color: rgb(119, 216, 205);
   background: rgb(220, 252, 247);
-  transform: translateY(-2px);
 }
 
 .auth-radio-option input[type="radio"] {
@@ -189,7 +180,6 @@ body {
   transition: all 0.3s ease;
 }
 
-/* Input Fields */
 .auth-text-input {
   width: 100%;
   padding: 15px 18px;
@@ -214,7 +204,6 @@ body {
   color: #9ca3af;
 }
 
-/* Submit Button */
 .auth-submit-btn {
   width: 100%;
   padding: 16px;
@@ -251,7 +240,6 @@ body {
   opacity: 0.7;
 }
 
-/* Loading Spinner in Button */
 .auth-submit-btn:disabled::after {
   content: '';
   display: inline-block;
@@ -268,7 +256,6 @@ body {
   to { transform: rotate(360deg); }
 }
 
-/* Links Section */
 .auth-alternate-action {
   margin-top: 25px;
   text-align: center;
@@ -309,7 +296,6 @@ body {
   color: rgb(18, 179, 163);
 }
 
-/* Back to Home */
 .auth-navigation-back {
   margin-top: 20px;
   text-align: center;
@@ -327,7 +313,6 @@ body {
   color: rgb(5, 192, 173);
 }
 
-/* Responsive Design */
 @media (max-width: 600px) {
   .auth-card {
     padding: 40px 30px;
@@ -372,13 +357,11 @@ body {
   }
 }
 
-/* Focus Visible for Accessibility */
 *:focus-visible {
   outline: 2px solid rgb(5, 192, 173);
   outline-offset: 2px;
 }
 
-/* Error Message Styling */
 .auth-error-message {
   background: #fef2f2;
   border: 2px solid #fecaca;
@@ -404,7 +387,6 @@ body {
   font-size: 18px;
 }
 
-/* Success Message Styling */
 .auth-success-message {
   background: #f0fdf4;
   border: 2px solid #bbf7d0;

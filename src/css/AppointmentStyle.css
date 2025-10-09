@@ -8,10 +8,9 @@ body {
   font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Main Container */
 .ba-container {
   background: linear-gradient(135deg, #ebf4f3 0%, #dcfcf7 50%, #ccfdf7 100%);
-  min-height: 100vh;
+  min-height: 155vh;
   color: #333;
   position: relative;
 }
