@@ -61,13 +61,13 @@ body {
   max-width: 460px;
   position: relative;
   z-index: 1;
-  animation: authSlideUp 0.6s ease-out;
+  animation: authSlideDown 0.6s ease-out;
 }
 
-@keyframes authSlideUp {
+@keyframes authSlideDown {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(-30px);
   }
   to {
     opacity: 1;

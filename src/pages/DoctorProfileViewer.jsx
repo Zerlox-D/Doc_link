@@ -1,12 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import '../css/DocProfileViewStyle.css';
 import { Link, useParams } from 'react-router-dom';
+import FooterMinimal from "../components/FooterMinimal";
+
 
 function DoctorProfileViewer() {
     const { id } = useParams();
     const [doctorData, setDoctorData] = useState(null);
     const [availability, setAvailability] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [userName, setUserName] = useState("");
+
+    useEffect(() => {
+        const heroBox = document.querySelector(".hero-box");
+        if (heroBox) {
+          heroBox.classList.add("active");
+        }
+    
+        // Get user name from localStorage
+        const storedName = localStorage.getItem("user_name");
+        if (storedName) {
+          setUserName(storedName);
+        }
+      }, []);
 
     useEffect(() => {
         fetch(`http://localhost/Doc_Link/php/GetDoctorWithAvailability.php?id=${id}`)
@@ -71,13 +87,15 @@ function DoctorProfileViewer() {
         <div className="patient-doctor-profile-container">
             {/* Header */}
             <header className="patient-profile-header">
-                <div className="header-logo">Doc.link</div>
+                <div className="dpp-header-left">
+                    <div className="header-logo">Doc.link</div>
+                    <span className="user-greeting">Welcome, {userName}!</span>
+                </div>
                 <div className="header-navigation">
                     <Link to="/SearchDoctors">
                         <button className="back-btn">← Back to Search</button>
                     </Link>
                     <div className="header-user-info">
-                        <span className="user-greeting">Welcome, Patient</span>
                         <button className="logout-btn">Logout</button>
                     </div>
                 </div>
@@ -87,65 +105,75 @@ function DoctorProfileViewer() {
             <div className="patient-profile-content">
                 {/* Doctor Information Card */}
                 <div className="doctor-info-card">
-                    <div className="doctor-header-section">
-                        <div className="doctor-avatar">
-                            <span className="avatar-emoji">👨‍⚕️</span>
-                        </div>
+                {/* Doctor Header */}
+                    <div className="doctor-header">
                         <div className="doctor-basic-info">
-                            <h1 className="doctor-name">
-                                Dr. {doctorData.first_name} {doctorData.last_name}
-                            </h1>
-                            <div className='doctor-tagline'>
-                                <p className="doctor-specialty">{doctorData.specialty}</p>
-                                <p className="doctor-experience">
-                                    {doctorData.experience} years experience
+                            <div className="doctor-avatar">👨‍⚕️</div>
+                            <div className="doctor-details">
+                                <h1 className="doctor-name">Dr. {doctorData.first_name} {doctorData.last_name}</h1>
+                                <p className="doctor-specialty-main">{doctorData.specialty}</p>
+                                <p className="experience-text">
+                                    {doctorData.experience} years of experience
                                 </p>
+                            </div>
+                        </div>
+                        <div className="doctor-verification">
+                            <div className={`verify-badge ${doctorData.verified ? 'verified' : 'pending'}`}>
+                                {doctorData.verified ? '✔ Verified Professional' : 'Verification Pending'}
                             </div>
                         </div>
                     </div>
 
-                    <br />
-
-                    {/* Contact and Details Grid */}
-                    <div className="doctor-details-grid">
-                        <div className="detail-item">
-                            <span className="detail-icon">📧</span>&nbsp;
-                            <span className="detail-text">{doctorData.email}</span>
+                    {/* Doctor Info Grid */}
+                    <div className="doctor-info-grid">
+                        {/* Contact & Location */}
+                        <div className="info-section">
+                            <h3 className="info-section-title">
+                                <span className="icon">📞</span> Contact & Personal Details
+                            </h3>
+                            <div className="info-fields">
+                                <div className="field-group">
+                                    <label>Email</label>
+                                    <p className="field-display">{doctorData.email}</p>
+                                </div>
+                                <div className="field-group">
+                                    <label>Phone</label>
+                                    <p className="field-display">{doctorData.phone_no}</p>
+                                </div>
+                                <div className="field-group">
+                                    <label>Gender</label>
+                                    <p className="field-display">{doctorData.gender}</p>
+                                </div>
+                                <div className="field-group">
+                                    <label>City</label>
+                                    <p className="field-display">{doctorData.city}</p>
+                                </div>
+                            </div>
                         </div>
-                        <div className="detail-item">
-                            <span className="detail-icon">📞</span>&nbsp;
-                            <span className="detail-text">{doctorData.phone_no}</span>
-                        </div>
-                        <div className="detail-item">
-                            <span className="detail-icon">🆔</span>&nbsp;
-                            <span className="detail-text">{doctorData.license_no}</span>
-                        </div>
-                        <div className="detail-item">
-                            <span className="detail-icon">📍</span>&nbsp;
-                            <span className="detail-text">{doctorData.city}</span>
-                        </div>
-                        <div className="detail-item">
-                            <span className="detail-icon">👤</span>&nbsp;  
-                            <span className="detail-text">{doctorData.gender}</span>
-                        </div>
-                    </div>
 
                     {/* Affiliations */}
-                    <div className="doctor-affiliations">
-                        <div className="affiliation-section">
-                            <h3 className="affiliation-title">🏥 Hospital</h3>
-                            <p className="affiliation-text">
-                                {doctorData.hospital || 'Not specified'}
-                            </p>
-                        </div>
-                        <div className="affiliation-section">
-                            <h3 className="affiliation-title">🏢 Clinic</h3>
-                            <p className="affiliation-text">
-                                {doctorData.clinic || 'Not specified'}
-                            </p>
+                    <div className="info-section">
+                        <h3 className="info-section-title">
+                        <span className="icon">🏥</span> Affiliations
+                                                                                                                                                                            </h3>
+                        <div className="info-fields">
+                            <div className="affiliation-section">
+                                <h3 className="affiliation-title">🏥 Hospital</h3>
+                                <p className="affiliation-text">
+                                    {doctorData.hospital || 'Not specified'}
+                                </p>
+                            </div>
+                            <div className="affiliation-section">
+                                <h3 className="affiliation-title">🏢 Clinic</h3>
+                                <p className="affiliation-text">
+                                    {doctorData.clinic || 'Not specified'}
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+
 
                 {/* Consultation Fees */}
                 <div className="fees-section">
@@ -231,6 +259,9 @@ function DoctorProfileViewer() {
                       </button>
                     </Link>
                 </div>
+            </div>
+            <div className="mini-footer">
+                <FooterMinimal />
             </div>
         </div>
     );

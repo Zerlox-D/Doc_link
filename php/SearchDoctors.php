@@ -1,28 +1,29 @@
 <?php
-header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json");
+header('Access-Control-Allow-Origin: *');
+header('Content-Type: application/json');
 
-include "config.php";
+require 'config.php';
 
 $search = isset($_GET['q']) ? $conn->real_escape_string($_GET['q']) : '';
 
-$sql = "SELECT doctor_id, first_name, last_name, city, specialty, hospital
-        FROM doctors 
-        WHERE verified = 1";
+$sql = "SELECT doctor_id, first_name, last_name, city, specialty, hospital, experience
+FROM doctors
+WHERE verified = 1";
 
 if (!empty($search)) {
-    $sql .= " AND (first_name LIKE '%$search%' 
-              OR last_name LIKE '%$search%'
-              OR city LIKE '%$search%'
-              OR specialty LIKE '%$search%' 
-              OR hospital LIKE '%$search%' 
-              )";
+    $sql .= " AND (first_name LIKE '%$search%'
+    OR last_name LIKE '%$search%'
+    OR city LIKE '%$search%'
+    OR specialty LIKE '%$search%'
+    OR hospital LIKE '%$search%'
+    )";
 }
+
+$sql .= " ORDER BY first_name ASC";
 
 $result = $conn->query($sql);
 
 $doctors = [];
-
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $doctors[] = [
@@ -30,7 +31,8 @@ if ($result->num_rows > 0) {
             "name" => $row["first_name"] . " " . $row["last_name"],
             "city" => $row["city"],
             "specialty" => $row["specialty"],
-            "hospital" => $row["hospital"]
+            "hospital" => $row["hospital"],
+            "experience" => $row["experience"]
         ];
     }
 }
@@ -38,4 +40,3 @@ if ($result->num_rows > 0) {
 echo json_encode($doctors);
 
 $conn->close();
-?>

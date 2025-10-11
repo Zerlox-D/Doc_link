@@ -91,5 +91,13 @@
 }
 
 .minimal{
-    color: rgb(180, 178, 178);
+    font-weight: 400;
+    padding: 10px;
+    color: rgb(114, 114, 114);
+}
+
+.mini-footer {
+    border-top: 1px solid rgb(235, 244, 243);
+    text-align: center;
+    cursor: default;
 }

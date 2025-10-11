@@ -558,7 +558,6 @@ APPOINTMENT CSS
   text-decoration: underline;
 }
 
-
 DoctorProfileViewer CSS
 
 Container and Layout

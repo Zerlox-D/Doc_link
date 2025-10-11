@@ -12,13 +12,22 @@
   padding: 13px 20px;
   background-color: white;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.dpp-header-left {
+  display: flex;
+  align-items: center;
+  gap: 30px;
 }
 
 .header-logo {
   font-size: 40px;
   font-weight: 700;
   color: rgb(43, 198, 182);
-  cursor: pointer;
+  cursor: default;
 }
 
 .header-navigation {
@@ -52,6 +61,7 @@
 .user-greeting {
   font-size: 16px;
   color: rgb(75, 85, 99);
+  font-weight: 500;
 }
 
 .logout-btn {
@@ -69,147 +79,122 @@
   background-color: rgb(18, 179, 163);
 }
 
-/* Content */
 .patient-profile-content {
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
 }
 
-/* Doctor Info Card */
+/* --- Improved Doctor Info Card --- */
 .doctor-info-card {
   background-color: white;
-  border-radius: 20px;
-  padding: 30px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border-radius: 25px;
+  padding: 40px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
   margin-bottom: 30px;
 }
 
-/* Doctor Header */
 .doctor-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   border-bottom: 2px solid rgb(235, 244, 243);
   padding-bottom: 30px;
 }
 
 .doctor-basic-info {
   display: flex;
-  margin-top: 10px;
+  align-items: center;
   gap: 25px;
 }
 
-.doctor-tagline {
-    display: flex;
-    gap: 25px;
-    margin-top: 14px;
-    color: rgb(8, 186, 168);
-}
-
 .doctor-avatar {
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   background-color: rgb(235, 244, 243);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 60px;
+  font-size: 50px;
   border: 4px solid rgb(43, 198, 182);
   flex-shrink: 0;
 }
 
-.doctor-details h1 {
-  font-size: 42px;
+.doctor-details h1.doctor-name {
+  font-size: 38px;
+  font-weight: 800;
+  color: #111827;
+  margin: 0;
+}
+
+.doctor-specialty-main {
+  font-size: 20px;
+  color: rgb(5, 192, 173);
   font-weight: 700;
-  color: rgb(43, 198, 182);
-  margin: 0 0 8px 0;
-}
-
-.detail-text {
-  border: 1px solid rgb(193, 195, 197);
-  background-color: rgb(249, 250, 251);
-  width: 200px;
-  border-radius: 6px;
-  padding: 4px;
-  display: inline-block;
-  font-size: 16px;
-  margin: 0 0 5px 0;
-}
-
-.doctor-affiliations{
-    display: flex;
-    margin-top: 15px;
-    gap: 40px;
-}
-
-.affiliation-section {
-  background: linear-gradient(135deg, rgb(235, 244, 243) 0%, rgb(220, 252, 247) 100%);
-  border-radius: 8px;
-  border: 2px solid rgb(119, 216, 205);
-  padding: 10px 15px;
-  align-items: center;
-  gap: 15px;
-  width: 250px;
-}
-
-.affiliation-title{
-    font-size: 16px;
-    font-weight: 600;
-    color: rgb(43, 198, 182);
-    margin-bottom: 5px;
-}
-
-.affiliation-text {
-  font-size: 20px;
-  margin: 0 0 8px 0;
-  font-weight: 600;
-}
-
-.specializations-text {
-  font-size: 20px;
-  color: rgb(75, 85, 99);
-  margin: 0 0 8px 0;
-  font-weight: 600;
+  margin: 5px 0 10px;
 }
 
 .experience-text {
-  font-size: 18px;
-  color: rgb(119, 216, 205);
-  margin: 0 0 15px 0;
+  font-size: 16px;
+  color: #6b7280;
   font-weight: 600;
+  display: flex;
+  gap: 8px;
+  margin: 0;
 }
 
+.doctor-verification .verify-badge {
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.doctor-verification .verified {
+  background: #ecfdf5;
+  color: #065f46;
+  border: 2px solid #10b981;
+}
+
+.doctor-verification .pending {
+  background: #fef3c7;
+  color: #92400e;
+  border: 2px solid #f59e0b;
+}
+
+/* Info Grid */
 .doctor-info-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 40px;
-  margin-bottom: 40px;
 }
 
-.info-section h3 {
+.info-section h3.info-section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   font-size: 24px;
   font-weight: 700;
   color: rgb(43, 198, 182);
   margin-bottom: 20px;
-  border-bottom: 2px solid rgb(235, 244, 243);
   padding-bottom: 10px;
+  border-bottom: 2px solid rgb(235, 244, 243);
 }
 
 .info-fields {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
 }
 
 .field-group label {
   font-weight: 600;
-  color: rgb(75, 85, 99);
-  font-size: 16px;
+  color: rgb(107, 114, 128);
+  font-size: 14px;
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .field-display {
@@ -220,15 +205,40 @@
   padding: 12px 15px;
   border-radius: 10px;
   border: 1px solid rgb(229, 231, 235);
+  font-weight: 600;
+}
+
+.affiliation-section {
+  background: linear-gradient(135deg, rgb(235, 244, 243) 0%, rgb(220, 252, 247) 100%);
+  border-radius: 8px;
+  border: 2px solid rgb(119, 216, 205);
+  padding: 30px 15px;
+  align-items: center;
+  gap: 15px;
+  width: 500px;
+}
+
+.affiliation-title{
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.affiliation-text {
+  font-size: 32px;
+  margin: 0 0 8px 0;
+  font-weight: 600;
+  color: rgb(43, 198, 182);
+
 }
 
 /* Fees Section */
-.fees-section {
+.fees-section, .availability-section {
   background: white;
   border-radius: 25px;
   padding: 30px;
   margin-bottom: 30px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
 .section-title {
@@ -275,6 +285,7 @@
   font-size: 16px;
   color: rgb(75, 85, 99);
   margin-bottom: 8px;
+  font-weight: 600;
 }
 
 .fee-amount {
@@ -283,14 +294,7 @@
   color: rgb(5, 192, 173);
 }
 
-.availability-section {
-  background: white;
-  border-radius: 25px;
-  padding: 30px;
-  margin-bottom: 30px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
+/* Availability Section */
 .availability-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -349,6 +353,7 @@
   font-size: 16px;
   color: rgb(75, 85, 99);
   margin-bottom: 8px;
+  font-weight: 600;
 }
 
 .home-visit-indicator {
@@ -430,29 +435,25 @@
   .patient-profile-content {
     padding: 20px 15px;
   }
-
   .doctor-info-grid {
     grid-template-columns: 1fr;
     gap: 25px;
   }
-
   .fees-grid {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-
   .doctor-header {
     flex-direction: column;
     gap: 20px;
     text-align: center;
+    align-items: center;
   }
-
   .doctor-basic-info {
     flex-direction: column;
     align-items: center;
     text-align: center;
   }
-
   .action-buttons {
     flex-direction: column;
     gap: 15px;

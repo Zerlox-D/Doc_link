@@ -19,6 +19,7 @@ if (isset($data['patient_id']) && isset($data['doctor_id']) &&
     
     $patient_id = intval($data['patient_id']);
     $doctor_id = intval($data['doctor_id']);
+    $patient_name = $conn->real_escape_string($data['patient_name']);
     $appointment_date = $data['appointment_date'];
     $appointment_time = $data['appointment_time'];
     $mode_of_booking = $conn->real_escape_string($data['mode_of_booking']);
@@ -27,7 +28,6 @@ if (isset($data['patient_id']) && isset($data['doctor_id']) &&
     $conn->begin_transaction();
     
     try {
-        // Check if slot is already booked
         $check_stmt = $conn->prepare("SELECT appointment_id FROM appointments 
                                       WHERE doctor_id = ? AND appointment_date = ? AND appointment_time = ?");
         $check_stmt->bind_param("iss", $doctor_id, $appointment_date, $appointment_time);
@@ -39,11 +39,10 @@ if (isset($data['patient_id']) && isset($data['doctor_id']) &&
         }
         $check_stmt->close();
         
-        // Insert appointment
         $insert_stmt = $conn->prepare("INSERT INTO appointments 
-                                      (patient_id, doctor_id, booking_reason, appointment_date, appointment_time, mode_of_booking) 
-                                      VALUES (?, ?, ?, ?, ?, ?)");
-        $insert_stmt->bind_param("iissss", $patient_id, $doctor_id, $booking_reason, $appointment_date, $appointment_time, $mode_of_booking);
+                                        (patient_id, doctor_id, patient_name, booking_reason, appointment_date, appointment_time, mode_of_booking, status) 
+                                    VALUES (?, ?, ?, ?, ?, ?, ?, 'pending')");
+        $insert_stmt->bind_param("iisssss", $patient_id, $doctor_id, $patient_name, $booking_reason, $appointment_date, $appointment_time, $mode_of_booking);
         $insert_stmt->execute();
         $appointment_id = $conn->insert_id;
         $insert_stmt->close();
