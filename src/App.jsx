@@ -6,6 +6,7 @@ import PatientSignup from './pages/PatientSignUp'
 import DoctorSignup from './pages/DoctorSignUp'
 import Login from "./pages/Login";
 import Home from "./pages/Home";
+import VerificationPending from "./pages/VerificationPending";
 import PatientProfile from "./pages/PatientProfile";
 import SearchDoctors from "./pages/SearchDoctors";
 import DoctorProfile from "./pages/DoctorProfile";
@@ -41,6 +42,7 @@ function App() {
             <Route path="/DoctorSignUp" element={<DoctorSignup/>}/>
             <Route path="/Login" element={<Login/>}/>
             <Route path="/Home" element={<Home/>}/>
+            <Route path="/VerificationPending" element={<VerificationPending/>}/>
             <Route path="/PatientProfile" element={<PatientProfile/>}/>
             <Route path="/SearchDoctors" element={<SearchDoctors/>}/>
             <Route path="/DoctorProfile" element={<DoctorProfile/>}/>

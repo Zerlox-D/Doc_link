@@ -47,13 +47,18 @@
   transition: all 0.3s ease;
 }
 
+.sd-back-btn:hover {
+  background: rgb(229,231,235);
+  border-color: rgb(156,163,175);
+}
+
 .sd-back-link:hover {
   color: rgb(43,198,182);
 }
 
 .sd-user-name {
   color: #4b5563;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .sd-logout-btn {
@@ -69,6 +74,34 @@
 }
 
 .sd-logout-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(5,192,173,0.35);
+}
+
+.sd-signup-btn {
+  background-color: rgb(5, 192, 173);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sd-login-link {
+  font-size: 18px;
+  color: rgb(5, 192, 173);
+  text-decoration: none;
+}
+
+.sd-login-link:hover {
+  text-decoration: underline;
+  transition: 0.3s;
+}
+
+.sd-signup-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(5,192,173,0.35);
 }
@@ -142,6 +175,9 @@
   outline: none;
   font-weight: 600;
 }
+
+.sd-search-input:focus {
+  outline: none;}
 
 .sd-search-input::placeholder {
   color: #9ca3af;

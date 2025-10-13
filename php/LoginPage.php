@@ -16,26 +16,15 @@ $data = json_decode(file_get_contents('php://input'), true);
 if (isset($data['email']) && isset($data['password']) && isset($data['userType'])) {
     $email = $conn->real_escape_string($data['email']);
     $password = $data['password'];
-    $userType = $data['userType']; // 'doctor' or 'patient'
+    $userType = $data['userType'];
     
     if ($userType === 'doctor') {
-        // Login as doctor
         $stmt = $conn->prepare("SELECT doctor_id, first_name, last_name, email, password, verified FROM doctors WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
         
         if ($row = $result->fetch_assoc()) {
-            // Check if doctor is verified
-            if ($row['verified'] != 1) {
-                echo json_encode([
-                    'success' => false,
-                    'error' => 'Your account is pending verification. Please contact admin.'
-                ]);
-                exit;
-            }
-            
-            // Verify password (assuming plain text for now - should use password_hash in production)
             if ($password === $row['password']) {
                 echo json_encode([
                     'success' => true,
@@ -44,7 +33,8 @@ if (isset($data['email']) && isset($data['password']) && isset($data['userType']
                         'id' => $row['doctor_id'],
                         'first_name' => $row['first_name'],
                         'last_name' => $row['last_name'],
-                        'email' => $row['email']
+                        'email' => $row['email'],
+                        'verified' => (int)$row['verified']
                     ]
                 ]);
             } else {
@@ -62,14 +52,12 @@ if (isset($data['email']) && isset($data['password']) && isset($data['userType']
         $stmt->close();
         
     } else if ($userType === 'patient') {
-        // Login as patient
         $stmt = $conn->prepare("SELECT patient_id, first_name, last_name, email, password FROM patients WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
         
         if ($row = $result->fetch_assoc()) {
-            // Verify password
             if ($password === $row['password']) {
                 echo json_encode([
                     'success' => true,

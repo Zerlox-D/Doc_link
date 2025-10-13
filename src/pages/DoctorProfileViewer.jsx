@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../css/DocProfileViewStyle.css';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import FooterMinimal from "../components/FooterMinimal";
 
 
@@ -10,6 +10,8 @@ function DoctorProfileViewer() {
     const [availability, setAvailability] = useState([]);
     const [loading, setLoading] = useState(true);
     const [userName, setUserName] = useState("");
+    const [isGuest, setIsGuest] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const heroBox = document.querySelector(".hero-box");
@@ -21,6 +23,13 @@ function DoctorProfileViewer() {
         const storedName = localStorage.getItem("user_name");
         if (storedName) {
           setUserName(storedName);
+        }
+      }, []);
+
+    useEffect(() => {
+        const patientId = localStorage.getItem("patient_id");
+        if (!patientId) {
+            setIsGuest(true);
         }
       }, []);
 
@@ -71,6 +80,21 @@ function DoctorProfileViewer() {
         return availability.some(a => a.home_visit_available);
     };
 
+    const handleLogout = () => {
+        localStorage.clear();
+        navigate("/");
+    };
+
+    const handleBookingClick = (mode) => {
+    if (isGuest) {
+    // Redirect to signup with return URL
+    navigate(`/PatientSignUp?returnTo=/doctor/${id}&mode=${mode}`);
+    } else {
+    // Proceed with normal booking
+    navigate(`/Book?mode=${mode}&doctor=${doctorData.first_name} ${doctorData.last_name}&doctor_id=${doctorData.doctor_id}`);
+    }
+};
+
     if (loading) return (
         <div className="patient-doctor-profile-container">
             <div className="loading-message">Loading doctor profile...</div>
@@ -88,16 +112,30 @@ function DoctorProfileViewer() {
             {/* Header */}
             <header className="patient-profile-header">
                 <div className="dpp-header-left">
-                    <div className="header-logo">Doc.link</div>
-                    <span className="user-greeting">Welcome, {userName}!</span>
+                    <span className="header-logo">Doc.link</span>
+                    <span className="user-greeting">
+                        Hello, {userName || "Guest User"}!
+                    </span>
                 </div>
                 <div className="header-navigation">
-                    <Link to="/SearchDoctors">
-                        <button className="back-btn">← Back to Search</button>
-                    </Link>
-                    <div className="header-user-info">
-                        <button className="logout-btn">Logout</button>
-                    </div>
+                    {!isGuest ? (
+                    <>
+                        <button className="back-btn" onClick={() => navigate(-1)}>
+                            ← Back
+                        </button>
+                        <button className="logout-btn" onClick={handleLogout}>
+                            Logout
+                        </button>
+                    </>
+                    ) : (
+                    <>
+                    <button className="back-btn" onClick={() => navigate('/SearchDoctors')}>
+                        ← Back to Search
+                    </button>
+                    <Link to="/Login" className="guest-login-link">Login</Link>
+                    <Link to="/PatientSignUp"><button className="guest-signup-btn">Sign Up</button></Link>
+                    </>
+                    )}
                 </div>
             </header>
 
@@ -248,16 +286,19 @@ function DoctorProfileViewer() {
 
                 {/* Action Buttons */}
                 <div className="action-buttons">
-                    <Link to={`/Book?doctor_id=${id}&doctor=${doctorData.first_name} ${doctorData.last_name}&mode=schedule`}>
-                      <button className="book-appointment-btn">
-                          📅 Book Appointment
-                      </button>
-                    </Link>
-                    <Link to={`/Book?doctor_id=${id}&doctor=${doctorData.first_name} ${doctorData.last_name}&mode=home`}>
-                      <button className="book-home-visit-btn" >
-                          🏠 Book Home Visit
-                      </button>
-                    </Link>
+                    <button 
+                        className="book-appointment-btn"
+                        onClick={() => handleBookingClick('schedule')}
+                    >
+                    {isGuest ? '📅 Sign Up to Book Appointment' : '📅 Book Appointment'}
+                    </button>
+                    <button
+                        className="book-home-visit-btn"
+                        onClick={() => handleBookingClick('home')}
+                        disabled={!isHomeVisitAvailable()}
+                    >
+                    {isGuest ? '🏠 Sign Up for Home Visit' : '🏠 Book Home Visit'}
+                    </button>
                 </div>
             </div>
             <div className="mini-footer">

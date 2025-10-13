@@ -79,6 +79,34 @@
   background-color: rgb(18, 179, 163);
 }
 
+.guest-signup-btn {
+  background-color: rgb(5, 192, 173);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.guest-login-link {
+  font-size: 18px;
+  color: rgb(5, 192, 173);
+  text-decoration: none;
+}
+
+.guest-login-link:hover {
+  text-decoration: underline;
+  transition: 0.3s;
+}
+
+.guest-signup-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(5,192,173,0.35);
+}
+
 .patient-profile-content {
   max-width: 1200px;
   margin: 0 auto;

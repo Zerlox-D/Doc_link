@@ -13,10 +13,18 @@ export default function SearchDoctors() {
   const [filteredDoctors, setFilteredDoctors] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [isGuest, setIsGuest] = useState(false);
 
   // Get unique specialties and cities for filter dropdowns
   const [specialties, setSpecialties] = useState([]);
   const [cities, setCities] = useState([]);
+
+  useEffect(() => {
+  const patientId = localStorage.getItem("patient_id");
+  if (!patientId) {
+    setIsGuest(true);
+  }
+}, []);
 
   useEffect(() => {
     loadDoctors();
@@ -103,14 +111,24 @@ export default function SearchDoctors() {
         <div className="sd-header-left">
           <div className="sd-logo">Doc.link</div>
           <span className="sd-user-name">
-              Hello, {localStorage.getItem("user_name") || "Guest"}!
+            Hello, {localStorage.getItem("user_name") || "Guest User"}!
           </span>
         </div>
         <div className="sd-header-right">
-          <Link to="/home"><button className="sd-back-btn">← Back to Home</button></Link>
-          <button className="sd-logout-btn" onClick={handleLogout}>
-            Logout
-          </button>
+        {!isGuest ? (
+        <>
+        <Link to="/home"><button className="sd-back-btn">← Back to Home</button></Link>
+        <button className="sd-logout-btn" onClick={handleLogout}>
+          Logout
+        </button>
+        </>
+        ) : (
+        <>
+          <Link to="/"><button className="sd-back-btn">← Back to Landing</button></Link>
+          <Link to="/Login" className="sd-login-link">Login</Link>
+          <Link to="/SignUpChoice"><button className="sd-signup-btn">Sign Up</button></Link>
+        </>
+        )}
         </div>
       </header>
 

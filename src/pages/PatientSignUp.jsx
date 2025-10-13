@@ -26,10 +26,37 @@ function PatientSignup() {
         }));
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('Patient signup data:', formData);
-    };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  
+  // Validate passwords match
+  if (formData.password !== formData.confirmPassword) {
+    alert('Passwords do not match!');
+    return;
+  }
+
+  try {
+    const response = await fetch('http://localhost/Doc_Link/php/PatientSignUp.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      alert('Registration successful! Please login to continue.');
+      // Redirect to login
+      window.location.href = '/login';
+    } else {
+      alert('Registration failed: ' + data.error);
+    }
+  } catch (error) {
+    alert('Error during registration. Please try again.');
+    console.error('Signup error:', error);
+  }
+};
+
 
     return (
         <div className="signup-container">

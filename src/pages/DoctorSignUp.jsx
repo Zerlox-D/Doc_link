@@ -17,6 +17,7 @@ function DoctorSignup() {
         specializations: [],
         yearsOfExperience: '',
         hospitalsClinic: '',
+        city: '',
         homeVisitAvailability: '',
         agreeToTerms: false
     });
@@ -46,10 +47,49 @@ function DoctorSignup() {
         }));
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('Doctor signup data:', formData);
-    };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  
+  // Validate passwords match
+  if (formData.password !== formData.confirmPassword) {
+    alert('Passwords do not match!');
+    return;
+  }
+
+  // Validate terms agreement
+  if (!formData.agreeToTerms) {
+    alert('Please agree to the terms and conditions');
+    return;
+  }
+
+  // Validate specializations
+  if (formData.specializations.length === 0) {
+    alert('Please select at least one specialization');
+    return;
+  }
+
+  try {
+    const response = await fetch('http://localhost/Doc_Link/php/DoctorSignUp.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      alert('Registration successful! Your account is pending admin verification. You will be able to login once verified.');
+      // Redirect to login
+      window.location.href = '/login';
+    } else {
+      alert('Registration failed: ' + data.error);
+    }
+  } catch (error) {
+    alert('Error during registration. Please try again.');
+    console.error('Signup error:', error);
+  }
+};
+
 
     return (
         <div className="signup-container">
@@ -135,6 +175,21 @@ function DoctorSignup() {
                                         value={formData.dateOfBirth}
                                         onChange={handleChange}
                                         className="form-input"
+                                        required
+                                    />
+                                </div>
+                            </div>
+                            <div className="form-row">
+                                <div className="form-group">
+                                    <label className="form-label">City</label>
+                                    <input
+                                        type="text"
+                                        id="city"
+                                        name="city"
+                                        className="form-input"
+                                        value={formData.city}
+                                        onChange={handleChange}
+                                        style={{width:765}}
                                         required
                                     />
                                 </div>
@@ -236,21 +291,15 @@ function DoctorSignup() {
                             </div>
                             <div className="form-group">
                                 <label className="form-label">Years of Experience</label>
-                                <select
+                                <input
+                                    type="number"
                                     name="yearsOfExperience"
                                     value={formData.yearsOfExperience}
                                     onChange={handleChange}
                                     className="form-input"
+                                    placeholder="Enter years of experience"
                                     required
-                                >
-                                    <option value="" disabled selected hidden>Select experience</option>
-                                    <option value="0-1">0-1 years</option>
-                                    <option value="2-5">2-5 years</option>
-                                    <option value="6-10">6-10 years</option>
-                                    <option value="11-15">11-15 years</option>
-                                    <option value="16-20">16-20 years</option>
-                                    <option value="20+">20+ years</option>
-                                </select>
+                                />
                             </div>
                              <div className="form-row">
                                 <div className="form-group">

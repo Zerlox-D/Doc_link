@@ -1,0 +1,128 @@
+.vp-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ebf4f3, #dcfcf7 50%, #ccfdf7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.vp-card {
+  background: white;
+  border-radius: 30px;
+  padding: 50px 40px;
+  max-width: 600px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+.vp-icon {
+  font-size: 80px;
+  margin-bottom: 20px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.vp-title {
+  font-size: 36px;
+  font-weight: 800;
+  color: rgb(43, 198, 182);
+  margin: 0 0 15px;
+}
+
+.vp-greeting {
+  font-size: 20px;
+  color: #374151;
+  font-weight: 600;
+  margin: 0 0 25px;
+}
+
+.vp-message {
+  font-size: 16px;
+  color: #6b7280;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.vp-info-box {
+  background: linear-gradient(135deg, #ebf4f3, #dcfcf7);
+  border-radius: 15px;
+  padding: 25px;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.vp-info-box h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: rgb(43, 198, 182);
+  margin: 0 0 15px;
+}
+
+.vp-info-box ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.vp-info-box li {
+  font-size: 15px;
+  color: #374151;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.vp-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.vp-check-btn,
+.vp-logout-btn {
+  padding: 15px 30px;
+  border: none;
+  border-radius: 15px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.vp-check-btn {
+  background: linear-gradient(135deg, rgb(5, 192, 173), rgb(18, 179, 163));
+  color: white;
+}
+
+.vp-check-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(5, 192, 173, 0.4);
+}
+
+.vp-check-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.vp-logout-btn {
+  background: rgb(249, 250, 251);
+  color: rgb(75, 85, 99);
+  border: 2px solid rgb(209, 213, 219);
+}
+
+.vp-logout-btn:hover {
+  background: rgb(229, 231, 235);
+}
+
+.vp-contact {
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+.vp-contact strong {
+  color: rgb(5, 192, 173);
+}

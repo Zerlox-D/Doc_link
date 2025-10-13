@@ -203,6 +203,7 @@ hr{
     color: white;
     padding: 17px;
     font-size: 17px;
+    cursor: pointer;
 }
 
 .browse:hover{
