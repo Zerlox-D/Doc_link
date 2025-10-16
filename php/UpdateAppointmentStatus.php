@@ -21,7 +21,6 @@ if (!isset($data['appointment_id']) || !isset($data['status'])) {
 $appointment_id = intval($data['appointment_id']);
 $status = $conn->real_escape_string($data['status']);
 
-// Allow 'confirmed', 'declined', or 'cancelled'
 if (!in_array($status, ['confirmed', 'declined', 'cancelled'])) {
     echo json_encode(['success' => false, 'error' => 'Invalid status']);
     exit;

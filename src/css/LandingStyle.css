@@ -2,6 +2,21 @@ body{
     background-color: rgb(235, 244, 243);
 }
 
+.landing-container {
+    animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .logo{
     font-size: 40px;
     font-weight: 700;

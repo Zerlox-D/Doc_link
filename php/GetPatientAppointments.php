@@ -1,37 +1,50 @@
 <?php
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
+
 require 'config.php';
 
-$patient_id = isset($_GET['patient_id']) ? intval($_GET['patient_id']) : 0;
-
-if ($patient_id <= 0) {
-    echo json_encode([]);
+if (!isset($_GET['patient_id'])) {
+    echo json_encode(['success' => false, 'error' => 'Patient ID required']);
     exit;
 }
 
-$query = "
-    SELECT 
-        a.appointment_id,
-        a.patient_name,
-        a.appointment_date,
-        a.appointment_time,
-        a.mode_of_booking,
-        a.booking_reason,
-        a.status,
-        CONCAT(d.first_name, ' ', d.last_name) AS doctor_name,
-        d.specialty
-    FROM 
-        appointments a
-    INNER JOIN 
-        doctors d ON a.doctor_id = d.doctor_id
-    WHERE 
-        a.patient_id = ?
-    ORDER BY 
-        a.appointment_date DESC, a.appointment_time DESC
-";
+$patient_id = intval($_GET['patient_id']);
 
-$stmt = $conn->prepare($query);
+$sql = "SELECT DISTINCT
+    a.appointment_id,
+    a.patient_id,
+    a.doctor_id,
+    a.patient_name,
+    a.appointment_date,
+    a.appointment_time,
+    a.booking_reason,
+    a.status,
+    a.payment_id,
+    a.mode_of_booking,
+    CONCAT(d.first_name, ' ', d.last_name) as doctor_name,
+    d.specialty,
+    d.hospital,
+    d.city,
+    COALESCE(
+        (SELECT consultation_fee 
+         FROM fees_and_availability 
+         WHERE doctor_id = d.doctor_id 
+         LIMIT 1), 
+        500
+    ) as fee,
+    p.payment_status,
+    p.payment_method,
+    p.transaction_id,
+    p.invoice_number,
+    p.amount as paid_amount
+FROM appointments a
+JOIN doctors d ON a.doctor_id = d.doctor_id
+LEFT JOIN payments p ON a.payment_id = p.payment_id
+WHERE a.patient_id = ?
+ORDER BY a.appointment_date DESC, a.appointment_time DESC";
+
+$stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $patient_id);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -41,7 +54,11 @@ while ($row = $result->fetch_assoc()) {
     $appointments[] = $row;
 }
 
-echo json_encode($appointments);
+echo json_encode([
+    'success' => true,
+    'appointments' => $appointments
+]);
 
 $stmt->close();
 $conn->close();
+?>

@@ -4,15 +4,12 @@ header('Content-Type: application/json');
 
 require 'config.php';
 
-// Get total doctors
 $doctorsResult = $conn->query("SELECT COUNT(*) as count FROM doctors");
 $totalDoctors = $doctorsResult->fetch_assoc()['count'];
 
-// Get total patients
 $patientsResult = $conn->query("SELECT COUNT(*) as count FROM patients");
 $totalPatients = $patientsResult->fetch_assoc()['count'];
 
-// Get appointment counts by status
 $pendingResult = $conn->query("SELECT COUNT(*) as count FROM appointments WHERE status = 'pending'");
 $pendingAppointments = $pendingResult->fetch_assoc()['count'];
 
@@ -22,7 +19,6 @@ $confirmedAppointments = $confirmedResult->fetch_assoc()['count'];
 $completedResult = $conn->query("SELECT COUNT(*) as count FROM appointments WHERE status = 'completed'");
 $completedAppointments = $completedResult->fetch_assoc()['count'];
 
-// Get pending verifications
 $verificationResult = $conn->query("SELECT COUNT(*) as count FROM doctors WHERE verified = 0");
 $pendingVerifications = $verificationResult->fetch_assoc()['count'];
 

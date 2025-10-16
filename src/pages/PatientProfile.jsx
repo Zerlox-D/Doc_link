@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import "../css/PatientProfileStyle.css";
+import PaymentGateway from "../components/PaymentGateway";
+import PrescriptionView from "../components/PrescriptionView";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 export default function PatientProfile() {
@@ -10,6 +12,12 @@ export default function PatientProfile() {
   const [saving, setSaving] = useState(false);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState("");
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [selectedAppointment, setSelectedAppointment] = useState(null);
+  const [prescriptions, setPrescriptions] = useState([]);
+  const [selectedPrescription, setSelectedPrescription] = useState(null);
+  const [showPrescriptionView, setShowPrescriptionView] = useState(false);
+
 
   // Patient data
   const [patient, setPatient] = useState(null);
@@ -36,6 +44,7 @@ export default function PatientProfile() {
       setLoading(false);
       return;
     }
+    fetchPrescriptions();
     loadProfile();
   }, [patientId]);
 
@@ -53,13 +62,15 @@ export default function PatientProfile() {
 
       const appointmentsRes = await fetch(`http://localhost/Doc_Link/php/GetPatientAppointments.php?patient_id=${patientId}`);
       const appointmentsData = await appointmentsRes.json();
+
+      const appointments = appointmentsData.success ? appointmentsData.appointments : [];
       
       const now = new Date();
       const upcoming = [];
       const past = [];
-      const declined = appointmentsData.filter(appt => appt.status === 'declined');
+      const declined = appointments.filter(appt => appt.status === 'declined');
 
-      appointmentsData.forEach(appt => {
+      appointments.forEach(appt => {
         const apptDateTime = new Date(`${appt.appointment_date} ${appt.appointment_time}`);
         if (apptDateTime >= now && appt.status === 'confirmed') {
           upcoming.push(appt);
@@ -68,14 +79,12 @@ export default function PatientProfile() {
         }
       });
 
-      // Sort upcoming appointments in ascending order (soonest first)
       upcoming.sort((a, b) => {
       const dateA = new Date(`${a.appointment_date} ${a.appointment_time}`);
       const dateB = new Date(`${b.appointment_date} ${b.appointment_time}`);
       return dateA - dateB;
 });
 
-      // Sort past appointments in descending order (most recent first)
       past.sort((a, b) => {
       const dateA = new Date(`${a.appointment_date} ${a.appointment_time}`);
       const dateB = new Date(`${b.appointment_date} ${b.appointment_time}`);
@@ -91,6 +100,21 @@ export default function PatientProfile() {
       setLoading(false);
     }
   };
+
+  const fetchPrescriptions = async () => {
+  try {
+    const response = await fetch(
+      `http://localhost/Doc_Link/php/GetPatientPrescriptions.php?patient_id=${patientId}`
+    );
+    const data = await response.json();
+    if (data.success) {
+      setPrescriptions(data.prescriptions);
+    }
+  } catch (error) {
+    console.error('Error fetching prescriptions:', error);
+  }
+};
+
 
   const handleLogout = () => {
     localStorage.clear();
@@ -174,6 +198,17 @@ export default function PatientProfile() {
     }
   };
 
+  const handlePayment = (appointment) => {
+  setSelectedAppointment(appointment);
+  setShowPaymentModal(true);
+};
+
+const handlePaymentSuccess = () => {
+  setShowPaymentModal(false);
+  fetchAppointments();
+};
+
+
   const fullName = useMemo(() => {
     if (!patient) return "";
     return `${patient.first_name} ${patient.last_name}`;
@@ -199,6 +234,13 @@ export default function PatientProfile() {
 
   return (
     <div className="pp-container">
+      {showPaymentModal && selectedAppointment && (
+      <PaymentGateway
+        appointment={selectedAppointment}
+        onSuccess={handlePaymentSuccess}
+        onCancel={() => setShowPaymentModal(false)}
+      />
+    )}
       {/* Header */}
       <header className="pp-header">
         <div className="pp-header-left">
@@ -389,6 +431,56 @@ export default function PatientProfile() {
                           <h4 className="pp-appt-doctor">Dr. {appt.doctor_name}</h4>
                           <p className="pp-appt-specialty">{appt.specialty}</p>
                         </div>
+                        {appt.status === 'confirmed' && !appt.payment_id && (
+                        <>
+                        <p style={{color: '#059669', fontWeight: 700, marginTop: '10px'}}>
+                          💰 Amount: ₹{appt.fee}
+                        </p>
+                        <button 
+                        onClick={() => handlePayment(appt)}
+                        style={{
+                        marginTop: '10px',
+                        padding: '10px 20px',
+                        background: '#059669',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '8px',
+                        fontWeight: 700,
+                        cursor: 'pointer'
+                      }}
+                      >
+                      Pay Now ₹{appt.fee}
+                      </button>
+                </>
+              )}
+
+              {appt.payment_id && (
+  <div style={{marginTop: '10px'}}>
+    <p style={{color: '#059669', fontWeight: 600, marginBottom: '8px'}}>
+      ✅ Payment Completed
+    </p>
+    {appt.invoice_number && (
+      <a 
+        href={`http://localhost/Doc_Link/php/GenerateInvoice.php?invoice_number=${appt.invoice_number}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          display: 'inline-block',
+          padding: '8px 16px',
+          background: '#059669',
+          color: 'white',
+          textDecoration: 'none',
+          borderRadius: '6px',
+          fontSize: '14px',
+          fontWeight: 600
+        }}
+      >
+        📄 Download Invoice
+      </a>
+    )}
+  </div>
+)}
+
                         <button 
                           className="pp-cancel-appt-btn"
                           onClick={() => handleCancelAppointment(appt.appointment_id)}
@@ -420,6 +512,7 @@ export default function PatientProfile() {
                           </div>
                         )}
                       </div>
+                      
                     </div>
                   ))}
                 </div>
@@ -464,6 +557,78 @@ export default function PatientProfile() {
                 </div>
               )}
             </section>
+
+            {/* Medical Records Section */}
+<section className="pp-card">
+  <h2 className="pp-section-title">Medical Records</h2>
+  {prescriptions.length === 0 ? (
+    <p className="pp-empty">No prescriptions yet</p>
+  ) : (
+    <div className="pp-prescriptions-list">
+      {prescriptions.map(prescription => (
+        <div key={prescription.prescription_id} className="pp-appt-card pp-prescription-card">
+          <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'start'}}>
+            <div>
+              <h4 className="pp-appt-doctor">Dr. {prescription.doctor_name}</h4>
+              <p className="pp-appt-specialty">{prescription.specialty}</p>
+              <p style={{color: '#6b7280', fontSize: '14px', marginTop: '5px'}}>
+                📅 Prescribed on: {new Date(prescription.prescription_date).toLocaleDateString('en-IN', {
+                  day: 'numeric',
+                  month: 'short',
+                  year: 'numeric'
+                })}
+              </p>
+              <p style={{color: '#1f2937', fontWeight: 600, marginTop: '8px'}}>
+                Diagnosis: {prescription.diagnosis}
+              </p>
+            </div>
+          </div>
+          
+          <div style={{display: 'flex', gap: '10px', marginTop: '15px'}}>
+            <button 
+              onClick={() => {
+                setSelectedPrescription(prescription);
+                setShowPrescriptionView(true);
+              }}
+              style={{
+                flex: 1,
+                padding: '10px',
+                background: '#2563eb',
+                color: 'white',
+                border: 'none',
+                borderRadius: '8px',
+                fontWeight: 600,
+                cursor: 'pointer'
+              }}
+            >
+              👁️ View Details
+            </button>
+            
+            <a 
+              href={`http://localhost/Doc_Link/php/GeneratePrescriptionPDF.php?prescription_id=${prescription.prescription_id}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                flex: 1,
+                padding: '10px',
+                background: '#059669',
+                color: 'white',
+                textDecoration: 'none',
+                borderRadius: '8px',
+                fontWeight: 600,
+                textAlign: 'center'
+              }}
+            >
+              📥 Download PDF
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  )}
+</section>
+
+
             {/* Declined Notifications */}
             {declinedAppointments.length > 0 && (
             <div className="pp-notification-banner">
@@ -487,6 +652,18 @@ export default function PatientProfile() {
         )}
           </div>
         )}
+
+        {/* Prescription View Modal */}
+{showPrescriptionView && selectedPrescription && (
+  <PrescriptionView
+    prescription={selectedPrescription}
+    onClose={() => {
+      setShowPrescriptionView(false);
+      setSelectedPrescription(null);
+    }}
+  />
+)}
+
       </main>
     </div>
   );

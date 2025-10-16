@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import "../css/DoctorProfileStyle.css";
+import PrescriptionForm from '../components/PrescriptionForm';
 import FooterMinimal from "../components/FooterMinimal";
 
 
@@ -14,6 +15,9 @@ export default function DoctorProfile() {
   const [editMode, setEditMode] = useState(false);
   const [saving, setSaving] = useState(false);
   const [pendingRequests, setPendingRequests] = useState([]);
+  const [completedAppointments, setCompletedAppointments] = useState([]);
+  const [showPrescriptionForm, setShowPrescriptionForm] = useState(false);
+  const [selectedAppointment, setSelectedAppointment] = useState(null);
 
   // Editable fields
   const [editedDoctor, setEditedDoctor] = useState({});
@@ -29,6 +33,7 @@ export default function DoctorProfile() {
     }
 
     loadProfile();
+    fetchCompletedAppointments();
   }, [doctorId]);
 
   const loadProfile = async () => {
@@ -98,6 +103,19 @@ export default function DoctorProfile() {
     alert('Error: ' + e.message);
   }
 };
+
+  const fetchCompletedAppointments = async () => {
+  try {
+    const response = await fetch(
+      `http://localhost/Doc_Link/php/GetDoctorAppointments.php?doctor_id=${doctorId}&type=completed`
+    );
+    const data = await response.json();
+    setCompletedAppointments(data);
+  } catch (error) {
+    console.error('Error fetching completed appointments:', error);
+  }
+};
+  
 
   const handleLogout = () => {
     localStorage.clear();
@@ -478,6 +496,55 @@ export default function DoctorProfile() {
             </div>
           )}
         </section>
+
+          {/* Completed Appointments Section */}
+          <section className="dpd-card">
+            <h2 className="dpd-section-title">Completed Appointments</h2>
+            {completedAppointments.length === 0 ? (
+              <p className="dpd-empty">No completed appointments</p>
+              ) : (
+                <div className="dpd-appointments">
+                  {completedAppointments.map(appt => (
+                    <div key={appt.appointment_id} className="dpd-appt-row">
+                      <h4>{appt.patient_name}</h4>
+                      <p>📅 {appt.appointment_date} at 🕐 {appt.appointment_time}</p>
+                      {appt.booking_reason && (
+                      <p style={{color: '#6b7280', fontSize: '14px'}}>
+                        Reason: {appt.booking_reason}
+                      </p>
+                      )}
+      
+                      {appt.prescription_id ? (
+                        <p style={{color: '#059669', fontWeight: 600, marginTop: '10px'}}>
+                          ✅ Prescription Already Written
+                        </p>
+                        ) : (
+                          <button
+                            onClick={() => {
+                            setSelectedAppointment(appt);
+                            setShowPrescriptionForm(true);
+                          }}
+                          style={{
+                          marginTop: '10px',
+                          padding: '10px 20px',
+                          background: '#2563eb',
+                          color: 'white',
+                          border: 'none',
+                          borderRadius: '8px',
+                          fontWeight: 600,
+                          cursor: 'pointer'
+                        }}
+                          >
+                            📝 Write Prescription
+                          </button>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+        </section>
+
+
         {/* Pending Appointment Requests - ADD THIS NEW SECTION */}
         <section className="dpd-card">
           <h2 className="dpd-section-title">Pending Appointment Requests</h2>
@@ -516,7 +583,22 @@ export default function DoctorProfile() {
           </div>
           )}
         </section>
-
+        {/* Prescription Form Modal */}
+        {showPrescriptionForm && (
+        <PrescriptionForm
+          appointment={selectedAppointment}
+          doctorId={doctorId}
+          onSuccess={() => {
+          setShowPrescriptionForm(false);
+          setSelectedAppointment(null);
+          fetchCompletedAppointments(); // Refresh the list
+          }}
+          onCancel={() => {
+          setShowPrescriptionForm(false);
+          setSelectedAppointment(null);
+          }}
+        />
+        )}
       </main>
       <div className="mini-footer">
         <FooterMinimal />

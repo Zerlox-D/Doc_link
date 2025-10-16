@@ -22,10 +22,8 @@ const Login = () => {
 
 useEffect(() => {
   if (showAdminModal) {
-    // Disable scrolling
     document.body.style.overflow = 'hidden';
   } else {
-    // Re-enable scrolling
     document.body.style.overflow = 'unset';
   }
 
@@ -174,12 +172,12 @@ useEffect(() => {
       )}
 
       <div className="auth-card">
-        <h1 
-          className="auth-page-title" 
+        <h1 className="auth-page-title" >
+          Welcome to <span 
           onClick={handleTitleClick}
-          style={{cursor: 'pointer', userSelect: 'none'}}
-        >
-          Welcome to Doc.link
+          style={{cursor: 'pointer', userSelect: 'none'}}>
+            Doc.link
+            </span>
         </h1>
         <p className="auth-page-subtitle">Sign in to continue</p>
 

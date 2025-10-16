@@ -129,11 +129,11 @@ const Home = () => {
               <p>View and manage your bookings</p>
             </Link>
 
-            <div className="quick-card quick-card-disabled">
+            <Link to="/PatientProfile?tab=appointments" className="quick-card">
               <div className="quick-icon">🏥</div>
               <h4>Medical Records</h4>
-              <p className="coming-soon">Coming Soon</p>
-            </div>
+              <p>View your prescriptions and medical history</p>
+            </Link>
           </div>
         </section>
       </main>

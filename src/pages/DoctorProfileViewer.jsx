@@ -19,7 +19,6 @@ function DoctorProfileViewer() {
           heroBox.classList.add("active");
         }
     
-        // Get user name from localStorage
         const storedName = localStorage.getItem("user_name");
         if (storedName) {
           setUserName(storedName);
@@ -212,7 +211,6 @@ function DoctorProfileViewer() {
                 </div>
             </div>
 
-
                 {/* Consultation Fees */}
                 <div className="fees-section">
                     <h2 className="section-title">💰 Consultation Fees</h2>
@@ -265,13 +263,9 @@ function DoctorProfileViewer() {
                                             <p className="timing">
                                                 ⏰ {formatTime(dayData.start_time)} - {formatTime(dayData.end_time)}
                                             </p>
-                                            {dayData.home_visit_available && (
-                                                <p className="home-visit-indicator">
-                                                    {isHomeVisitAvailable() 
-                                        ? `🏠 Home visits available` 
-                                        : 'Not Available'}
-                                                </p>
-                                            )}
+                                            <p className={`home-visit-indicator ${dayData.home_visit_available ? 'available' : 'not-available'}`}>
+                                                {dayData.home_visit_available ? '🏠 Home visits available' : '🏠 Not available'}
+                                            </p>
                                         </div>
                                     )}
                                 </div>

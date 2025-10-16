@@ -1,0 +1,153 @@
+/* Prescription View Overlay */
+.prescription-view-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.prescription-view-modal {
+  background: white;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 700px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  animation: slideUp 0.3s ease;
+}
+
+.prescription-view-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 25px;
+  border-bottom: 2px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 10;
+}
+
+.prescription-view-header h2 {
+  margin: 0;
+  color: #1f2937;
+  font-size: 22px;
+}
+
+.prescription-view-body {
+  padding: 25px;
+}
+
+.info-section {
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.info-section:last-child {
+  border-bottom: none;
+}
+
+.info-section h3 {
+  color: #1f2937;
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.info-section p {
+  margin: 6px 0;
+  color: #374151;
+}
+
+/* Medicines Table */
+.medicines-table {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.medicine-row {
+  display: flex;
+  gap: 15px;
+  background: #f9fafb;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+}
+
+.medicine-number {
+  background: #2563eb;
+  color: white;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.medicine-details {
+  flex: 1;
+}
+
+.medicine-details h4 {
+  margin: 0 0 10px 0;
+  color: #1f2937;
+  font-size: 16px;
+}
+
+.medicine-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+@media (max-width: 600px) {
+  .medicine-info {
+    grid-template-columns: 1fr;
+  }
+}
+
+.medicine-info span {
+  padding: 4px 0;
+}
+
+.medicine-info strong {
+  color: #374151;
+}
+
+/* Actions */
+.prescription-actions {
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 2px solid #e5e7eb;
+}
+
+.download-btn {
+  display: inline-block;
+  width: 100%;
+  padding: 14px;
+  background: #059669;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 600;
+  text-align: center;
+  transition: background 0.2s;
+}
+
+.download-btn:hover {
+  background: #047857;
+}
