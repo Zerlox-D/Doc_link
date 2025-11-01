@@ -1,8 +1,8 @@
 
-
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../css/AppointmentStyle.css";
+
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -30,13 +30,26 @@ export default function BookAppointment() {
   const [loadingSlots, setLoadingSlots] = useState(false);
 
   useEffect(() => {
-    if (modeParam === "schedule") {
-      setAvailableModes(["Hospital", "Clinic"]);
+    if (doctorIdParam && modeParam === "schedule") {
+      fetch(`http://localhost/Doc_Link/php/GetDoctorInfo.php?doctor_id=${doctorIdParam}`)
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.success && data.available_locations) {
+            setAvailableModes(data.available_locations);
+          } else {
+            console.error("Failed to fetch doctor locations");
+            setAvailableModes([]); // Fallback to empty array
+          }
+        })
+        .catch((err) => {
+          console.error("Error fetching doctor info:", err);
+          setAvailableModes([]);
+        });
     } else if (modeParam === "home") {
       setAvailableModes(["Home Visit"]);
       setFormData((prev) => ({ ...prev, mode: "Home Visit" }));
     }
-  }, [modeParam]);
+  }, [modeParam, doctorIdParam]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -53,7 +66,10 @@ export default function BookAppointment() {
     setAvailableSlots([]);
     setFormData((prev) => ({ ...prev, time: "" }));
 
-    fetch(`http://localhost/Doc_Link/php/GetAvailableSlots.php?doctor_id=${doctorId}&date=${date}`)
+    const mode = formData.mode || (modeParam === "home" ? "Home Visit" : "");
+
+
+    fetch(`http://localhost/Doc_Link/php/GetAvailableSlots.php?doctor_id=${doctorId}&date=${date}&mode=${encodeURIComponent(mode)}`)
       .then((res) => res.json())
       .then((data) => {
         setLoadingSlots(false);
@@ -89,6 +105,7 @@ export default function BookAppointment() {
     const bookingData = {
       patient_id: parseInt(patient_id),
       doctor_id: parseInt(doctorIdParam),
+      patient_name: formData.patientName.trim(),
       booking_reason: formData.reason || null,
       appointment_date: formData.date,
       appointment_time: formData.time,
@@ -129,6 +146,9 @@ export default function BookAppointment() {
     <div className="ba-container">
       <nav className="ba-navbar">
         <div className="ba-logo">Doc.link</div>
+        <button className="back-btn" onClick={() => navigate(-1)}>
+            ← Back
+        </button>
       </nav>
 
       <header className="ba-header">

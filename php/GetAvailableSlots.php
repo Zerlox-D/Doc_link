@@ -1,20 +1,20 @@
 <?php
-header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
-
-include 'config.php';
+header('Access-Control-Allow-Origin: *');
+require_once 'config.php';
 
 if (isset($_GET['doctor_id']) && isset($_GET['date'])) {
     $doctor_id = intval($_GET['doctor_id']);
     $date = $_GET['date'];
+    $mode = isset($_GET['mode']) ? $_GET['mode'] : null; // Add mode parameter
     
-    // Get day of week from date
-    $day_of_week = strtolower(date('l', strtotime($date)));
+    $day_of_week = date('l', strtotime($date));
     
-    // Get doctor's availability for that day
-    $stmt = $conn->prepare("SELECT start_time, end_time, slot_duration, is_available 
-                           FROM fees_and_availability 
-                           WHERE doctor_id = ? AND day_of_week = ?");
+    // Modified query to include home_visit_available
+    $stmt = $conn->prepare("SELECT start_time, end_time, slot_duration, is_available, home_visit_available
+        FROM fees_and_availability
+        WHERE doctor_id = ? AND day_of_week = ?");
+    
     $stmt->bind_param("is", $doctor_id, $day_of_week);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -24,6 +24,15 @@ if (isset($_GET['doctor_id']) && isset($_GET['date'])) {
             echo json_encode([
                 'available' => false,
                 'message' => 'Doctor is not available on this day'
+            ]);
+            exit;
+        }
+        
+        // Check if home visit is requested but not available
+        if ($mode === 'Home Visit' && !$row['home_visit_available']) {
+            echo json_encode([
+                'available' => false,
+                'message' => 'Home visits are not available on this day'
             ]);
             exit;
         }
@@ -44,8 +53,8 @@ if (isset($_GET['doctor_id']) && isset($_GET['date'])) {
         }
         
         // Get already booked slots
-        $stmt2 = $conn->prepare("SELECT appointment_time FROM appointments 
-                                WHERE doctor_id = ? AND appointment_date = ?");
+        $stmt2 = $conn->prepare("SELECT appointment_time FROM appointments
+            WHERE doctor_id = ? AND appointment_date = ?");
         $stmt2->bind_param("is", $doctor_id, $date);
         $stmt2->execute();
         $result2 = $stmt2->get_result();
@@ -74,7 +83,8 @@ if (isset($_GET['doctor_id']) && isset($_GET['date'])) {
         $stmt2->close();
     } else {
         echo json_encode([
-            'available' => false
+            'available' => false,
+            'message' => 'Doctor availability not found'
         ]);
     }
     

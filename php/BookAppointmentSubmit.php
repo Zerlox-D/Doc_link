@@ -23,25 +23,11 @@ if (!isset($data['patient_id']) || !isset($data['doctor_id']) ||
 
 $patient_id = intval($data['patient_id']);
 $doctor_id = intval($data['doctor_id']);
-$booking_reason = $data['booking_reason'] ?? null;
-$appointment_date = $data['appointment_date'];
-$appointment_time = $data['appointment_time'];
+$patient_name = $conn->real_escape_string(trim($data['patient_name']));
+$booking_reason = isset($data['booking_reason']) ? $conn->real_escape_string($data['booking_reason']) : null;
+$appointment_date = $conn->real_escape_string($data['appointment_date']);
+$appointment_time = $conn->real_escape_string($data['appointment_time']);
 $mode_of_booking = $conn->real_escape_string($data['mode_of_booking']);
-
-// ✅ FIX: Get patient name from patient_id
-$patientQuery = $conn->prepare("SELECT CONCAT(first_name, ' ', last_name) as full_name FROM patients WHERE patient_id = ?");
-$patientQuery->bind_param("i", $patient_id);
-$patientQuery->execute();
-$patientResult = $patientQuery->get_result();
-
-if ($patientResult->num_rows === 0) {
-    echo json_encode(['success' => false, 'error' => 'Patient not found']);
-    exit;
-}
-
-$patientData = $patientResult->fetch_assoc();
-$patient_name = $patientData['full_name'];
-$patientQuery->close();
 
 // Insert appointment
 $stmt = $conn->prepare("INSERT INTO appointments (patient_id, doctor_id, patient_name, booking_reason, appointment_date, appointment_time, mode_of_booking, status) VALUES (?, ?, ?, ?, ?, ?, ?, 'pending')");

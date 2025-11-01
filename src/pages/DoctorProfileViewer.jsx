@@ -195,15 +195,15 @@ function DoctorProfileViewer() {
                                                                                                                                                                             </h3>
                         <div className="info-fields">
                             <div className="affiliation-section">
-                                <h3 className="affiliation-title">🏥 Hospital</h3>
+                                <h3 className="affiliation-title" style={{color:'rgb(43, 198, 182)'}}>🏥 Hospital</h3>
                                 <p className="affiliation-text">
-                                    {doctorData.hospital || 'Not specified'}
+                                    {doctorData.hospital || 'N/A'}
                                 </p>
                             </div>
                             <div className="affiliation-section">
-                                <h3 className="affiliation-title">🏢 Clinic</h3>
+                                <h3 className="affiliation-title" style={{color:'rgb(43, 198, 182)'}}>🏢 Clinic</h3>
                                 <p className="affiliation-text">
-                                    {doctorData.clinic || 'Not specified'}
+                                    {doctorData.clinic || 'N/A'}
                                 </p>
                             </div>
                         </div>
