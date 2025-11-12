@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "../css/SearchDoctorsStyle.css";
 
@@ -226,6 +226,21 @@ export default function SearchDoctors() {
                     <div className="sd-doctor-info">
                       <h3 className="sd-doctor-name">Dr. {doctor.name}</h3>
                       <p className="sd-doctor-specialty">{doctor.specialty}</p>
+                      {doctor.total_reviews > 0 ? (
+                      <div className="sd-rating-display">
+                        <span className="sd-rating-number">
+                          {doctor.average_rating.toFixed(1)}
+                        </span>
+                        <span className="sd-rating-star">⭐</span>
+                        <span className="sd-rating-count">
+                          ({doctor.total_reviews})
+                        </span>
+                      </div>
+                      ) : (
+                      <div className="sd-rating-display no-rating">
+                        <span className="sd-no-reviews-text">No reviews yet</span>
+                      </div>
+                      )}
                       <div className="sd-doctor-details">
                         <div className="sd-detail-item">
                           <span className="sd-detail-icon">🏥</span>

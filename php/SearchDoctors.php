@@ -6,7 +6,7 @@ require 'config.php';
 
 $search = isset($_GET['q']) ? $conn->real_escape_string($_GET['q']) : '';
 
-$sql = "SELECT doctor_id, first_name, last_name, city, specialty, hospital, experience
+$sql = "SELECT doctor_id, first_name, last_name, city, specialty, hospital, experience, average_rating, total_reviews
 FROM doctors
 WHERE verified = 1";
 
@@ -19,7 +19,7 @@ if (!empty($search)) {
     )";
 }
 
-$sql .= " ORDER BY first_name ASC";
+$sql .= " ORDER BY average_rating DESC, total_reviews DESC";
 
 $result = $conn->query($sql);
 
@@ -32,7 +32,9 @@ if ($result->num_rows > 0) {
             "city" => $row["city"],
             "specialty" => $row["specialty"],
             "hospital" => $row["hospital"],
-            "experience" => $row["experience"]
+            "experience" => $row["experience"],
+            'average_rating' => floatval($row['average_rating']),
+            'total_reviews' => intval($row['total_reviews'])
         ];
     }
 }

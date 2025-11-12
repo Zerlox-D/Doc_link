@@ -484,3 +484,154 @@
     grid-template-columns: 1fr;
   }
 }
+
+.pp-review-btn {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background: rgb(6, 180, 162);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+.pp-review-btn:hover {
+  background: rgb(6, 143, 129);
+}
+
+.pp-already-reviewed {
+  margin-top: 10px;
+  color: rgb(6, 180, 162);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.pp-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.pp-review-modal {
+  background: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.pp-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.pp-modal-header h3 {
+  margin: 0;
+  color: #1a7f64;
+}
+
+.close-modal {
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #999;
+  margin: 8px;
+  width: 30px;
+  height: 30px;
+}
+
+.close-modal:hover {
+  color: #666;
+}
+
+.pp-modal-body {
+  padding: 20px;
+}
+
+.pp-doctor-name-modal {
+  font-size: 18px;
+  font-weight: 600;
+  margin-left: 12px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.star-rating {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+  justify-content: center;
+}
+
+.star {
+  font-size: 40px;
+  cursor: pointer;
+  color: #ddd;
+  transition: color 0.2s;
+}
+
+.star.filled {
+  color: #ffc107;
+}
+
+.star:hover {
+  transform: scale(1.1);
+}
+
+.pp-review-textarea {
+  width: 95%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  resize: vertical;
+  margin-left: 12px;
+  margin-top: 15px;
+}
+
+.pp-review-textarea:focus {
+  outline: none;
+  border-color: #1a7f64;
+}
+
+.pp-modal-footer {
+  padding: 15px 20px 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.pp-submit-review-btn {
+  padding: 12px 30px;
+  background: rgb(6, 173, 156);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.pp-submit-review-btn:hover:not(:disabled) {
+  background: rgb(6, 140, 127);
+}
+
+.pp-submit-review-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}

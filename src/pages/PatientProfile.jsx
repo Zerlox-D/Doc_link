@@ -3,6 +3,8 @@ import "../css/PatientProfileStyle.css";
 import PaymentGateway from "../components/PaymentGateway";
 import PrescriptionView from "../components/PrescriptionView";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import FooterMinimal from "../components/FooterMinimal";
+import SubmitReview from "../components/Review";
 
 export default function PatientProfile() {
   const navigate = useNavigate();
@@ -12,13 +14,75 @@ export default function PatientProfile() {
   const [saving, setSaving] = useState(false);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState("");
+
+  // Payment Modal
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [selectedAppointment, setSelectedAppointment] = useState(null);
   const [prescriptions, setPrescriptions] = useState([]);
+
+  // Prescription View Modal
   const [selectedPrescription, setSelectedPrescription] = useState(null);
   const [showPrescriptionView, setShowPrescriptionView] = useState(false);
 
+  // Review Modal
+  const [showReviewModal, setShowReviewModal] = useState(false);
+  const [rating, setRating] = useState(0);
+  const [hoverRating, setHoverRating] = useState(0);
+  const [reviewText, setReviewText] = useState("");
+  const [submittingReview, setSubmittingReview] = useState(false);
 
+  const openReviewModal = (appointment) => {
+    setSelectedAppointment(appointment);
+    setRating(0);
+    setReviewText("");
+    setShowReviewModal(true);
+  }
+
+  const closeReviewModal = () => {
+    setShowReviewModal(false);
+    setRating(0);
+    setReviewText("");
+    setSelectedAppointment(null);
+  };
+
+  const handleSubmitReview = () => {
+    if (rating === 0) {
+      alert("Please select a rating");
+      return;
+    }
+    const patientId = localStorage.getItem("patient_id");
+    setSubmittingReview(true);
+
+    fetch("http://localhost/Doc_Link/php/SubmitReview.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        appointment_id: selectedAppointment.appointment_id,
+        patient_id: parseInt(patientId),
+        doctor_id: selectedAppointment.doctor_id,
+        rating: rating,
+        review_text: reviewText
+      })
+    })
+      .then(res => res.json())
+      .then(data => {
+        setSubmittingReview(false);
+        if (data.success) {
+          alert("Review submitted successfully!");
+          closeReviewModal();
+          // Refresh appointments to show review button is no longer needed
+          loadProfile();
+        } else {
+          alert(data.error || "Failed to submit review. Please try again.");
+        }
+      })
+      .catch(err => {
+        setSubmittingReview(false);
+        console.error(err);
+        alert("An error occurred while submitting the review.");
+      });
+  }
+  
   // Patient data
   const [patient, setPatient] = useState(null);
   const [editedPatient, setEditedPatient] = useState({});
@@ -47,6 +111,44 @@ export default function PatientProfile() {
     fetchPrescriptions();
     loadProfile();
   }, [patientId]);
+
+useEffect(() => {
+  const hash = window.location.hash.replace('#', '');
+  
+  if (hash === 'medical-records') {
+    // Switch to appointments tab
+    setActiveTab('appointments');
+    
+    // Wait even longer and use multiple scroll attempts
+    setTimeout(() => {
+      const element = document.getElementById(hash);
+      console.log('Looking for element:', hash);
+      console.log('Element found:', element);
+      
+      if (element) {
+        // Try method 1: scrollIntoView
+        element.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start' 
+        });
+        
+        // Try method 2: Manual scroll calculation (backup)
+        setTimeout(() => {
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - 100;
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+          
+          console.log('Scrolled to position:', offsetPosition);
+        }, 200);
+      }
+    }, 800); // Even longer delay - 800ms
+  }
+}, [window.location.hash, activeTab]);
+
 
   const loadProfile = async () => {
     try {
@@ -552,6 +654,18 @@ const handlePaymentSuccess = () => {
                           <span>{appt.mode_of_booking}</span>
                         </div>
                       </div>
+                      {!appt.has_reviewed && (
+                      <button 
+                        className="pp-review-btn" onClick={() => openReviewModal(appt)}>
+                        ⭐ Review this visit
+                      </button>
+                      )}
+                      {appt.has_reviewed && (
+                      <div 
+                        className="pp-already-reviewed">
+                        ✅ Already Reviewed
+                      </div>
+                      )}
                     </div>
                   ))}
                 </div>
@@ -559,7 +673,7 @@ const handlePaymentSuccess = () => {
             </section>
 
             {/* Medical Records Section */}
-<section className="pp-card">
+<section id="medical-records" className="pp-card">
   <h2 className="pp-section-title">Medical Records</h2>
   {prescriptions.length === 0 ? (
     <p className="pp-empty">No prescriptions yet</p>
@@ -663,8 +777,55 @@ const handlePaymentSuccess = () => {
     }}
   />
 )}
-
+      {/* Review Modal */}
+      {showReviewModal && (
+        <div className="pp-modal-overlay" onClick={closeReviewModal}>
+          <div className="pp-review-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="close-modal" onClick={closeReviewModal}>×</button>
+          
+          <div className="pp-modal-body">
+            <p className="pp-doctor-name-modal">How would you rate Dr. {selectedAppointment?.doctor_name}?</p>
+            <div className="star-rating">
+          {[1, 2, 3, 4, 5].map((star) => (
+            <span
+              key={star}
+              className={`star ${star <= (hoverRating || rating) ? 'filled' : ''}`}
+              onClick={() => setRating(star)}
+              onMouseEnter={() => setHoverRating(star)}
+              onMouseLeave={() => setHoverRating(0)}
+            >
+              ★
+            </span>
+          ))}
+        </div>
+        
+        <textarea
+          className="pp-review-textarea"
+          placeholder="Share your experience (optional)"
+          value={reviewText}
+          onChange={(e) => setReviewText(e.target.value)}
+          rows="4"
+          maxLength="500"
+        />
+        
+        <div className="pp-modal-footer">
+          <button 
+            className="pp-submit-review-btn"
+            onClick={handleSubmitReview}
+            disabled={submittingReview || rating === 0}
+          >
+            {submittingReview ? 'Submitting...' : 'Submit Review'}
+          </button>
+        </div>
+          </div>
+          </div>
+        </div>
+      )}
       </main>
+
+      <div className="mini-footer">
+        <FooterMinimal />
+      </div>
     </div>
   );
 }

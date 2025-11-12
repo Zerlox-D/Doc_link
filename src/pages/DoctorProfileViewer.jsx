@@ -11,6 +11,8 @@ function DoctorProfileViewer() {
     const [loading, setLoading] = useState(true);
     const [userName, setUserName] = useState("");
     const [isGuest, setIsGuest] = useState(false);
+    const [reviews, setReviews] = useState([]);
+    const [ratingStats, setRatingStats] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -51,6 +53,19 @@ function DoctorProfileViewer() {
                 setLoading(false);
             });
     }, [id]);
+
+    useEffect(() => {
+  if (id) {
+    fetch(`http://localhost/Doc_Link/php/GetDoctorReviews.php?doctor_id=${id}`)
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          setReviews(data.reviews);
+          setRatingStats(data.statistics);
+        }
+      });
+  }
+}, [id]);
 
     const formatTime = (time) => {
         if (!time) return '';
@@ -152,6 +167,17 @@ function DoctorProfileViewer() {
                                 <p className="experience-text">
                                     {doctorData.experience} years of experience
                                 </p>
+                                {doctorData.total_reviews > 0 ? (
+                                <div className="doctor-profile-rating">
+                                    <span className="doctor-rating-value">{doctorData.average_rating}</span>
+                                    <span className="doctor-rating-star">⭐</span>
+                                    <span className="doctor-rating-count">({doctorData.total_reviews})</span>
+                                </div>
+                                ) : (
+                                <div className="doctor-profile-rating no-reviews">
+                                    <span className="doctor-no-rating-text">No reviews yet</span>
+                                </div>
+                                )}
                             </div>
                         </div>
                         <div className="doctor-verification">
@@ -159,6 +185,7 @@ function DoctorProfileViewer() {
                                 {doctorData.verified ? '✔ Verified Professional' : 'Verification Pending'}
                             </div>
                         </div>
+                        
                     </div>
 
                     {/* Doctor Info Grid */}

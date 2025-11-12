@@ -15,7 +15,8 @@ if (isset($_GET['id'])) {
     
     if ($row = $result->fetch_assoc()) {
         $doctor = $row;
-        
+        $doctor['average_rating'] = number_format(floatval($doctor['average_rating']), 1, '.','');
+
         // Get availability information
         $stmt2 = $conn->prepare("SELECT * FROM fees_and_availability WHERE doctor_id = ? ORDER BY FIELD(day_of_week, 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday')");
         $stmt2->bind_param("i", $doctor_id);

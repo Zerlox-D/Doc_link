@@ -70,7 +70,7 @@ function LandingPage() {
             Ready to connect with healthcare?<br />
             <span className='join'>Join thousands of patients who trust Doc.link for their daily healthcare needs</span>
             <br /><br />
-            <Link to="/SignUpChoice"><button className='sign-up-now'>Sign up now</button></Link>&nbsp;&nbsp;
+            <Link to="/PatientSignUp"><button className='sign-up-now'>Sign up now</button></Link>&nbsp;&nbsp;
             <Link to="/SearchDoctors"><button className='browse' onClick={handleSession()}>Browse without signing up</button></Link>
         </div>
       <br /><br /><br />
@@ -79,4 +79,4 @@ function LandingPage() {
   )
 }
 
-export default LandingPage
+export default LandingPage;

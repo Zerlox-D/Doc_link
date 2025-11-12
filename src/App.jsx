@@ -13,6 +13,7 @@ import DoctorProfileViewer from "./pages/DoctorProfileViewer";
 import BookAppointment from "./pages/BookAppointment";
 import AdminDashboard from "./pages/AdminDashboard";
 import './index.css'
+import ScrollToTop from "./components/ScrollToTop";
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
     <>
       <div>
         <Router>
+          <ScrollToTop/>
           <Routes>
             <Route path="/" element={<LandingPage/>}/>
             <Route path="/SignUpChoice" element={<SignUpChoice/>}/>

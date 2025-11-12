@@ -52,7 +52,7 @@ echo json_encode([
     'success' => true,
     'doctor' => $doctor,
     'availability' => $availability,
-    'available_locations' => $available_locations  // ✅ NEW FIELD
+    'available_locations' => $available_locations 
 ]);
 
 $stmt->close();

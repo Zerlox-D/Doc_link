@@ -107,7 +107,7 @@ const Home = () => {
               <div className="empty-icon">📅</div>
               <p className="empty-message">You have no upcoming appointments.</p>
               <p className="empty-subtitle">Time to book your next check-up!</p>
-              <Link to="/search-doctors">
+              <Link to="/SearchDoctors">
                 <button className="btn btn-secondary">Book Now</button>
               </Link>
             </div>
@@ -129,7 +129,7 @@ const Home = () => {
               <p>View and manage your bookings</p>
             </Link>
 
-            <Link to="/PatientProfile?tab=appointments" className="quick-card">
+            <Link to="/PatientProfile#medical-records" className="quick-card">
               <div className="quick-icon">🏥</div>
               <h4>Medical Records</h4>
               <p>View your prescriptions and medical history</p>

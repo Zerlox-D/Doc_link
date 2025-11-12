@@ -27,20 +27,24 @@ $sql = "SELECT DISTINCT
     d.hospital,
     d.city,
     COALESCE(
-        (SELECT consultation_fee 
-         FROM fees_and_availability 
-         WHERE doctor_id = d.doctor_id 
-         LIMIT 1), 
+        (SELECT consultation_fee
+         FROM fees_and_availability
+         WHERE doctor_id = d.doctor_id
+         LIMIT 1),
         500
     ) as fee,
     p.payment_status,
     p.payment_method,
     p.transaction_id,
     p.invoice_number,
-    p.amount as paid_amount
+    p.amount as paid_amount,
+    r.review_id,
+    r.rating,
+    r.review_text
 FROM appointments a
 JOIN doctors d ON a.doctor_id = d.doctor_id
 LEFT JOIN payments p ON a.payment_id = p.payment_id
+LEFT JOIN reviews r ON a.appointment_id = r.appointment_id
 WHERE a.patient_id = ?
 ORDER BY a.appointment_date DESC, a.appointment_time DESC";
 
@@ -51,6 +55,7 @@ $result = $stmt->get_result();
 
 $appointments = [];
 while ($row = $result->fetch_assoc()) {
+    $row['has_reviewed'] = ($row['review_id'] !== null);
     $appointments[] = $row;
 }
 

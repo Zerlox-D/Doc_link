@@ -2,6 +2,18 @@
 .patient-doctor-profile-container {
   min-height: 100vh;
   background-color: rgb(235, 244, 243);
+  animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Header */
@@ -486,4 +498,41 @@
     flex-direction: column;
     gap: 15px;
   }
+}
+
+.doctor-profile-rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background: #f0f9f6;
+  border-radius: 20px;
+  width: fit-content;
+}
+
+.doctor-rating-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a7f64;
+}
+
+.doctor-rating-star {
+  font-size: 20px;
+}
+
+.doctor-rating-count {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+.doctor-profile-rating.no-reviews {
+  background: #f5f5f5;
+}
+
+.doctor-no-rating-text {
+  font-size: 14px;
+  color: #999;
+  font-style: italic;
 }
