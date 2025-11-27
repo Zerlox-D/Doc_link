@@ -6,7 +6,7 @@ require 'config.php';
 
 $search = isset($_GET['q']) ? $conn->real_escape_string($_GET['q']) : '';
 
-$sql = "SELECT doctor_id, first_name, last_name, city, specialty, hospital, experience, average_rating, total_reviews
+$sql = "SELECT doctor_id, first_name, last_name, city, specialty, hospital, clinic, experience, average_rating, total_reviews
 FROM doctors
 WHERE verified = 1";
 
@@ -16,6 +16,7 @@ if (!empty($search)) {
     OR city LIKE '%$search%'
     OR specialty LIKE '%$search%'
     OR hospital LIKE '%$search%'
+    OR clinic LIKE '%$search%'
     )";
 }
 
@@ -32,6 +33,7 @@ if ($result->num_rows > 0) {
             "city" => $row["city"],
             "specialty" => $row["specialty"],
             "hospital" => $row["hospital"],
+            "clinic" => $row["clinic"],
             "experience" => $row["experience"],
             'average_rating' => floatval($row['average_rating']),
             'total_reviews' => intval($row['total_reviews'])

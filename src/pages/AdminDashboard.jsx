@@ -324,6 +324,10 @@ export default function AdminDashboard() {
                         <span>{doctor.hospital || 'N/A'}</span>
                       </div>
                       <div className="detail-row">
+                        <span className="detail-label">🏥 Clinic:</span>
+                        <span>{doctor.clinic || 'N/A'}</span>
+                      </div>
+                      <div className="detail-row">
                         <span className="detail-label">📍 City:</span>
                         <span>{doctor.city}</span>
                       </div>

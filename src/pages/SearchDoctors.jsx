@@ -59,19 +59,26 @@ export default function SearchDoctors() {
     }
   };
 
-  const applyFilters = () => {
-    let filtered = [...doctors];
+const applyFilters = () => {
+  let filtered = [...doctors];
 
-    // Apply search query
-    if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase();
-      filtered = filtered.filter(doc => 
-        doc.name.toLowerCase().includes(query) ||
-        doc.specialty.toLowerCase().includes(query) ||
-        doc.city.toLowerCase().includes(query) ||
-        doc.hospital.toLowerCase().includes(query)
-      );
-    }
+  // Apply search query
+  if (searchQuery.trim()) {
+    const query = searchQuery.toLowerCase();
+    filtered = filtered.filter(doc => {
+      const name = (doc.name || '').toLowerCase();
+      const specialty = (doc.specialty || '').toLowerCase();
+      const city = (doc.city || '').toLowerCase();
+      const hospital = (doc.hospital || '').toLowerCase();
+      const clinic = (doc.clinic || '').toLowerCase(); // Include clinic in search
+      
+      return name.includes(query) ||
+             specialty.includes(query) ||
+             city.includes(query) ||
+             hospital.includes(query) ||
+             clinic.includes(query); // Search in clinic too
+    });
+  }
 
     // Apply specialty filter
     if (filters.specialty) {
@@ -243,8 +250,13 @@ export default function SearchDoctors() {
                       )}
                       <div className="sd-doctor-details">
                         <div className="sd-detail-item">
-                          <span className="sd-detail-icon">🏥</span>
-                          <span>{doctor.hospital}</span>
+                        {(doctor.hospital || doctor.clinic) && (
+                          <span className="sd-detail-icon">
+                            <p style={{fontSize:'14px'}}>
+                              &nbsp;{doctor.hospital ? `🏥 ${doctor.hospital}` : `🏪 ${doctor.clinic}`}
+                            </p>
+                          </span>
+                        )}
                         </div>
                         <div className="sd-detail-item">
                           <span className="sd-detail-icon">📍</span>

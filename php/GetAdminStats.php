@@ -16,7 +16,12 @@ $pendingAppointments = $pendingResult->fetch_assoc()['count'];
 $confirmedResult = $conn->query("SELECT COUNT(*) as count FROM appointments WHERE status = 'confirmed'");
 $confirmedAppointments = $confirmedResult->fetch_assoc()['count'];
 
-$completedResult = $conn->query("SELECT COUNT(*) as count FROM appointments WHERE status = 'completed'");
+$completedResult = $conn->query("
+    SELECT COUNT(*) as count 
+    FROM appointments 
+    WHERE appointment_date < CURDATE()
+    OR (appointment_date = CURDATE() AND appointment_time < CURTIME())
+");
 $completedAppointments = $completedResult->fetch_assoc()['count'];
 
 $verificationResult = $conn->query("SELECT COUNT(*) as count FROM doctors WHERE verified = 0");

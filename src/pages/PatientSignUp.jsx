@@ -190,7 +190,7 @@ const handleSubmit = async (e) => {
                             </div>
                         </div>
 
-                                                <div className="form-row">
+                        <div className="form-row">
                             <div className="form-group">
                                 <label className="form-label">Password</label>
                                 <input
@@ -282,7 +282,7 @@ const handleSubmit = async (e) => {
                         </button>
 
                         <p className="login-link">
-                            Already have an account? <a href="#">Sign in here</a>
+                            Already have an account? <Link to="/Login">Sign in here</Link>
                         </p>
                     </div>
                 </form>

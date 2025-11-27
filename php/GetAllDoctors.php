@@ -4,7 +4,7 @@ header('Content-Type: application/json');
 
 require 'config.php';
 
-$sql = "SELECT doctor_id, first_name, last_name, email, phone_no, specialty, experience, city, verified 
+$sql = "SELECT doctor_id, first_name, last_name, email, phone_no, specialty, experience, hospital, clinic, city, verified 
         FROM doctors 
         ORDER BY verified ASC, doctor_id DESC";
 
@@ -21,6 +21,8 @@ if ($result->num_rows > 0) {
             'phone_no' => $row['phone_no'],
             'specialty' => $row['specialty'],
             'experience' => $row['experience'],
+            'hospital' => $row['hospital'],
+            'clinic' => $row['clinic'],
             'city' => $row['city'],
             'verified' => (int)$row['verified']
         ];

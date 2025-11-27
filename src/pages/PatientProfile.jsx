@@ -310,7 +310,6 @@ const handlePaymentSuccess = () => {
   fetchAppointments();
 };
 
-
   const fullName = useMemo(() => {
     if (!patient) return "";
     return `${patient.first_name} ${patient.last_name}`;

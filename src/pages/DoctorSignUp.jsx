@@ -13,6 +13,7 @@ function DoctorSignup() {
         gender: '',
         password: '',
         confirmPassword: '',
+        qualification: '',
         licenseNumber: '',
         specializations: [],
         yearsOfExperience: '',
@@ -273,6 +274,20 @@ const handleSubmit = async (e) => {
                                     required
                                 />
                             </div>
+
+                            <div className="form-group">
+                                <label className="form-label">Qualification</label>
+                                <input
+                                    type="text"
+                                    name="qualification"
+                                    value={formData.qualification}
+                                    onChange={handleChange}
+                                    className="form-input"
+                                    placeholder="MBBS, B.Pharm ...."
+                                    required
+                                />
+                            </div>
+
                             <div className="form-group">
                                 <label className="form-label">Specializations (Select all that apply)</label>
                                 <div className="specialization-grid">
@@ -376,7 +391,7 @@ const handleSubmit = async (e) => {
                                 Create Doctor Account
                             </button>
                             <p className="login-link">
-                                Already have an account? <a href="/login">Sign in here</a>
+                                Already have an account? <Link to="/login">Sign in here</Link>
                             </p>
                         </div>
                     </form>

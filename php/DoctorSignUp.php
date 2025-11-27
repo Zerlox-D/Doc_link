@@ -80,6 +80,7 @@ $last_name = $conn->real_escape_string($data['lastName']);
 $phone_no = $conn->real_escape_string($data['phone']);
 $dob = $conn->real_escape_string($data['dateOfBirth']);
 $gender = $conn->real_escape_string($data['gender']);
+$qualification = $conn->real_escape_string($data['qualification']);
 
 // Handle specializations (array or string)
 $specialty = '';
@@ -101,8 +102,8 @@ $city = isset($data['city']) ? $conn->real_escape_string($data['city']) : '';
 $verified = 0;
 
 // Insert doctor
-$stmt = $conn->prepare("INSERT INTO doctors (first_name, last_name, email, phone_no, dob, gender, license_no, specialty, experience, hospital, clinic, city, password, verified) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-$stmt->bind_param("ssssssssdssssi", $first_name, $last_name, $email, $phone_no, $dob, $gender, $license_no, $specialty, $experience, $hospital, $clinic, $city, $password, $verified);
+$stmt = $conn->prepare("INSERT INTO doctors (first_name, last_name, email, phone_no, dob, gender, license_no, qualification, specialty, experience, hospital, clinic, city, password, verified) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+$stmt->bind_param("sssssssssdssssi", $first_name, $last_name, $email, $phone_no, $dob, $gender, $license_no, $qualification, $specialty, $experience, $hospital, $clinic, $city, $password, $verified);
 
 if ($stmt->execute()) {
     $doctor_id = $stmt->insert_id;
