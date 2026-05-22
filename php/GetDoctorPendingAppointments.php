@@ -1,7 +1,6 @@
 <?php
-header('Access-Control-Allow-Origin: *');
-header('Content-Type: application/json');
 require 'config.php';
+header('Content-Type: application/json');
 
 $doctor_id = isset($_GET['doctor_id']) ? intval($_GET['doctor_id']) : 0;
 

@@ -1,8 +1,6 @@
 <?php
-header('Access-Control-Allow-Origin: *');
-header('Content-Type: application/json');
-
 require 'config.php';
+header('Content-Type: application/json');
 
 $doctorsResult = $conn->query("SELECT COUNT(*) as count FROM doctors");
 $totalDoctors = $doctorsResult->fetch_assoc()['count'];

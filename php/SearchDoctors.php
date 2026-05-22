@@ -1,8 +1,6 @@
 <?php
-header('Access-Control-Allow-Origin: *');
-header('Content-Type: application/json');
-
 require 'config.php';
+header('Content-Type: application/json');
 
 $search = isset($_GET['q']) ? $conn->real_escape_string($_GET['q']) : '';
 

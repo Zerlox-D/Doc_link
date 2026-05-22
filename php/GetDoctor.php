@@ -1,8 +1,6 @@
 <?php
+require 'config.php';
 header("Content-Type: application/json");
-header("Access-Control-Allow-Origin: *");
-
-include("config.php");
 
 if (isset($_GET['id'])) {
     $doctor_id = intval($_GET['id']);

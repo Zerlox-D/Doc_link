@@ -1,8 +1,6 @@
 <?php
-header('Access-Control-Allow-Origin: *');
-header('Content-Type: application/json');
-
 require 'config.php';
+header('Content-Type: application/json');
 
 if (!isset($_GET['patient_id'])) {
     echo json_encode(['success' => false, 'error' => 'Patient ID required']);

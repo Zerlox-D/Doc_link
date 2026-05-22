@@ -1,8 +1,6 @@
 <?php
-header('Access-Control-Allow-Origin: *');
-header('Content-Type: application/json');
-
 require 'config.php';
+header('Content-Type: application/json');
 
 $sql = "SELECT doctor_id, first_name, last_name, email, phone_no, specialty, experience, hospital, clinic, city, verified 
         FROM doctors 
