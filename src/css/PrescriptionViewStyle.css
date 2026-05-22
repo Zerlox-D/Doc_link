@@ -151,3 +151,169 @@
 .download-btn:hover {
   background: #047857;
 }
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .prescription-view-overlay {
+    padding: 12px;
+  }
+
+  .prescription-view-modal {
+    width: 95%;
+    max-height: 95vh;
+  }
+
+  .prescription-view-header {
+    padding: 15px 20px;
+  }
+
+  .prescription-view-header h2 {
+    font-size: 18px;
+  }
+
+  .prescription-view-body {
+    padding: 20px;
+  }
+
+  .info-section {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+  }
+
+  .info-section h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .info-section p {
+    font-size: 13px;
+  }
+
+  .medicines-table {
+    gap: 12px;
+  }
+
+  .medicine-row {
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .medicine-number {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+
+  .medicine-details h4 {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .medicine-info {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    font-size: 12px;
+  }
+
+  .prescription-actions {
+    margin-top: 20px;
+    padding-top: 15px;
+  }
+
+  .download-btn {
+    padding: 12px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 600px) {
+  .medicine-info {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .prescription-view-overlay {
+    padding: 8px;
+  }
+
+  .prescription-view-modal {
+    width: 100%;
+    max-height: 100vh;
+    border-radius: 12px;
+  }
+
+  .prescription-view-header {
+    padding: 12px 15px;
+  }
+
+  .prescription-view-header h2 {
+    font-size: 16px;
+  }
+
+  .close-btn {
+    font-size: 24px;
+    width: 28px;
+    height: 28px;
+  }
+
+  .prescription-view-body {
+    padding: 15px;
+  }
+
+  .info-section {
+    margin-bottom: 15px;
+    padding-bottom: 12px;
+  }
+
+  .info-section h3 {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .info-section p {
+    font-size: 12px;
+    margin: 4px 0;
+  }
+
+  .medicines-table {
+    gap: 10px;
+  }
+
+  .medicine-row {
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .medicine-number {
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+  }
+
+  .medicine-details h4 {
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+
+  .medicine-info {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    font-size: 11px;
+  }
+
+  .medicine-info span {
+    padding: 2px 0;
+  }
+
+  .prescription-actions {
+    margin-top: 15px;
+    padding-top: 12px;
+  }
+
+  .download-btn {
+    padding: 12px;
+    font-size: 12px;
+  }
+}

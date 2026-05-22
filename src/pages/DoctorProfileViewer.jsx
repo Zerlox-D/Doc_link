@@ -38,7 +38,6 @@ function DoctorProfileViewer() {
         fetch(`http://localhost/Doc_Link/php/GetDoctorWithAvailability.php?id=${id}`)
             .then((res) => res.json())
             .then((data) => {
-                console.log("Fetched doctor:", data);
                 if (data.error) {
                     setDoctorData({ error: data.error });
                 } else {
@@ -125,11 +124,8 @@ function DoctorProfileViewer() {
         <div className="patient-doctor-profile-container">
             {/* Header */}
             <header className="patient-profile-header">
-                <div className="dpp-header-left">
+                    <div className="dpp-header-left">
                     <span className="header-logo">Doc.link</span>
-                    <span className="user-greeting">
-                        Hello, {userName || "Guest User"}!
-                    </span>
                 </div>
                 <div className="header-navigation">
                     {!isGuest ? (

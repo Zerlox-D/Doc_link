@@ -122,8 +122,6 @@ useEffect(() => {
     // Wait even longer and use multiple scroll attempts
     setTimeout(() => {
       const element = document.getElementById(hash);
-      console.log('Looking for element:', hash);
-      console.log('Element found:', element);
       
       if (element) {
         // Try method 1: scrollIntoView
@@ -142,7 +140,7 @@ useEffect(() => {
             behavior: 'smooth'
           });
           
-          console.log('Scrolled to position:', offsetPosition);
+          // scrolled to position (no-log in production)
         }, 200);
       }
     }, 800); // Even longer delay - 800ms
@@ -349,7 +347,7 @@ const handlePaymentSuccess = () => {
           <span className="pp-greeting">Hello, {fullName}!</span>
         </div>
         <div className="pp-header-right">
-          <button className="pp-back-btn" onClick={() => navigate('/home')}>← Back to Home</button>
+          <button className="pp-back-btn" onClick={() => navigate('/home')}>← Back</button>
           <button className="pp-logout-btn" onClick={handleLogout}>Logout</button>
         </div>
       </header>

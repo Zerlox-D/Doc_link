@@ -17,6 +17,39 @@ if (isset($data['email']) && isset($data['password']) && isset($data['userType']
     $email = $conn->real_escape_string($data['email']);
     $password = $data['password'];
     $userType = $data['userType'];
+
+    if ($userType === 'admin') {
+        $stmt = $conn->prepare("SELECT email, password FROM admin WHERE email = ? LIMIT 1");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($row = $result->fetch_assoc()) {
+            if ($password === $row['password']) {
+                echo json_encode([
+                    'success' => true,
+                    'userType' => 'admin',
+                    'user' => [
+                        'email' => $row['email']
+                    ]
+                ]);
+            } else {
+                echo json_encode([
+                    'success' => false,
+                    'error' => 'Invalid email or password'
+                ]);
+            }
+        } else {
+            echo json_encode([
+                'success' => false,
+                'error' => 'No admin account found with this email'
+            ]);
+        }
+
+        $stmt->close();
+        $conn->close();
+        exit;
+    }
     
     if ($userType === 'doctor') {
         $stmt = $conn->prepare("SELECT doctor_id, first_name, last_name, email, password, verified FROM doctors WHERE email = ?");

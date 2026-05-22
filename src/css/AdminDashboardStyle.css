@@ -499,41 +499,392 @@
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-  .admin-header {
-    padding: 15px 20px;
-  }
-
-  .admin-logo {
-    font-size: 28px;
-  }
-
-  .admin-welcome {
-    display: none;
-  }
-
-  .admin-nav {
-    padding: 15px 20px;
-  }
-
+@media (max-width: 1024px) {
   .admin-main {
-    padding: 20px 15px;
-  }
-
-  .admin-page-title {
-    font-size: 32px;
+    padding: 25px 20px;
   }
 
   .stats-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  .stat-card {
+    gap: 15px;
+    padding: 20px;
+  }
+
+  .stat-icon {
+    font-size: 40px;
+  }
+
+  .stat-value {
+    font-size: 32px;
   }
 
   .charts-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .doctors-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-header {
+    padding: 15px 20px;
+    gap: 15px;
+  }
+
+  .admin-logo {
+    font-size: 30px;
+  }
+
+  .admin-header-right {
+    gap: 12px;
+  }
+
+  .admin-welcome {
+    font-size: 14px;
+  }
+
+  .admin-logout-btn {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  .admin-nav {
+    padding: 12px 20px;
+    gap: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .admin-nav-btn {
+    padding: 10px 18px;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+
+  .admin-main {
+    padding: 20px 12px;
+  }
+
+  .admin-page-title {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  .section-title {
+    font-size: 22px;
+    margin-bottom: 18px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-bottom: 30px;
+  }
+
+  .stat-card {
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .stat-icon {
+    font-size: 36px;
+  }
+
+  .stat-value {
+    font-size: 28px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+  }
+
+  .charts-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .chart-card {
+    padding: 20px 15px;
+  }
+
+  .chart-card h3 {
+    font-size: 18px;
+    margin-bottom: 18px;
+  }
+
+  .bar-item {
+    grid-template-columns: 80px 1fr 50px;
+    gap: 12px;
+  }
+
+  .bar-label {
+    font-size: 13px;
+  }
+
+  .bar-container {
+    height: 30px;
+  }
+
+  .bar-value {
+    font-size: 15px;
   }
 
   .doctors-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .doctor-card {
+    padding: 20px;
+  }
+
+  .doctor-card-header {
+    gap: 12px;
+    margin-bottom: 15px;
+    padding-bottom: 12px;
+  }
+
+  .doctor-avatar {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+
+  .doctor-info h3 {
+    font-size: 18px;
+    margin-bottom: 3px;
+  }
+
+  .doctor-specialty {
+    font-size: 13px;
+  }
+
+  .doctor-details {
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+
+  .detail-row {
+    font-size: 13px;
+  }
+
+  .doctor-actions {
+    gap: 10px;
+  }
+
+  .btn-approve,
+  .btn-reject {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+
+  .table-container {
+    padding: 20px 15px;
+  }
+
+  .admin-table th,
+  .admin-table td {
+    padding: 12px 10px;
+    font-size: 13px;
+  }
+
+  .status-badge {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+
+  .empty-state {
+    padding: 60px 20px;
+  }
+
+  .empty-icon {
+    font-size: 60px;
+  }
+
+  .empty-state h3 {
+    font-size: 20px;
+  }
+
+  .empty-state p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-header {
+    padding: 10px 12px;
+  }
+
+  .admin-logo {
+    font-size: 26px;
+  }
+
+  .admin-header-right {
+    gap: 10px;
+  }
+
+  .admin-welcome {
+    font-size: 12px;
+  }
+
+  .admin-logout-btn {
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+
+  .admin-nav {
+    padding: 10px 12px;
+    gap: 6px;
+  }
+
+  .admin-nav-btn {
+    padding: 8px 12px;
+    font-size: 12px;
+    min-width: 90px;
+  }
+
+  .admin-nav-btn .badge {
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+    padding: 2px 4px;
+  }
+
+  .admin-main {
+    padding: 15px 10px;
+  }
+
+  .admin-page-title {
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
+
+  .section-title {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2,1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .stat-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .stat-icon {
+    font-size: 32px;
+  }
+
+  .stat-value {
+    font-size: 24px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+  }
+
+  .charts-grid {
+    gap: 15px;
+  }
+
+  .chart-card {
+    padding: 15px 12px;
+  }
+
+  .chart-card h3 {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+
+  .bar-item {
+    grid-template-columns: 70px 1fr 45px;
+    gap: 8px;
+  }
+
+  .bar-label {
+    font-size: 12px;
+  }
+
+  .bar-container {
+    height: 25px;
+    border-radius: 8px;
+  }
+
+  .bar-value {
+    font-size: 13px;
+  }
+
+  .doctors-grid {
+    gap: 15px;
+  }
+
+  .doctor-card {
+    padding: 15px;
+  }
+
+  .doctor-card.pending {
+    border-radius: 15px;
+  }
+
+  .doctor-card-header {
+    gap: 10px;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+  }
+
+  .doctor-avatar {
+    width: 45px;
+    height: 45px;
+    font-size: 22px;
+  }
+
+  .doctor-info h3 {
+    font-size: 16px;
+    margin-bottom: 2px;
+  }
+
+  .doctor-specialty {
+    font-size: 12px;
+  }
+
+  .doctor-details {
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .detail-row {
+    font-size: 12px;
+    flex-wrap: wrap;
+  }
+
+  .doctor-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .btn-approve,
+  .btn-reject {
+    padding: 10px 12px;
+    font-size: 12px;
+    width: 100%;
+  }
+
+  .table-container {
+    padding: 15px 12px;
+    border-radius: 15px;
   }
 
   .admin-table {
@@ -542,6 +893,39 @@
 
   .admin-table th,
   .admin-table td {
-    padding: 10px 12px;
+    padding: 10px 8px;
+    font-size: 11px;
+  }
+
+  .admin-table th:first-child {
+    border-top-left-radius: 8px;
+  }
+
+  .admin-table th:last-child {
+    border-top-right-radius: 8px;
+  }
+
+  .status-badge {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+
+  .empty-state {
+    padding: 40px 15px;
+    border-radius: 15px;
+  }
+
+  .empty-icon {
+    font-size: 50px;
+    margin-bottom: 15px;
+  }
+
+  .empty-state h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  .empty-state p {
+    font-size: 13px;
   }
 }

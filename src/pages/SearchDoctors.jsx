@@ -115,11 +115,8 @@ const applyFilters = () => {
     <div className="sd-container">
       {/* Header */}
       <header className="sd-header">
-        <div className="sd-header-left">
+          <div className="sd-header-left">
           <div className="sd-logo">Doc.link</div>
-          <span className="sd-user-name">
-            Hello, {localStorage.getItem("user_name") || "Guest User"}!
-          </span>
         </div>
         <div className="sd-header-right">
         {!isGuest ? (

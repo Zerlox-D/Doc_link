@@ -27,6 +27,9 @@
   position: sticky;
   top: 0;
   z-index: 100;
+
+  flex-wrap: nowrap;
+  min-width: 0;
 }
 
 .sd-logo {
@@ -68,10 +71,10 @@
   color: rgb(43,198,182);
 }
 
-.sd-user-name {
+/* .sd-user-name {
   color: #4b5563;
   font-weight: 500;
-}
+} */
 
 .sd-logout-btn {
   background: linear-gradient(135deg, rgb(5,192,173), rgb(18,179,163));
@@ -443,25 +446,401 @@
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
+  .sd-header {
+    padding: 12px 20px;
+  }
+
+  .sd-main {
+    padding: 30px 15px;
+  }
+
+  .sd-content {
+    max-width: 100%;
+  }
+
   .sd-page-title {
-    font-size: 36px;
+    font-size: 42px;
+  }
+
+  .sd-search-section {
+    padding: 20px;
+    margin-bottom: 30px;
+  }
+
+  .sd-filters {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .sd-doctor-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sd-header {
+    padding: 12px 15px;
+    gap: 12px;
+  }
+
+  .sd-logo {
+    font-size: 28px;
+  }
+
+  .sd-header-left {
+    gap: 12px;
   }
 
   .sd-header-right {
     gap: 12px;
   }
 
-  .sd-user-name {
-    display: none;
+  .sd-back-btn {
+    padding: 8px 14px;
+    font-size: 13px;
   }
 
-  .sd-doctor-grid {
-    grid-template-columns: 1fr;
+  /* .sd-user-name {
+    font-size: 13px;
+  } */
+
+  .sd-logout-btn {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  .sd-main {
+    padding: 20px 12px;
+  }
+
+  .sd-title-section {
+    margin-bottom: 30px;
+  }
+
+  .sd-page-title {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+
+  .sd-page-subtitle {
+    font-size: 15px;
+  }
+
+  .sd-search-section {
+    padding: 18px 15px;
+    margin-bottom: 25px;
+    border-radius: 15px;
+  }
+
+  .sd-search-bar {
+    padding: 12px 15px;
+    margin-bottom: 18px;
+    border-radius: 12px;
+  }
+
+  .sd-search-icon {
+    font-size: 20px;
+    margin-right: 10px;
+  }
+
+  .sd-search-input {
+    font-size: 14px;
+  }
+
+  .sd-clear-btn {
+    padding: 8px 12px;
+    font-size: 12px;
   }
 
   .sd-filters {
     grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .sd-filter-group label {
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+
+  .sd-filter-select {
+    padding: 10px 12px;
+    font-size: 14px;
+    border-radius: 8px;
+  }
+
+  .sd-results-section {
+    padding: 20px 15px;
+    border-radius: 15px;
+  }
+
+  .sd-results-title {
+    font-size: 22px;
+  }
+
+  .sd-doctor-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .sd-doctor-card {
+    padding: 18px;
+    gap: 15px;
+  }
+
+  .sd-doctor-avatar {
+    width: 70px;
+    height: 70px;
+    font-size: 35px;
+  }
+
+  .sd-doctor-name {
+    font-size: 18px;
+  }
+
+  .sd-doctor-specialty {
+    font-size: 14px;
+  }
+
+  .sd-doctor-details {
+    padding: 12px;
+    border-radius: 10px;
+  }
+
+  .sd-detail-item {
+    font-size: 13px;
+  }
+
+  .sd-view-profile-btn {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+
+  .sd-loading {
+    padding: 40px 20px;
+  }
+
+  .sd-spinner {
+    width: 40px;
+    height: 40px;
+  }
+
+  .sd-empty {
+    padding: 40px 20px;
+  }
+
+  .sd-empty-icon {
+    font-size: 60px;
+  }
+
+  .sd-empty h3 {
+    font-size: 20px;
+  }
+
+  .sd-empty p {
+    font-size: 14px;
+  }
+
+  .sd-clear-filters-btn {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sd-header {
+    padding: 8px 10px;
+  }
+
+  .sd-logo {
+    font-size: 26px;
+  }
+
+  .sd-header-left {
+    gap: 8px;
+  }
+
+  .sd-header-right {
+    gap: 4px;
+  }
+
+  .sd-back-btn {
+    padding: 6px 8px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  .sd-logout-btn {
+    padding: 6px 10px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  .sd-login-link {
+    display: none;
+  }
+
+  .sd-signup-btn {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .sd-main {
+    padding: 15px 10px;
+  }
+
+  .sd-title-section {
+    margin-bottom: 20px;
+  }
+
+  .sd-page-title {
+    font-size: 26px;
+    margin-bottom: 8px;
+  }
+
+  .sd-page-subtitle {
+    font-size: 13px;
+  }
+
+  .sd-search-section {
+    padding: 15px 12px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+  }
+
+  .sd-search-bar {
+    padding: 10px 12px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .sd-search-icon {
+    display: none;
+  }
+
+  .sd-search-input {
+    font-size: 14px;
+    width: 100%;
+  }
+
+  .sd-clear-btn {
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+
+  .sd-filters {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .sd-filter-group label {
+    font-size: 12px;
+  }
+
+  .sd-filter-select {
+    padding: 9px 10px;
+    font-size: 13px;
+  }
+
+  .sd-results-section {
+    padding: 15px 12px;
+    border-radius: 12px;
+  }
+
+  .sd-results-title {
+    font-size: 18px;
+  }
+
+  .sd-doctor-grid {
+    gap: 12px;
+  }
+
+  .sd-doctor-card {
+    padding: 15px;
+    gap: 12px;
+  }
+
+  .sd-doctor-avatar {
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+  }
+
+  .sd-doctor-name {
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+
+  .sd-doctor-specialty {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+
+  .sd-doctor-details {
+    padding: 10px;
+  }
+
+  .sd-detail-item {
+    font-size: 12px;
+    gap: 6px;
+  }
+
+  .sd-detail-icon {
+    font-size: 16px;
+  }
+
+  .sd-view-profile-btn {
+    padding: 9px 12px;
+    font-size: 12px;
+  }
+
+  .sd-rating-display {
+    margin: 6px 0;
+    font-size: 12px;
+  }
+
+  .sd-rating-number {
+    font-size: 14px;
+  }
+
+  .sd-rating-count {
+    font-size: 11px;
+  }
+
+  .sd-loading {
+    padding: 30px 15px;
+  }
+
+  .sd-spinner {
+    width: 35px;
+    height: 35px;
+  }
+
+  .sd-empty {
+    padding: 30px 15px;
+  }
+
+  .sd-empty-icon {
+    font-size: 50px;
+    margin-bottom: 15px;
+  }
+
+  .sd-empty h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  .sd-empty p {
+    font-size: 13px;
+  }
+
+  .sd-clear-filters-btn {
+    padding: 8px 16px;
+    font-size: 12px;
   }
 }
 

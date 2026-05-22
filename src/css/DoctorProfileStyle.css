@@ -356,18 +356,318 @@
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+  .dpd-content {
+    padding: 30px 15px;
+  }
+
+  .dpd-profile-card {
+    gap: 16px;
+  }
+
+  .dpd-profile-right {
+    min-width: 200px;
+  }
+
+  .dpd-availability-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+
 @media (max-width: 768px) {
+  .dpd-header {
+    padding: 12px 15px;
+    gap: 12px;
+  }
+
+  .dpd-logo {
+    font-size: 28px;
+  }
+
+  .dpd-header-right {
+    gap: 12px;
+  }
+
+  .dpd-greeting {
+    font-size: 13px;
+  }
+
+  .dpd-logout-btn {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  .dpd-content {
+    padding: 20px 12px;
+  }
+
+  .dpd-card {
+    padding: 20px 15px;
+    margin-bottom: 20px;
+  }
+
   .dpd-profile-card {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .dpd-profile-right {
-    align-items: flex-start;
+  .dpd-profile-left {
+    width: 100%;
+    gap: 15px;
+  }
+
+  .dpd-avatar {
+    width: 90px;
+    height: 90px;
+    font-size: 45px;
   }
 
   .dpd-title {
-    font-size: 28px;
+    font-size: 24px;
+  }
+
+  .dpd-profile-right {
+    width: 100%;
+    align-items: flex-start;
+    min-width: auto;
+  }
+
+  .dpd-action-bar {
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .dpd-edit-btn,
+  .dpd-save-btn,
+  .dpd-cancel-btn {
+    padding: 10px 18px;
+    font-size: 13px;
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .dpd-section-title {
+    font-size: 20px;
+  }
+
+  .dpd-availability-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+  }
+
+  .dpd-day-card {
+    border-radius: 10px;
+  }
+
+  .dpd-day-header {
+    padding: 10px 12px;
+  }
+
+  .dpd-day-body {
+    padding: 10px 12px;
+  }
+
+  .dpd-row {
+    padding: 4px 0;
+    font-size: 14px;
+  }
+
+  .dpd-appt-row {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .dpd-appt-when {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .dpd-appt-date,
+  .dpd-appt-time {
+    padding: 5px 8px;
+    font-size: 12px;
+  }
+
+  .dpd-appt-meta {
+    width: 100%;
+  }
+
+  .dpd-appt-patient {
+    font-size: 14px;
+  }
+
+  .dpd-appt-actions {
+    width: 100%;
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .dpd-accept-btn,
+  .dpd-decline-btn {
+    flex: 1;
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+
+  .dpd-add-day-btn {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  .dpd-time-inputs {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .dpd-time-inputs input {
+    padding: 4px 6px;
+    font-size: 12px;
+    flex: 1;
+    min-width: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dpd-header {
+    padding: 10px 12px;
+  }
+
+  .dpd-logo {
+    font-size: 26px;
+  }
+
+  .dpd-header-right {
+    gap: 8px;
+  }
+
+  .dpd-logout-btn {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  .dpd-greeting {
+    font-size: 12px;
+  }
+
+  .dpd-content {
+    padding: 15px 10px;
+  }
+
+  .dpd-card {
+    padding: 15px 12px;
+    margin-bottom: 15px;
+  }
+
+  .dpd-avatar {
+    width: 75px;
+    height: 75px;
+    font-size: 38px;
+  }
+
+  .dpd-title {
+    font-size: 20px;
+  }
+
+  .dpd-subtitle {
+    font-size: 13px;
+  }
+
+  .dpd-meta {
+    gap: 4px;
+    font-size: 12px;
+  }
+
+  .dpd-verify-badge {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .dpd-action-bar {
+    margin-bottom: 15px;
+    gap: 6px;
+  }
+
+  .dpd-edit-btn,
+  .dpd-save-btn,
+  .dpd-cancel-btn {
+    padding: 8px 12px;
+    font-size: 12px;
+    min-width: 100px;
+  }
+
+  .dpd-section-title {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+
+  .dpd-availability-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .dpd-day-header {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+
+  .dpd-day-body {
+    padding: 8px 10px;
+  }
+
+  .dpd-row {
+    font-size: 12px;
+  }
+
+  .dpd-appt-row {
+    padding: 10px;
+    gap: 8px;
+  }
+
+  .dpd-appt-when {
+    gap: 6px;
+  }
+
+  .dpd-appt-date,
+  .dpd-appt-time {
+    padding: 4px 6px;
+    font-size: 11px;
+  }
+
+  .dpd-appt-patient {
+    font-size: 13px;
+  }
+
+  .dpd-appt-booked-by {
+    font-size: 11px;
+  }
+
+  .dpd-appt-actions {
+    width: 100%;
+    flex-direction: row;
+    gap: 6px;
+  }
+
+  .dpd-accept-btn,
+  .dpd-decline-btn {
+    flex: 1;
+    padding: 7px 10px;
+    font-size: 11px;
+  }
+
+  .dpd-badge {
+    padding: 4px 6px;
+    font-size: 10px;
+  }
+
+  .dpd-loading,
+  .dpd-error {
+    margin: 40px 15px;
+    padding: 20px 15px;
+    font-size: 16px;
   }
 }
 

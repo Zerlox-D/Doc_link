@@ -460,28 +460,411 @@
 .pp-error { color: #b91c1c; }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
+  .pp-content {
+    padding: 30px 15px;
+  }
+
   .pp-info-grid {
-    grid-template-columns: 1fr;
-    gap: 25px;
+    gap: 30px;
+  }
+
+  .pp-card {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .pp-header {
+    padding: 10px 15px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .pp-logo {
+    font-size: 26px;
+  }
+
+  .pp-header-left {
+    gap: 12px;
+  }
+
+  .pp-header-right {
+    gap: 10px;
+  }
+
+  .pp-back-btn {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  .pp-greeting {
+    font-size: 13px;
+  }
+
+  .pp-logout-btn {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  .pp-content {
+    padding: 20px 12px;
+  }
+
+  .pp-tabs {
+    flex-direction: column;
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .pp-tab {
+    padding: 12px 18px;
+    font-size: 14px;
+  }
+
+  .pp-card {
+    padding: 18px;
+    margin-bottom: 20px;
+  }
+
+  .pp-action-bar {
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .pp-edit-btn,
+  .pp-save-btn,
+  .pp-cancel-btn {
+    flex: 1;
+    padding: 10px 16px;
+    font-size: 13px;
   }
 
   .pp-profile-header {
     flex-direction: column;
     text-align: center;
+    gap: 15px;
+    padding-bottom: 15px;
   }
 
-  .pp-tabs {
-    flex-direction: column;
+  .pp-avatar {
+    width: 80px;
+    height: 80px;
+    font-size: 40px;
+  }
+
+  .pp-title {
+    font-size: 24px;
+  }
+
+  .pp-info-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .pp-info-section h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  .pp-info-fields {
+    gap: 15px;
+  }
+
+  .pp-field-group label {
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+
+  .pp-field-display {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+
+  .pp-input {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  .pp-section-title {
+    font-size: 20px;
+  }
+
+  .pp-appt-card {
+    padding: 15px;
+    margin-bottom: 12px;
   }
 
   .pp-appt-header {
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
+    padding-bottom: 10px;
+  }
+
+  .pp-appt-doctor {
+    font-size: 18px;
   }
 
   .pp-appt-details {
     grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .pp-cancel-appt-btn {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .pp-notification-banner {
+    padding: 15px;
+    margin-bottom: 18px;
+  }
+
+  .pp-notification-banner h3 {
+    font-size: 16px;
+  }
+
+  .pp-empty {
+    padding: 30px 20px;
+    font-size: 14px;
+  }
+
+  .pp-loading,
+  .pp-error {
+    margin: 40px 15px;
+    padding: 20px;
+    font-size: 16px;
+  }
+
+  .pp-review-modal {
+    width: 95%;
+  }
+
+  .pp-modal-header {
+    padding: 15px;
+  }
+
+  .pp-modal-body {
+    padding: 15px;
+  }
+
+  .pp-doctor-name-modal {
+    font-size: 16px;
+  }
+
+  .star-rating {
+    gap: 8px;
+  }
+
+  .star {
+    font-size: 32px;
+  }
+
+  .pp-review-textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pp-header {
+    padding: 8px 10px;
+  }
+
+  .pp-logo {
+    font-size: 22px;
+  }
+
+  .pp-header-left {
+    gap: 8px;
+  }
+
+  .pp-header-right {
+    gap: 8px;
+  }
+
+  .pp-back-btn {
+    padding: 6px 8px;
+    font-size: 11px;
+  }
+
+  .pp-greeting {
+    font-size: 12px;
+  }
+
+  .pp-logout-btn {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  .pp-content {
+    padding: 15px 10px;
+  }
+
+  .pp-tabs {
+    flex-direction: column;
+    padding: 6px;
+    gap: 6px;
+  }
+
+  .pp-tab {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+
+  .pp-card {
+    padding: 12px;
+    margin-bottom: 15px;
+  }
+
+  .pp-action-bar {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .pp-edit-btn,
+  .pp-save-btn,
+  .pp-cancel-btn {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+
+  .pp-profile-header {
+    padding-bottom: 12px;
+  }
+
+  .pp-avatar {
+    width: 70px;
+    height: 70px;
+    font-size: 35px;
+  }
+
+  .pp-title {
+    font-size: 20px;
+  }
+
+  .pp-subtitle {
+    font-size: 13px;
+  }
+
+  .pp-info-section h3 {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+
+  .pp-info-fields {
+    gap: 12px;
+  }
+
+  .pp-field-group label {
+    font-size: 12px;
+  }
+
+  .pp-field-display {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+
+  .pp-input {
+    padding: 9px 10px;
+    font-size: 14px;
+  }
+
+  .pp-section-title {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  .pp-appt-card {
+    padding: 12px;
+  }
+
+  .pp-appt-doctor {
+    font-size: 16px;
+  }
+
+  .pp-appt-specialty {
+    font-size: 12px;
+  }
+
+  .pp-cancel-appt-btn {
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+
+  .pp-notification-banner {
+    padding: 12px;
+  }
+
+  .pp-notification-banner h3 {
+    font-size: 14px;
+  }
+
+  .pp-declined-notice {
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  .pp-dismiss-btn {
+    font-size: 18px;
+    padding: 3px 8px;
+  }
+
+  .pp-empty {
+    padding: 20px 15px;
+    font-size: 13px;
+  }
+
+  .pp-loading,
+  .pp-error {
+    margin: 30px 10px;
+    padding: 15px;
+    font-size: 14px;
+  }
+
+  .pp-modal-overlay {
+    padding: 10px;
+  }
+
+  .pp-review-modal {
+    width: 100%;
+  }
+
+  .pp-modal-header {
+    padding: 12px 15px;
+  }
+
+  .pp-modal-body {
+    padding: 12px 15px;
+  }
+
+  .pp-doctor-name-modal {
+    font-size: 14px;
+  }
+
+  .star-rating {
+    gap: 6px;
+  }
+
+  .star {
+    font-size: 28px;
+  }
+
+  .pp-review-textarea {
+    width: 100%;
+    padding: 8px;
+    font-size: 13px;
+  }
+
+  .pp-review-btn {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 12px;
   }
 }
 

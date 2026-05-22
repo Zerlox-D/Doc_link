@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
 import '../css/PaymentGatewayStyle.css';
 
 export default function PaymentGateway({ appointment, onSuccess, onCancel }) {
@@ -12,13 +12,7 @@ export default function PaymentGateway({ appointment, onSuccess, onCancel }) {
   const [cardCVV, setCardCVV] = useState('');
   const [bankName, setBankName] = useState('');
 
-  // useEffect(() => {
-  //   document.body.style.overflow = 'hidden';
-    
-  //   return () => {
-  //     document.body.style.overflow = 'unset';
-  //   };
-  // }, []);
+  // removed unused useEffect that hid body overflow (not required)
 
   const handlePayment = async () => {
     setLoading(true);

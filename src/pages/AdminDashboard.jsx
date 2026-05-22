@@ -112,7 +112,6 @@ export default function AdminDashboard() {
       <header className="admin-header">
         <div className="admin-logo">Doc.link Admin</div>
         <div className="admin-header-right">
-          <span className="admin-welcome">Welcome, Admin</span>
           <button className="admin-logout-btn" onClick={handleLogout}>
             Logout
           </button>

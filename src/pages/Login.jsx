@@ -16,10 +16,6 @@ const Login = () => {
   const [clickCount, setClickCount] = useState(0);
   const [clickTimer, setClickTimer] = useState(null);
 
-  // Secret admin credentials
-  const ADMIN_EMAIL = "admin@doclink.com";
-  const ADMIN_PASSWORD = "admin123";
-
 useEffect(() => {
   if (showAdminModal) {
     document.body.style.overflow = 'hidden';
@@ -52,15 +48,45 @@ useEffect(() => {
     }
   };
 
-  const handleAdminLogin = (e) => {
+  const handleAdminLogin = async (e) => {
     e.preventDefault();
-    
-    if (adminEmail === ADMIN_EMAIL && adminPassword === ADMIN_PASSWORD) {
-      localStorage.setItem('role', 'admin');
-      localStorage.setItem('admin_authenticated', 'true');
-      navigate('/AdminDashboard');
-    } else {
-      alert('Invalid admin credentials!');
+
+    const trimmedAdminEmail = adminEmail.trim();
+    const trimmedAdminPassword = adminPassword.trim();
+
+    if (!trimmedAdminEmail || !trimmedAdminPassword) {
+      alert('Please enter both admin email and password!');
+      return;
+    }
+
+    try {
+      const response = await fetch('http://localhost/Doc_Link/php/LoginPage.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: trimmedAdminEmail,
+          password: trimmedAdminPassword,
+          userType: 'admin'
+        })
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        localStorage.setItem('role', 'admin');
+        localStorage.setItem('admin_authenticated', 'true');
+        localStorage.setItem('admin_email', data.user.email);
+        setShowAdminModal(false);
+        setAdminEmail("");
+        setAdminPassword("");
+        navigate('/AdminDashboard');
+      } else {
+        alert(data.error || 'Invalid admin credentials!');
+      }
+    } catch (error) {
+      alert('Failed to connect to server. Please try again.');
     }
   };
 
@@ -91,7 +117,6 @@ useEffect(() => {
       });
 
       const data = await response.json();
-      console.log("Login response:", data);
 
       if (data.success) {
         if (data.userType === 'doctor') {

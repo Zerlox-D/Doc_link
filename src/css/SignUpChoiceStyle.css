@@ -180,3 +180,136 @@
 .doctor-signup-btn:hover {
     background-color: rgb(242, 244, 246);
 }
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .role-selection-header {
+    padding: 12px 15px;
+    flex-wrap: wrap;
+  }
+
+  .header-logo {
+    font-size: 28px;
+  }
+
+  .header-nav {
+    gap: 12px;
+  }
+
+  .header-login {
+    font-size: 15px;
+  }
+
+  .header-back-btn {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  .split-container {
+    min-height: auto;
+    flex-direction: column;
+  }
+
+  .patient-section,
+  .doctor-section {
+    padding: 30px 20px;
+  }
+
+  .patient-content,
+  .doctor-content {
+    max-width: 100%;
+  }
+
+  .patient-icon,
+  .doctor-icon {
+    width: 90px;
+    height: 90px;
+    font-size: 45px;
+    margin-bottom: 20px;
+  }
+
+  .patient-title,
+  .doctor-title {
+    font-size: 36px;
+    margin-bottom: 15px;
+  }
+
+  .patient-description,
+  .doctor-description {
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+
+  .patient-signup-btn,
+  .doctor-signup-btn {
+    padding: 14px 28px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .role-selection-header {
+    padding: 10px 12px;
+  }
+
+  .header-logo {
+    font-size: 24px;
+  }
+
+  .header-nav {
+    gap: 8px;
+  }
+
+  .header-login {
+    font-size: 12px;
+  }
+
+  .header-back-btn {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .split-container {
+    min-height: auto;
+    flex-direction: column;
+  }
+
+  .patient-section,
+  .doctor-section {
+    padding: 20px 15px;
+    min-height: auto;
+  }
+
+  .patient-content,
+  .doctor-content {
+    max-width: 100%;
+  }
+
+  .patient-icon,
+  .doctor-icon {
+    width: 80px;
+    height: 80px;
+    font-size: 40px;
+    margin-bottom: 15px;
+  }
+
+  .patient-title,
+  .doctor-title {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+
+  .patient-description,
+  .doctor-description {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+  .patient-signup-btn,
+  .doctor-signup-btn {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+}

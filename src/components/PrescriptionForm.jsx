@@ -141,7 +141,7 @@ export default function PrescriptionForm({ appointment, onSuccess, onCancel, doc
           </div>
 
           {/* Diagnosis */}
-          <div className="form-group">
+          <div className="pres-form-group">
             <label>Diagnosis / Complaint: *</label>
             <input
               type="text"
@@ -171,7 +171,7 @@ export default function PrescriptionForm({ appointment, onSuccess, onCancel, doc
                 </div>
 
                 <div className="medicine-fields">
-                  <div className="form-group">
+                  <div className="pres-form-group">
                     <label>Medicine Name: *</label>
                     <input
                       type="text"
@@ -182,7 +182,7 @@ export default function PrescriptionForm({ appointment, onSuccess, onCancel, doc
                     />
                   </div>
 
-                  <div className="form-group">
+                  <div className="pres-form-group">
                     <label>Dosage: *</label>
                     <input
                       type="text"
@@ -193,7 +193,7 @@ export default function PrescriptionForm({ appointment, onSuccess, onCancel, doc
                     />
                   </div>
 
-                  <div className="form-group">
+                  <div className="pres-form-group">
                     <label>Frequency: *</label>
                     <select
                       value={med.frequency}
@@ -205,7 +205,7 @@ export default function PrescriptionForm({ appointment, onSuccess, onCancel, doc
                     </select>
                   </div>
 
-                  <div className="form-group">
+                  <div className="pres-form-group">
                     <label>Duration: *</label>
                     <input
                       type="text"
@@ -216,7 +216,7 @@ export default function PrescriptionForm({ appointment, onSuccess, onCancel, doc
                     />
                   </div>
 
-                  <div className="form-group">
+                  <div className="pres-form-group">
                     <label>Instructions: *</label>
                     <select
                       value={med.instructions}
@@ -237,7 +237,7 @@ export default function PrescriptionForm({ appointment, onSuccess, onCancel, doc
           </div>
 
           {/* Additional Notes */}
-          <div className="form-group">
+          <div className="pres-form-group">
             <label>Additional Notes:</label>
             <textarea
               value={notes}

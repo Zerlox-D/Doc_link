@@ -349,41 +349,239 @@ a {
 /* Responsive Design */
 @media (max-width: 768px) {
   .home-header {
-    padding: 12px 20px;
+    padding: 12px 15px;
+    gap: 10px;
   }
 
   .home-logo {
-    font-size: 26px;
+    font-size: 28px;
+  }
+
+  .home-user-section {
+    gap: 12px;
   }
 
   .home-user-greeting {
-    display: none;
+    font-size: 14px;
   }
 
   .home-profile-icon {
     width: 38px;
     height: 38px;
-    font-size: 24px;
+    font-size: 20px;
+  }
+
+  .home-logout-btn {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  .home-main {
+    padding: 30px 15px;
+  }
+
+  .hero {
+    padding: 40px 15px;
+  }
+
+  .hero-box {
+    padding: 35px 25px;
+    max-width: 100%;
   }
 
   .hero h2 {
     font-size: 32px;
+    margin-bottom: 15px;
   }
 
   .hero p {
     font-size: 16px;
+    margin-bottom: 25px;
+  }
+
+  .btn {
+    padding: 14px 30px;
+    font-size: 16px;
+  }
+
+  .section-title {
+    font-size: 24px;
+    margin-bottom: 20px;
   }
 
   .appointment-card {
     flex-direction: column;
     text-align: center;
+    padding: 25px;
+    gap: 15px;
+  }
+
+  .appointment-icon {
+    font-size: 50px;
+    padding: 15px;
+  }
+
+  .appointment-details h4 {
+    font-size: 22px;
   }
 
   .appointment-datetime {
     justify-content: center;
   }
 
+  .next-appointment-section {
+    margin: 30px 0;
+  }
+
+  .quick-access-section {
+    margin: 40px 0;
+  }
+
   .quick-access-grid {
     grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .quick-card {
+    padding: 30px 20px;
+  }
+
+  .quick-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+  }
+
+  .quick-card h4 {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  .quick-card p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-header {
+    padding: 10px 12px;
+  }
+
+  .home-logo {
+    font-size: 24px;
+  }
+
+  .home-user-section {
+    gap: 8px;
+  }
+
+  .home-profile-icon {
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+  }
+
+  .home-logout-btn {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  .home-user-greeting {
+    font-size: 12px;
+  }
+
+  .home-main {
+    padding: 20px 12px;
+  }
+
+  .hero {
+    padding: 30px 12px;
+  }
+
+  .hero-box {
+    padding: 25px 18px;
+  }
+
+  .hero h2 {
+    font-size: 26px;
+    margin-bottom: 12px;
+  }
+
+  .hero p {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .btn {
+    padding: 12px 24px;
+    font-size: 14px;
+    width: 100%;
+  }
+
+  .section-title {
+    font-size: 20px;
+  }
+
+  .appointment-card {
+    padding: 20px 15px;
+    gap: 12px;
+  }
+
+  .appointment-icon {
+    font-size: 40px;
+    padding: 12px;
+  }
+
+  .appointment-details h4 {
+    font-size: 18px;
+  }
+
+  .appointment-specialty {
+    font-size: 14px;
+  }
+
+  .appointment-date,
+  .appointment-time {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  .btn-view-details {
+    padding: 10px 20px;
+    font-size: 14px;
+    width: 100%;
+  }
+
+  .empty-icon {
+    font-size: 60px;
+  }
+
+  .empty-message {
+    font-size: 18px;
+  }
+
+  .empty-subtitle {
+    font-size: 14px;
+  }
+
+  .quick-access-grid {
+    gap: 12px;
+  }
+
+  .quick-card {
+    padding: 20px 15px;
+  }
+
+  .quick-icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+  }
+
+  .quick-card h4 {
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+
+  .quick-card p {
+    font-size: 12px;
   }
 }

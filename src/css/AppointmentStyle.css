@@ -10,9 +10,16 @@ body {
 
 .ba-container {
   background: linear-gradient(135deg, #ebf4f3 0%, #dcfcf7 50%, #ccfdf7 100%);
-  min-height: 155vh;
+  min-height: auto;
   color: #333;
   position: relative;
+}
+
+/* Desktop - larger height */
+@media (min-width: 1025px) {
+  .ba-container {
+    min-height: 155vh;
+  }
 }
 
 /* Navbar */
@@ -307,8 +314,95 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .ba-container {
+    min-height: -90px;
+  }
+
   .ba-navbar {
-    padding: 12px 20px;
+    padding: 12px 15px;
+    gap: 12px;
+  }
+
+  .ba-logo {
+    font-size: 28px;
+  }
+
+  .ba-nav-link {
+    margin: 0 8px;
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  .ba-logout-btn {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  .ba-header {
+    padding: 30px 15px 25px;
+    text-align: center;
+  }
+
+  .ba-title {
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+
+  .ba-subtitle {
+    font-size: 14px;
+  }
+
+  .ba-form-card {
+    padding: 25px 20px;
+    margin: 12px auto;
+    max-width: 95%;
+  }
+
+  .ba-label {
+    font-size: 14px;
+  }
+
+  .ba-input,
+  .ba-select,
+  .ba-textarea {
+    padding: 12px 14px;
+    font-size: 15px;
+  }
+
+  .ba-form-group {
+    margin-bottom: 18px;
+  }
+
+  .ba-btn {
+    padding: 13px 20px;
+    font-size: 15px;
+  }
+
+  .ba-info-text,
+  .ba-warning-text {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .ba-success-msg {
+    margin-top: 20px;
+    padding: 20px 15px;
+  }
+
+  .ba-success-msg::before {
+    font-size: 40px;
+    margin-bottom: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ba-container {
+    min-height: 100vh;
+  }
+
+  .ba-navbar {
+    padding: 10px 12px;
+    gap: 8px;
   }
 
   .ba-logo {
@@ -316,53 +410,93 @@ body {
   }
 
   .ba-nav-link {
-    margin: 0 8px;
-    padding: 8px 15px;
-    font-size: 14px;
+    margin: 0 6px;
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .ba-logout-btn {
+    padding: 8px 12px;
+    font-size: 12px;
   }
 
   .ba-header {
-    padding: 40px 15px 30px;
+    padding: 20px 12px 15px;
   }
 
   .ba-title {
-    font-size: 32px;
+    font-size: 24px;
+    margin-bottom: 6px;
   }
 
   .ba-subtitle {
-    font-size: 15px;
+    font-size: 13px;
   }
 
   .ba-form-card {
-    padding: 30px 25px;
-    margin: 15px;
-  }
-}
-
-@media (max-width: 480px) {
-  .ba-navbar {
-    flex-direction: column;
-    gap: 15px;
+    padding: 20px 15px;
+    margin: 10px;
+    max-width: 100%;
+    border-radius: 20px;
   }
 
-  .ba-title {
-    font-size: 28px;
+  .ba-form-card::before {
+    display: none;
   }
 
-  .ba-form-card {
-    padding: 25px 20px;
+  .ba-label {
+    font-size: 13px;
+    margin-bottom: 6px;
   }
 
   .ba-input,
   .ba-select,
   .ba-textarea {
-    padding: 12px 15px;
-    font-size: 14px;
+    padding: 11px 12px;
+    font-size: 16px;
+    border-radius: 10px;
+  }
+
+  .ba-form-group {
+    margin-bottom: 15px;
   }
 
   .ba-btn {
-    padding: 14px 25px;
-    font-size: 16px;
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 14px;
+    border-radius: 12px;
+  }
+
+  .ba-btn-primary {
+    margin-bottom: 8px;
+  }
+
+  .ba-btn-secondary {
+    width: 100%;
+  }
+
+  .ba-info-text,
+  .ba-warning-text {
+    padding: 10px 12px;
+    font-size: 12px;
+    border-radius: 10px;
+  }
+
+  .ba-success-msg {
+    margin-top: 15px;
+    padding: 15px 12px;
+    border-radius: 15px;
+  }
+
+  .ba-success-msg::before {
+    font-size: 36px;
+    margin-bottom: 10px;
+  }
+
+  .ba-home-link {
+    font-size: 13px;
+    margin-top: 10px;
   }
 }
 

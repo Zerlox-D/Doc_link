@@ -471,32 +471,419 @@
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .patient-profile-content {
-    padding: 20px 15px;
+    padding: 30px 15px;
   }
+
+  .doctor-info-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .affiliation-section {
+    width: 100%;
+  }
+
+  .fees-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .availability-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .patient-profile-header {
+    padding: 10px 15px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .header-logo {
+    font-size: 26px;
+  }
+
+  .dpp-header-left {
+    gap: 12px;
+  }
+
+  .back-btn {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  .user-greeting {
+    font-size: 13px;
+  }
+
+  .header-user-info {
+    gap: 8px;
+  }
+
+  .logout-btn,
+  .guest-signup-btn {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  .patient-profile-content {
+    padding: 20px 12px;
+  }
+
+  .doctor-info-card {
+    padding: 25px 15px;
+    margin-bottom: 20px;
+  }
+
+  .doctor-header {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+    padding-bottom: 15px;
+  }
+
+  .doctor-basic-info {
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+  }
+
+  .doctor-avatar {
+    width: 80px;
+    height: 80px;
+    font-size: 40px;
+  }
+
+  .doctor-details h1.doctor-name {
+    font-size: 26px;
+  }
+
+  .doctor-specialty-main {
+    font-size: 16px;
+  }
+
+  .experience-text {
+    font-size: 14px;
+  }
+
   .doctor-info-grid {
     grid-template-columns: 1fr;
     gap: 25px;
   }
+
+  .info-section h3.info-section-title {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
+  .field-group label {
+    font-size: 13px;
+  }
+
+  .field-display {
+    font-size: 14px;
+  }
+
+  .affiliation-section {
+    width: 100%;
+    padding: 20px 15px;
+  }
+
+  .affiliation-title {
+    font-size: 16px;
+  }
+
+  .affiliation-text {
+    font-size: 24px;
+  }
+
+  .fees-section,
+  .availability-section {
+    padding: 20px 15px;
+    margin-bottom: 20px;
+  }
+
+  .section-title {
+    font-size: 22px;
+    margin-bottom: 18px;
+  }
+
   .fees-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 15px;
   }
-  .doctor-header {
-    flex-direction: column;
-    gap: 20px;
-    text-align: center;
-    align-items: center;
+
+  .fee-card {
+    gap: 15px;
+    padding: 18px;
   }
-  .doctor-basic-info {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+
+  .fee-icon {
+    font-size: 40px;
   }
+
+  .fee-type {
+    font-size: 14px;
+  }
+
+  .fee-amount {
+    font-size: 26px;
+  }
+
+  .availability-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+  }
+
+  .availability-day-card {
+    padding: 15px;
+    border-radius: 12px;
+  }
+
+  .day-name {
+    font-size: 16px;
+  }
+
+  .status-badge {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+
+  .timing {
+    font-size: 14px;
+  }
+
+  .home-visit-indicator {
+    font-size: 12px;
+  }
+
   .action-buttons {
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .book-appointment-btn,
+  .book-home-visit-btn {
+    padding: 12px 24px;
+    font-size: 14px;
+    width: 100%;
+  }
+
+  .doctor-profile-rating {
+    padding: 6px 12px;
+    margin-top: 8px;
+  }
+
+  .doctor-rating-value {
+    font-size: 16px;
+  }
+
+  .doctor-rating-star {
+    font-size: 16px;
+  }
+
+  .doctor-rating-count {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .patient-profile-header {
+    padding: 8px 10px;
+  }
+
+  .header-logo {
+    font-size: 22px;
+  }
+
+  .dpp-header-left {
+    gap: 8px;
+  }
+
+  .header-navigation {
+    gap: 8px;
+  }
+
+  .back-btn {
+    padding: 6px 8px;
+    font-size: 11px;
+  }
+
+  .header-user-info {
+    gap: 8px;
+  }
+
+  .logout-btn,
+  .guest-signup-btn {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  .patient-profile-content {
+    padding: 15px 10px;
+  }
+
+  .doctor-info-card {
+    padding: 15px;
+  }
+
+  .doctor-header {
+    padding-bottom: 12px;
+  }
+
+  .doctor-avatar {
+    width: 70px;
+    height: 70px;
+    font-size: 35px;
+  }
+
+  .doctor-details h1.doctor-name {
+    font-size: 22px;
+  }
+
+  .doctor-specialty-main {
+    font-size: 14px;
+  }
+
+  .experience-text {
+    font-size: 12px;
+  }
+
+  .verify-badge {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  .info-section h3.info-section-title {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+
+  .info-fields {
+    gap: 12px;
+  }
+
+  .field-group label {
+    font-size: 12px;
+  }
+
+  .field-display {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+
+  .affiliation-section {
+    padding: 15px 12px;
+  }
+
+  .affiliation-title {
+    font-size: 14px;
+  }
+
+  .affiliation-text {
+    font-size: 20px;
+  }
+
+  .fees-section,
+  .availability-section {
+    padding: 15px 12px;
+    margin-bottom: 15px;
+  }
+
+  .section-title {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  .fees-grid {
+    gap: 12px;
+  }
+
+  .fee-card {
+    gap: 12px;
+    padding: 12px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .fee-icon {
+    font-size: 36px;
+  }
+
+  .fee-type {
+    font-size: 12px;
+  }
+
+  .fee-amount {
+    font-size: 22px;
+  }
+
+  .availability-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .availability-day-card {
+    padding: 12px;
+  }
+
+  .day-name {
+    font-size: 14px;
+  }
+
+  .status-badge {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+
+  .timing {
+    font-size: 12px;
+  }
+
+  .home-visit-indicator {
+    font-size: 11px;
+  }
+
+  .no-availability {
+    padding: 30px 15px;
+    font-size: 14px;
+  }
+
+  .action-buttons {
+    gap: 8px;
+    margin-top: 15px;
+  }
+
+  .book-appointment-btn,
+  .book-home-visit-btn {
+    padding: 10px 16px;
+    font-size: 12px;
+  }
+
+  .loading-message,
+  .error-message {
+    padding: 60px 15px;
+    font-size: 16px;
+  }
+
+  .doctor-profile-rating {
+    padding: 5px 10px;
+    margin-top: 6px;
+  }
+
+  .doctor-rating-value {
+    font-size: 14px;
+  }
+
+  .doctor-rating-star {
+    font-size: 14px;
+  }
+
+  .doctor-rating-count {
+    font-size: 11px;
   }
 }
 
