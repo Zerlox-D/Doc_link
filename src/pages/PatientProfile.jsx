@@ -53,7 +53,7 @@ export default function PatientProfile() {
     const patientId = localStorage.getItem("patient_id");
     setSubmittingReview(true);
 
-    fetch("http://doc-link.kesug.com/php/SubmitReview.php", {
+    fetch("https://doc-link.kesug.com/php/SubmitReview.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -154,13 +154,13 @@ useEffect(() => {
       setErr("");
 
       // Fetch patient data
-      const patientRes = await fetch(`http://doc-link.kesug.com/php/GetPatient.php?patient_id=${patientId}`);
+      const patientRes = await fetch(`https://doc-link.kesug.com/php/GetPatient.php?patient_id=${patientId}`);
       const patientData = await patientRes.json();
       if (patientData?.error) throw new Error(patientData.error);
       setPatient(patientData);
       setEditedPatient(patientData);
 
-      const appointmentsRes = await fetch(`http://doc-link.kesug.com/php/GetPatientAppointments.php?patient_id=${patientId}`);
+      const appointmentsRes = await fetch(`https://doc-link.kesug.com/php/GetPatientAppointments.php?patient_id=${patientId}`);
       const appointmentsData = await appointmentsRes.json();
 
       const appointments = appointmentsData.success ? appointmentsData.appointments : [];
@@ -204,7 +204,7 @@ useEffect(() => {
   const fetchPrescriptions = async () => {
   try {
     const response = await fetch(
-      `http://doc-link.kesug.com/php/GetPatientPrescriptions.php?patient_id=${patientId}`
+      `https://doc-link.kesug.com/php/GetPatientPrescriptions.php?patient_id=${patientId}`
     );
     const data = await response.json();
     if (data.success) {
@@ -235,7 +235,7 @@ useEffect(() => {
   const handleSave = async () => {
     setSaving(true);
     try {
-      const response = await fetch('http://doc-link.kesug.com/php/UpdatePatientProfile.php', {
+      const response = await fetch('https://doc-link.kesug.com/php/UpdatePatientProfile.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -266,7 +266,7 @@ useEffect(() => {
     if (!window.confirm("Are you sure you want to cancel this appointment?")) return;
 
     try {
-      const response = await fetch('http://doc-link.kesug.com/php/CancelAppointment.php', {
+      const response = await fetch('https://doc-link.kesug.com/php/CancelAppointment.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ appointment_id: appointmentId })
@@ -283,7 +283,7 @@ useEffect(() => {
 
   const handleDismissDeclined = async (appointmentId) => {
     try {
-      const response = await fetch('http://doc-link.kesug.com/php/DismissDeclinedAppointment.php', {
+      const response = await fetch('https://doc-link.kesug.com/php/DismissDeclinedAppointment.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ appointment_id: appointmentId })
@@ -560,7 +560,7 @@ const handlePaymentSuccess = () => {
     </p>
     {appt.invoice_number && (
       <a 
-        href={`http://doc-link.kesug.com/php/GenerateInvoice.php?invoice_number=${appt.invoice_number}`}
+        href={`https://doc-link.kesug.com/php/GenerateInvoice.php?invoice_number=${appt.invoice_number}`}
         target="_blank"
         rel="noopener noreferrer"
         style={{
@@ -716,7 +716,7 @@ const handlePaymentSuccess = () => {
             </button>
             
             <a 
-              href={`http://doc-link.kesug.com/php/GeneratePrescriptionPDF.php?prescription_id=${prescription.prescription_id}`}
+              href={`https://doc-link.kesug.com/php/GeneratePrescriptionPDF.php?prescription_id=${prescription.prescription_id}`}
               target="_blank"
               rel="noopener noreferrer"
               style={{

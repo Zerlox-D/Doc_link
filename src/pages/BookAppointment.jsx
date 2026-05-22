@@ -31,7 +31,7 @@ export default function BookAppointment() {
 
   useEffect(() => {
     if (doctorIdParam && modeParam === "schedule") {
-      fetch(`http://doc-link.kesug.com/php/GetDoctorInfo.php?doctor_id=${doctorIdParam}`)
+      fetch(`https://doc-link.kesug.com/php/GetDoctorInfo.php?doctor_id=${doctorIdParam}`)
         .then((res) => res.json())
         .then((data) => {
           if (data.success && data.available_locations) {
@@ -69,7 +69,7 @@ export default function BookAppointment() {
     const mode = formData.mode || (modeParam === "home" ? "Home Visit" : "");
 
 
-    fetch(`http://doc-link.kesug.com/php/GetAvailableSlots.php?doctor_id=${doctorId}&date=${date}&mode=${encodeURIComponent(mode)}`)
+    fetch(`https://doc-link.kesug.com/php/GetAvailableSlots.php?doctor_id=${doctorId}&date=${date}&mode=${encodeURIComponent(mode)}`)
       .then((res) => res.json())
       .then((data) => {
         setLoadingSlots(false);
@@ -113,7 +113,7 @@ export default function BookAppointment() {
     };
 
     // Submit to backend
-    fetch('http://doc-link.kesug.com/php/BookAppointmentSubmit.php', {
+    fetch('https://doc-link.kesug.com/php/BookAppointmentSubmit.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(bookingData)

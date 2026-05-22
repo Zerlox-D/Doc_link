@@ -70,7 +70,7 @@ const handleSubmit = async (e) => {
   }
 
   try {
-    const response = await fetch('http://doc-link.kesug.com/php/DoctorSignUp.php', {
+    const response = await fetch('https://doc-link.kesug.com/php/DoctorSignUp.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)

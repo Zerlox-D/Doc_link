@@ -30,7 +30,7 @@ const Home = () => {
 
   const fetchNextAppointment = async (patientId) => {
     try {
-      const response = await fetch(`http://doc-link.kesug.com/php/GetPatientNextAppointment.php?patient_id=${patientId}`);
+      const response = await fetch(`https://doc-link.kesug.com/php/GetPatientNextAppointment.php?patient_id=${patientId}`);
       const data = await response.json();
       if (data && !data.error) {
         setNextAppointment(data);

@@ -33,28 +33,28 @@ export default function AdminDashboard() {
     setLoading(true);
     try {
       // Load statistics
-      const statsResponse = await fetch('http://doc-link.kesug.com/php/GetAdminStats.php');
+      const statsResponse = await fetch('https://doc-link.kesug.com/php/GetAdminStats.php');
       const statsData = await statsResponse.json();
       if (statsData.success) {
         setStats(statsData.stats);
       }
 
       // Load pending doctors
-      const pendingResponse = await fetch('http://doc-link.kesug.com/php/GetPendingDoctors.php');
+      const pendingResponse = await fetch('https://doc-link.kesug.com/php/GetPendingDoctors.php');
       const pendingData = await pendingResponse.json();
       if (pendingData.success) {
         setPendingDoctors(pendingData.doctors);
       }
 
       // Load all doctors
-      const doctorsResponse = await fetch('http://doc-link.kesug.com/php/GetAllDoctors.php');
+      const doctorsResponse = await fetch('https://doc-link.kesug.com/php/GetAllDoctors.php');
       const doctorsData = await doctorsResponse.json();
       if (doctorsData.success) {
         setAllDoctors(doctorsData.doctors);
       }
 
       // Load all patients
-      const patientsResponse = await fetch('http://doc-link.kesug.com/php/GetAllPatients.php');
+      const patientsResponse = await fetch('https://doc-link.kesug.com/php/GetAllPatients.php');
       const patientsData = await patientsResponse.json();
       if (patientsData.success) {
         setAllPatients(patientsData.patients);
@@ -72,7 +72,7 @@ export default function AdminDashboard() {
     }
 
     try {
-      const response = await fetch('http://doc-link.kesug.com/php/VerifyDoctor.php', {
+      const response = await fetch('https://doc-link.kesug.com/php/VerifyDoctor.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ doctor_id: doctorId, action: action })
