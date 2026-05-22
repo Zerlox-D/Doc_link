@@ -37,7 +37,7 @@ export default function SearchDoctors() {
   const loadDoctors = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost/Doc_Link/php/SearchDoctors.php');
+      const response = await fetch('http://doc-link.kesug.com/php/SearchDoctors.php');
       const data = await response.json();
       
       if (Array.isArray(data)) {

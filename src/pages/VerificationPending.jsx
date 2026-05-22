@@ -17,7 +17,7 @@ export default function VerificationPending() {
     const doctorId = localStorage.getItem('doctor_id');
     
     try {
-      const response = await fetch(`http://localhost/Doc_Link/php/CheckVerificationStatus.php?doctor_id=${doctorId}`);
+      const response = await fetch(`http://doc-link.kesug.com/php/CheckVerificationStatus.php?doctor_id=${doctorId}`);
       const data = await response.json();
       
       if (data.verified) {

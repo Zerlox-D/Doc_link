@@ -35,7 +35,7 @@ function DoctorProfileViewer() {
       }, []);
 
     useEffect(() => {
-        fetch(`http://localhost/Doc_Link/php/GetDoctorWithAvailability.php?id=${id}`)
+        fetch(`http://doc-link.kesug.com/php/GetDoctorWithAvailability.php?id=${id}`)
             .then((res) => res.json())
             .then((data) => {
                 if (data.error) {
@@ -55,7 +55,7 @@ function DoctorProfileViewer() {
 
     useEffect(() => {
   if (id) {
-    fetch(`http://localhost/Doc_Link/php/GetDoctorReviews.php?doctor_id=${id}`)
+    fetch(`http://doc-link.kesug.com/php/GetDoctorReviews.php?doctor_id=${id}`)
       .then(res => res.json())
       .then(data => {
         if (data.success) {

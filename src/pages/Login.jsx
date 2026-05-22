@@ -60,7 +60,7 @@ useEffect(() => {
     }
 
     try {
-      const response = await fetch('http://localhost/Doc_Link/php/LoginPage.php', {
+      const response = await fetch('http://doc-link.kesug.com/php/LoginPage.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -104,7 +104,7 @@ useEffect(() => {
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost/Doc_Link/php/LoginPage.php', {
+      const response = await fetch('http://doc-link.kesug.com/php/LoginPage.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

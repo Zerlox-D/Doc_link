@@ -42,14 +42,14 @@ export default function DoctorProfile() {
       setLoading(true);
       setErr("");
 
-      const profileRes = await fetch(`http://localhost/Doc_Link/php/GetDoctorWithAvailability.php?id=${doctorId}`, { signal: controller.signal });
+      const profileRes = await fetch(`http://doc-link.kesug.com/php/GetDoctorWithAvailability.php?id=${doctorId}`, { signal: controller.signal });
       const profileData = await profileRes.json();
       if (profileData?.error) throw new Error(profileData.error);
       setProfileData(profileData);
       setEditedDoctor(profileData.doctor || {});
       setEditedAvailability(profileData.availability || []);
 
-      const apptRes = await fetch(`http://localhost/Doc_Link/php/GetDoctorAppointments.php?doctor_id=${doctorId}`, { signal: controller.signal });
+      const apptRes = await fetch(`http://doc-link.kesug.com/php/GetDoctorAppointments.php?doctor_id=${doctorId}`, { signal: controller.signal });
       const apptData = await apptRes.json();
       setAppointments(Array.isArray(apptData) ? apptData : []);
     } catch (e) {
@@ -58,7 +58,7 @@ export default function DoctorProfile() {
       setLoading(false);
     }
 
-      const pendingRes = await fetch(`http://localhost/Doc_Link/php/GetDoctorPendingAppointments.php?doctor_id=${doctorId}`);
+      const pendingRes = await fetch(`http://doc-link.kesug.com/php/GetDoctorPendingAppointments.php?doctor_id=${doctorId}`);
       const pendingData = await pendingRes.json();
       setPendingRequests(Array.isArray(pendingData) ? pendingData : []);
   };
@@ -89,7 +89,7 @@ export default function DoctorProfile() {
   if (!window.confirm(`Are you sure you want to ${action} this appointment?`)) return;
 
   try {
-    const response = await fetch('http://localhost/Doc_Link/php/UpdateAppointmentStatus.php', {
+    const response = await fetch('http://doc-link.kesug.com/php/UpdateAppointmentStatus.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ appointment_id: appointmentId, status })
@@ -107,7 +107,7 @@ export default function DoctorProfile() {
   const fetchCompletedAppointments = async () => {
   try {
     const response = await fetch(
-      `http://localhost/Doc_Link/php/GetDoctorAppointments.php?doctor_id=${doctorId}&type=completed`
+      `http://doc-link.kesug.com/php/GetDoctorAppointments.php?doctor_id=${doctorId}&type=completed`
     );
     const data = await response.json();
     setCompletedAppointments(data);
@@ -170,7 +170,7 @@ export default function DoctorProfile() {
   const handleSave = async () => {
     setSaving(true);
     try {
-      const doctorRes = await fetch('http://localhost/Doc_Link/php/UpdateDoctorProfile.php', {
+      const doctorRes = await fetch('http://doc-link.kesug.com/php/UpdateDoctorProfile.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -186,7 +186,7 @@ export default function DoctorProfile() {
       const doctorData = await doctorRes.json();
       if (!doctorData.success) throw new Error(doctorData.error || "Failed to update profile");
 
-      const availRes = await fetch('http://localhost/Doc_Link/php/UpdateDoctorAvailability.php', {
+      const availRes = await fetch('http://doc-link.kesug.com/php/UpdateDoctorAvailability.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
