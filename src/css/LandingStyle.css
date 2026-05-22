@@ -104,6 +104,24 @@ hr{
     margin-top: 10px;
 }
 
+.disclaimer-banner {
+    background-color: #fef2f2;
+    border: 2px solid #ef4444;
+    border-radius: 12px;
+    padding: 12px 18px;
+    margin: 15px 20px 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.disclaimer-text {
+    color: #991b1b;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0;
+}
+
 .middle
 {
     background-color: rgb(89, 224, 211);

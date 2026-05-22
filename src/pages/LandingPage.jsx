@@ -20,6 +20,10 @@ function LandingPage() {
     </header>
     <hr />
 
+    <div className='disclaimer-banner'>
+      <span className='disclaimer-text'>ⓘ This is an educational project created for college coursework and is not affiliated with any real healthcare provider, institution, or organization.</span>
+    </div>
+
     <div className='p1'>
       <span className='p1text'>
         <br /> Bridging the gap <br />between <span className='p1word'>Patients</span> <br />and <span className='p1word'>Healthcare</span>
